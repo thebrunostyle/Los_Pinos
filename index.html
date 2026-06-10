@@ -1,0 +1,1191 @@
+<!DOCTYPE html>
+<html lang="es" data-theme="light">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Hacienda los Pinos — Eventos & Celebraciones</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet"/>
+<style>
+/* ── RESET & VARIABLES ── */
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --ink:#0D1117;
+  --ink2:#161C26;
+  --gold:#C9A84C;
+  --gold-light:#E2C97E;
+  --cream:#F5EDD6;
+  --cream2:#EDE0C4;
+  --muted:#8A7E6A;
+  --glass:rgba(201,168,76,.08);
+  --r:1rem;
+  --transition:cubic-bezier(.4,0,.2,1);
+  --nav-bg:rgba(13,17,23,.92);
+  --menu-bg:rgba(13,17,23,.98);
+  --card-hover:#1a2230;
+  --input-bg:rgba(13,17,23,.8);
+}
+[data-theme="light"]{
+  --ink:#FAFAF5;
+  --ink2:#F0E8D2;
+  --cream:#1A1209;
+  --cream2:#2D2416;
+  --muted:#6B5E4A;
+  --glass:rgba(201,168,76,.06);
+  --nav-bg:rgba(250,250,245,.94);
+  --menu-bg:rgba(250,250,245,.98);
+  --card-hover:#E5DAC4;
+  --input-bg:rgba(250,250,245,.9);
+}
+html{scroll-behavior:smooth;font-size:16px}
+body{background:var(--ink);color:var(--cream);font-family:'DM Sans',sans-serif;font-weight:300;overflow-x:hidden;cursor:none}
+
+/* ── CURSOR ── */
+#cursor{position:fixed;width:10px;height:10px;background:var(--gold);border-radius:50%;pointer-events:none;z-index:9999;transform:translate(-50%,-50%);transition:transform .1s,width .25s,height .25s,opacity .3s}
+#cursor-ring{position:fixed;width:36px;height:36px;border:1px solid rgba(201,168,76,.5);border-radius:50%;pointer-events:none;z-index:9998;transform:translate(-50%,-50%);transition:transform .15s,width .3s,height .3s,opacity .3s}
+body:has(a:hover) #cursor{width:16px;height:16px}
+body:has(a:hover) #cursor-ring{width:50px;height:50px;border-color:var(--gold)}
+body:has(button:hover) #cursor{width:16px;height:16px}
+body:has(button:hover) #cursor-ring{width:50px;height:50px;border-color:var(--gold)}
+
+/* ── NAV ── */
+nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;align-items:center;justify-content:space-between;padding:1.5rem 4rem;transition:background .4s,padding .4s}
+nav.scrolled{background:var(--nav-bg);-webkit-backdrop-filter:blur(20px);backdrop-filter:blur(20px);padding:1rem 4rem;border-bottom:1px solid rgba(201,168,76,.12)}
+.nav-logo{font-family:'Cormorant Garamond',serif;font-size:1.4rem;font-weight:600;letter-spacing:.06em;color:var(--cream);text-decoration:none}
+.nav-logo span{color:var(--gold)}
+.nav-links{display:flex;gap:2.5rem;list-style:none}
+.nav-links a{color:var(--muted);text-decoration:none;font-size:.85rem;letter-spacing:.1em;text-transform:uppercase;transition:color .3s}
+.nav-links a:hover{color:var(--gold)}
+.nav-cta{background:transparent;border:1px solid var(--gold);color:var(--gold);padding:.55rem 1.6rem;font-family:'DM Sans',sans-serif;font-size:.8rem;letter-spacing:.1em;text-transform:uppercase;cursor:none;transition:background .3s,color .3s}
+.nav-cta:hover{background:var(--gold);color:var(--ink)}
+.hamburger{display:none;flex-direction:column;gap:5px;cursor:none;padding:4px}
+.hamburger span{width:24px;height:1px;background:var(--cream);transition:.3s}
+.mobile-menu{display:none;position:fixed;inset:0;background:var(--menu-bg);z-index:99;flex-direction:column;align-items:center;justify-content:center;gap:2.5rem}
+.mobile-menu.open{display:flex}
+.mobile-menu a{font-family:'Cormorant Garamond',serif;font-size:2.5rem;color:var(--cream);text-decoration:none;letter-spacing:.05em}
+.mobile-menu a:hover{color:var(--gold)}
+
+/* ── HERO ── */
+#inicio{min-height:100vh;display:flex;flex-direction:column;justify-content:center;position:relative;overflow:hidden;padding:0 4rem}
+.hero-bg{position:absolute;inset:0;background:radial-gradient(ellipse 80% 60% at 70% 40%,rgba(201,168,76,.07) 0%,transparent 60%),radial-gradient(ellipse 50% 80% at 20% 80%,rgba(201,168,76,.04) 0%,transparent 50%)}
+.hero-grid{position:absolute;inset:0;background-image:linear-gradient(rgba(201,168,76,.03) 1px,transparent 1px),linear-gradient(90deg,rgba(201,168,76,.03) 1px,transparent 1px);background-size:80px 80px;mask-image:radial-gradient(ellipse at center,black 20%,transparent 70%)}
+.hero-content{position:relative;z-index:2;max-width:800px}
+.hero-tag{display:inline-flex;align-items:center;gap:.6rem;border:1px solid rgba(201,168,76,.3);padding:.35rem 1rem;font-size:.75rem;letter-spacing:.15em;text-transform:uppercase;color:var(--gold);margin-bottom:2rem;opacity:0;animation:fadeUp .8s .2s var(--transition) forwards}
+.hero-tag::before{content:'';width:20px;height:1px;background:var(--gold)}
+.hero-h1{font-family:'Cormorant Garamond',serif;font-size:clamp(3rem,7vw,6.5rem);font-weight:300;line-height:1.05;letter-spacing:-.01em;opacity:0;animation:fadeUp .9s .4s var(--transition) forwards}
+.hero-h1 em{font-style:italic;color:var(--gold)}
+.hero-sub{font-size:1rem;color:var(--muted);line-height:1.8;max-width:480px;margin-top:1.5rem;opacity:0;animation:fadeUp .9s .6s var(--transition) forwards}
+.hero-actions{display:flex;gap:1.2rem;margin-top:2.5rem;opacity:0;animation:fadeUp .9s .8s var(--transition) forwards;flex-wrap:wrap}
+.btn-primary{background:var(--gold);color:var(--ink);padding:.85rem 2.2rem;font-family:'DM Sans',sans-serif;font-size:.85rem;font-weight:500;letter-spacing:.08em;text-transform:uppercase;border:none;cursor:none;transition:background .3s,transform .2s;text-decoration:none;display:inline-block}
+.btn-primary:hover{background:var(--gold-light);transform:translateY(-2px)}
+.btn-secondary{background:transparent;color:var(--cream);padding:.85rem 2.2rem;font-family:'DM Sans',sans-serif;font-size:.85rem;font-weight:300;letter-spacing:.08em;text-transform:uppercase;border:1px solid rgba(245,237,214,.2);cursor:none;transition:border-color .3s,color .3s;text-decoration:none;display:inline-block}
+.btn-secondary:hover{border-color:var(--gold);color:var(--gold)}
+.hero-stats{position:absolute;right:4rem;bottom:8rem;display:flex;flex-direction:column;gap:2rem;opacity:0;animation:fadeLeft .9s 1s var(--transition) forwards}
+.stat{text-align:right}
+.stat-num{font-family:'Cormorant Garamond',serif;font-size:2.8rem;font-weight:300;color:var(--gold);line-height:1}
+.stat-label{font-size:.7rem;letter-spacing:.15em;text-transform:uppercase;color:var(--muted);margin-top:.2rem}
+.scroll-indicator{position:absolute;bottom:2.5rem;left:50%;transform:translateX(-50%);display:flex;flex-direction:column;align-items:center;gap:.5rem;opacity:0;animation:fadeUp .9s 1.2s var(--transition) forwards}
+.scroll-line{width:1px;height:50px;background:linear-gradient(var(--gold),transparent);animation:scrollPulse 2s infinite}
+.scroll-text{font-size:.65rem;letter-spacing:.2em;text-transform:uppercase;color:var(--muted)}
+
+/* ── SERVICIOS ── */
+#servicios{padding:8rem 4rem;position:relative}
+.section-header{text-align:center;margin-bottom:5rem}
+.section-tag{font-size:.75rem;letter-spacing:.2em;text-transform:uppercase;color:var(--gold);margin-bottom:1rem}
+.section-title{font-family:'Cormorant Garamond',serif;font-size:clamp(2rem,4vw,3.5rem);font-weight:300;line-height:1.2}
+.section-title em{font-style:italic;color:var(--gold)}
+.section-line{width:60px;height:1px;background:var(--gold);margin:1.5rem auto 0}
+.services-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:1.5px;background:rgba(201,168,76,.1)}
+.service-card{background:var(--ink2);padding:3rem 2.5rem;position:relative;overflow:hidden;transition:background .4s}
+.service-card::before{content:'';position:absolute;top:0;left:0;width:0;height:2px;background:var(--gold);transition:width .5s var(--transition)}
+.service-card:hover{background:var(--card-hover)}
+.service-card:hover::before{width:100%}
+.service-icon{font-size:2rem;margin-bottom:1.5rem;display:block}
+.service-card h3{font-family:'Cormorant Garamond',serif;font-size:1.5rem;font-weight:400;margin-bottom:.8rem}
+.service-card p{font-size:.875rem;color:var(--muted);line-height:1.7}
+
+/* ── CÓMO FUNCIONA ── */
+#como-funciona{padding:8rem 4rem;background:linear-gradient(180deg,var(--ink) 0%,var(--ink2) 50%,var(--ink) 100%)}
+.steps{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:3rem;margin-top:5rem;position:relative}
+.steps::before{content:'';position:absolute;top:2.5rem;left:10%;right:10%;height:1px;background:linear-gradient(90deg,transparent,rgba(201,168,76,.3),transparent);pointer-events:none}
+.step{text-align:center;position:relative}
+.step-num{font-family:'Cormorant Garamond',serif;font-size:4rem;font-weight:300;color:rgba(201,168,76,.15);line-height:1;margin-bottom:.5rem}
+.step-icon{width:56px;height:56px;border:1px solid rgba(201,168,76,.3);border-radius:50%;display:flex;align-items:center;justify-content:center;margin:0 auto 1.2rem;font-size:1.3rem;position:relative;z-index:1;background:var(--ink2)}
+.step h3{font-family:'Cormorant Garamond',serif;font-size:1.25rem;font-weight:400;margin-bottom:.6rem}
+.step p{font-size:.83rem;color:var(--muted);line-height:1.6}
+
+/* ── CALENDARIO ── */
+#calendario{padding:8rem 4rem}
+.calendar-container{max-width:900px;margin:0 auto}
+.calendar-wrapper{background:var(--ink2);border:1px solid rgba(201,168,76,.12);padding:2rem}
+.cal-header{display:flex;align-items:center;justify-content:space-between;margin-bottom:2rem}
+.cal-title{font-family:'Cormorant Garamond',serif;font-size:1.6rem;font-weight:300}
+.cal-nav{display:flex;gap:.5rem}
+.cal-btn{background:transparent;border:1px solid rgba(201,168,76,.2);color:var(--cream);width:36px;height:36px;cursor:none;font-size:1rem;transition:all .3s;display:flex;align-items:center;justify-content:center}
+.cal-btn:hover{border-color:var(--gold);color:var(--gold)}
+.cal-days-header{display:grid;grid-template-columns:repeat(7,1fr);gap:2px;margin-bottom:2px}
+.cal-day-name{text-align:center;font-size:.7rem;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);padding:.6rem 0}
+.cal-grid{display:grid;grid-template-columns:repeat(7,1fr);gap:2px}
+.cal-cell{aspect-ratio:1;display:flex;flex-direction:column;align-items:center;justify-content:center;font-size:.85rem;position:relative;cursor:none;transition:all .2s;border:1px solid transparent}
+.cal-cell:not(.empty):hover{border-color:rgba(201,168,76,.3);background:rgba(201,168,76,.05)}
+.cal-cell.empty{pointer-events:none;opacity:.2}
+.cal-cell.today{background:rgba(201,168,76,.1);border-color:rgba(201,168,76,.3);color:var(--gold);font-weight:500}
+.cal-cell.available::after{content:'';width:6px;height:6px;border-radius:50%;background:#4ade80;position:absolute;bottom:4px}
+.cal-cell.occupied::after{content:'';width:6px;height:6px;border-radius:50%;background:#f87171;position:absolute;bottom:4px}
+.cal-cell.pending::after{content:'';width:6px;height:6px;border-radius:50%;background:#fbbf24;position:absolute;bottom:4px}
+.cal-cell.event::after{content:'';width:6px;height:6px;border-radius:50%;background:#60a5fa;position:absolute;bottom:4px}
+.cal-legend{display:flex;gap:1.5rem;margin-top:1.5rem;flex-wrap:wrap}
+.legend-item{display:flex;align-items:center;gap:.5rem;font-size:.75rem;color:var(--muted)}
+.legend-dot{width:8px;height:8px;border-radius:50%}
+.cal-event-detail{display:none;background:var(--ink);border:1px solid rgba(201,168,76,.2);padding:1.5rem;margin-top:1rem}
+.cal-event-detail.show{display:block;animation:fadeUp .3s var(--transition)}
+.event-detail-title{font-family:'Cormorant Garamond',serif;font-size:1.2rem;margin-bottom:.8rem}
+.event-detail-grid{display:grid;grid-template-columns:1fr 1fr;gap:.5rem}
+.detail-item{font-size:.8rem;color:var(--muted)}
+.detail-item span{color:var(--cream);font-weight:400}
+
+/* ── REGISTRO ── */
+#registro{padding:8rem 4rem;background:var(--ink2)}
+.register-container{max-width:700px;margin:0 auto}
+.form-grid{display:grid;grid-template-columns:1fr 1fr;gap:1.2rem;margin-top:3rem}
+.form-group{display:flex;flex-direction:column;gap:.5rem}
+.form-group.full{grid-column:1/-1}
+.form-label{font-size:.72rem;letter-spacing:.12em;text-transform:uppercase;color:var(--muted)}
+.form-input,.form-select,.form-textarea{background:var(--input-bg);border:1px solid rgba(201,168,76,.15);color:var(--cream);padding:.85rem 1rem;font-family:'DM Sans',sans-serif;font-size:.9rem;font-weight:300;width:100%;transition:border-color .3s,background .3s;outline:none;-webkit-appearance:none;appearance:none}
+.form-input:focus,.form-select:focus,.form-textarea:focus{border-color:var(--gold);background:rgba(201,168,76,.04)}
+.form-input::placeholder,.form-textarea::placeholder{color:rgba(138,126,106,.4)}
+.form-select{cursor:none}
+.form-select option{background:var(--ink2);color:var(--cream)}
+.form-textarea{resize:vertical;min-height:100px}
+.form-check{display:flex;align-items:flex-start;gap:.8rem;margin-top:.5rem;cursor:none}
+.form-check input{width:16px;height:16px;accent-color:var(--gold);flex-shrink:0;margin-top:2px;cursor:none}
+.form-check label{font-size:.82rem;color:var(--muted);line-height:1.5;cursor:none}
+.form-check label a{color:var(--gold)}
+.form-submit{width:100%;background:var(--gold);color:var(--ink);padding:1rem;font-family:'DM Sans',sans-serif;font-size:.85rem;font-weight:500;letter-spacing:.12em;text-transform:uppercase;border:none;cursor:none;transition:background .3s,transform .2s;margin-top:.5rem}
+.form-submit:hover{background:var(--gold-light);transform:translateY(-2px)}
+.form-error{font-size:.75rem;color:#f87171;display:none}
+.form-error.show{display:block}
+.success-msg{display:none;text-align:center;padding:3rem;border:1px solid rgba(201,168,76,.2)}
+.success-msg.show{display:block;animation:fadeUp .5s var(--transition)}
+.success-icon{font-size:3rem;margin-bottom:1rem}
+.success-msg h3{font-family:'Cormorant Garamond',serif;font-size:2rem;font-weight:300;margin-bottom:.5rem}
+.success-msg p{color:var(--muted);font-size:.9rem}
+
+/* ── TESTIMONIOS ── */
+#testimonios{padding:8rem 4rem;overflow:hidden}
+.testimonials-track{display:flex;gap:2rem;margin-top:4rem;animation:slide 30s linear infinite}
+.testimonials-track:hover{animation-play-state:paused}
+.testimonial{flex-shrink:0;width:380px;background:var(--ink2);border:1px solid rgba(201,168,76,.1);padding:2.5rem;position:relative}
+.testimonial::before{content:'\201C';font-family:'Cormorant Garamond',serif;font-size:5rem;color:rgba(201,168,76,.15);position:absolute;top:.5rem;left:1.5rem;line-height:1}
+.testimonial-text{font-size:.9rem;line-height:1.8;color:var(--cream2);position:relative;z-index:1;margin-bottom:1.5rem}
+.testimonial-author{display:flex;align-items:center;gap:.8rem}
+.author-avatar{width:40px;height:40px;border-radius:50%;background:linear-gradient(135deg,var(--gold),var(--muted));display:flex;align-items:center;justify-content:center;font-family:'Cormorant Garamond',serif;font-size:1.1rem;font-weight:600;color:var(--ink);flex-shrink:0}
+.author-name{font-size:.85rem;font-weight:500}
+.author-role{font-size:.75rem;color:var(--muted)}
+
+/* ── CONTACTO / CTA ── */
+#contacto{padding:8rem 4rem;position:relative;overflow:hidden}
+.cta-bg{position:absolute;inset:0;background:radial-gradient(ellipse 60% 80% at 50% 50%,rgba(201,168,76,.06) 0%,transparent 70%)}
+.cta-inner{max-width:700px;margin:0 auto;text-align:center;position:relative;z-index:1}
+.cta-inner h2{font-family:'Cormorant Garamond',serif;font-size:clamp(2.5rem,5vw,4.5rem);font-weight:300;line-height:1.1;margin-bottom:1.5rem}
+.cta-inner h2 em{font-style:italic;color:var(--gold)}
+.cta-inner p{color:var(--muted);line-height:1.8;max-width:480px;margin:0 auto 2.5rem}
+.cta-actions{display:flex;gap:1rem;justify-content:center;flex-wrap:wrap}
+.contact-info{display:flex;gap:3rem;justify-content:center;margin-top:4rem;flex-wrap:wrap}
+.contact-item{text-align:center}
+.contact-item-icon{font-size:1.5rem;margin-bottom:.5rem}
+.contact-item-label{font-size:.7rem;letter-spacing:.15em;text-transform:uppercase;color:var(--gold);margin-bottom:.2rem}
+.contact-item-value{font-size:.9rem;color:var(--cream2)}
+
+/* ── FOOTER ── */
+footer{border-top:1px solid rgba(201,168,76,.1);padding:3rem 4rem;display:flex;align-items:center;justify-content:space-between;flex-wrap:gap}
+.footer-logo{font-family:'Cormorant Garamond',serif;font-size:1.4rem;font-weight:600;letter-spacing:.08em}
+.footer-logo span{color:var(--gold)}
+.footer-copy{font-size:.78rem;color:var(--muted)}
+.footer-links{display:flex;gap:1.5rem}
+.footer-links a{font-size:.78rem;color:var(--muted);text-decoration:none;transition:color .3s}
+.footer-links a:hover{color:var(--gold)}
+
+/* ── WHATSAPP FLOAT ── */
+.wa-float{position:fixed;bottom:2rem;right:2rem;z-index:200;width:54px;height:54px;background:#25D366;border-radius:50%;display:flex;align-items:center;justify-content:center;box-shadow:0 4px 20px rgba(37,211,102,.3);cursor:none;transition:transform .3s,box-shadow .3s;text-decoration:none}
+.wa-float:hover{transform:scale(1.1);box-shadow:0 6px 30px rgba(37,211,102,.4)}
+.wa-float svg{width:28px;height:28px;fill:white}
+.wa-tooltip{position:absolute;right:66px;background:var(--ink2);color:var(--cream);padding:.4rem .8rem;font-size:.75rem;white-space:nowrap;border:1px solid rgba(201,168,76,.2);opacity:0;transform:translateX(6px);transition:all .3s;pointer-events:none}
+.wa-float:hover .wa-tooltip{opacity:1;transform:translateX(0)}
+
+/* ── ANIMACIONES ── */
+@keyframes fadeUp{from{opacity:0;transform:translateY(24px)}to{opacity:1;transform:translateY(0)}}
+@keyframes fadeLeft{from{opacity:0;transform:translateX(24px)}to{opacity:1;transform:translateX(0)}}
+@keyframes scrollPulse{0%,100%{opacity:1;transform:scaleY(1)}50%{opacity:.3;transform:scaleY(.6)}}
+@keyframes slide{0%{transform:translateX(0)}100%{transform:translateX(calc(-380px * 4 - 2rem * 4))}}
+
+/* reveal on scroll */
+.reveal{opacity:0;transform:translateY(30px);transition:opacity .7s var(--transition),transform .7s var(--transition)}
+.reveal.visible{opacity:1;transform:translateY(0)}
+
+/* ── THEME TOGGLE ── */
+.theme-toggle{background:transparent;border:1px solid rgba(201,168,76,.25);color:var(--cream);width:36px;height:36px;cursor:none;font-size:1rem;transition:all .3s;display:flex;align-items:center;justify-content:center;border-radius:50%;padding:0;flex-shrink:0}
+.theme-toggle:hover{border-color:var(--gold)}
+.theme-toggle::after{content:'🌙'}
+[data-theme="dark"] .theme-toggle::after{content:'☀️'}
+.contact-item-link{color:inherit;text-decoration:none;transition:color .3s;display:block}
+.contact-item-link:hover{color:var(--gold)}
+
+/* ── HERO IMAGE ── */
+.hero-img-wrap{position:absolute;inset:0;overflow:hidden;z-index:0}
+.hero-img-wrap img{width:100%;height:100%;object-fit:cover;object-position:center;opacity:.65;transition:opacity 1s}
+.hero-img-wrap::after{content:'';position:absolute;inset:0;background:linear-gradient(to right,var(--ink) 0%,rgba(13,17,23,.82) 28%,rgba(13,17,23,.35) 62%,rgba(13,17,23,.12) 100%),linear-gradient(to top,rgba(13,17,23,.55) 0%,transparent 28%)}
+
+/* ── GALERÍA ── */
+#galeria{padding:6rem 4rem}
+.gallery-grid{display:grid;grid-template-columns:repeat(12,1fr);grid-template-rows:auto;gap:.75rem;margin-top:3rem}
+.gallery-item{overflow:hidden;background:var(--ink2);position:relative}
+.gallery-item img{width:100%;height:100%;object-fit:cover;transition:transform .7s var(--transition),opacity .4s}
+.gallery-item:hover img{transform:scale(1.04);opacity:.9}
+.gallery-item:nth-child(1){grid-column:span 8;grid-row:span 2;min-height:420px}
+.gallery-item:nth-child(2){grid-column:span 4;min-height:200px}
+.gallery-item:nth-child(3){grid-column:span 4;min-height:200px}
+.gallery-item:nth-child(4){grid-column:span 4;min-height:200px}
+.gallery-item:nth-child(5){grid-column:span 4;min-height:200px}
+.gallery-item:nth-child(6){grid-column:span 4;min-height:200px}
+.gallery-placeholder{width:100%;height:100%;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:.6rem;color:var(--muted);font-size:.78rem;letter-spacing:.1em;text-transform:uppercase;border:1px dashed rgba(201,168,76,.2);min-height:inherit}
+.gallery-placeholder span{font-size:2rem;opacity:.3}
+
+/* ── CALENDAR LOGIN ── */
+.cal-login-bar{display:flex;align-items:center;justify-content:space-between;margin-bottom:1.5rem;flex-wrap:wrap;gap:.8rem}
+.cal-space-tabs{display:flex;gap:.5rem;flex-wrap:wrap}
+.cal-space-tab{background:transparent;border:1px solid rgba(201,168,76,.2);color:var(--muted);padding:.35rem .9rem;font-size:.74rem;letter-spacing:.08em;cursor:pointer;transition:all .3s}
+.cal-space-tab:hover{border-color:var(--gold);color:var(--gold)}
+.cal-space-tab.active{background:var(--gold);border-color:var(--gold);color:var(--ink);font-weight:500}
+.cal-user-info{display:flex;align-items:center;gap:.8rem;font-size:.78rem;color:var(--muted)}
+.cal-user-info strong{color:var(--gold)}
+.cal-btn-login{background:transparent;border:1px solid rgba(201,168,76,.3);color:var(--gold);padding:.35rem 1rem;font-size:.74rem;letter-spacing:.08em;cursor:pointer;transition:all .3s}
+.cal-btn-login:hover{background:var(--gold);color:var(--ink)}
+.cal-btn-logout{background:transparent;border:none;color:var(--muted);font-size:.74rem;cursor:pointer;transition:color .3s;padding:0}
+.cal-btn-logout:hover{color:#f87171}
+#spaceTabsWrap{display:none}
+#loginArea{display:flex;align-items:center;gap:.8rem}
+#calUserInfo{display:none}
+#calLogoutBtn{display:none}
+.legend-dot-avail{background:#4ade80}
+.legend-dot-occ{background:#f87171}
+.legend-dot-pend{background:#fbbf24}
+.legend-dot-evt{background:#60a5fa}
+.cal-request-btn{margin-top:1.2rem;display:inline-block;font-size:.78rem}
+.cal-cell.past{opacity:.38;cursor:default!important}
+.cal-cell.free{cursor:pointer}
+.cal-cell.free:hover{background:rgba(201,168,76,.07);outline:1px dashed rgba(201,168,76,.35)}
+.cal-cell.selected{outline:2px solid var(--gold)!important;background:rgba(201,168,76,.14)!important}
+.detail-date-badge{font-size:.72rem;color:var(--gold);margin-bottom:.5rem;letter-spacing:.04em;opacity:.85}
+.detail-admin-btns{display:none;gap:.6rem;margin-top:.8rem;flex-wrap:wrap}
+.btn-edit{background:transparent;border:1px solid rgba(201,168,76,.35);color:var(--gold);padding:.5rem 1rem;font-size:.76rem;letter-spacing:.08em;text-transform:uppercase;cursor:pointer;transition:all .3s;font-family:'DM Sans',sans-serif}
+.btn-edit:hover{background:var(--gold);color:var(--ink)}
+.btn-del{background:transparent;border:1px solid rgba(248,113,113,.35);color:#f87171;padding:.5rem 1rem;font-size:.76rem;letter-spacing:.08em;text-transform:uppercase;cursor:pointer;transition:all .3s;font-family:'DM Sans',sans-serif}
+.btn-del:hover{background:#f87171;color:#0F1629}
+/* Edit modal */
+.edit-overlay{position:fixed;inset:0;background:rgba(0,0,0,.78);z-index:500;display:flex;align-items:center;justify-content:center;-webkit-backdrop-filter:blur(5px);backdrop-filter:blur(5px)}
+.edit-overlay.hidden{display:none}
+.edit-box{background:var(--ink2);border:1px solid rgba(201,168,76,.22);padding:2rem;width:min(480px,94vw);position:relative;max-height:90vh;overflow-y:auto}
+.edit-title{font-family:'Cormorant Garamond',serif;font-size:1.35rem;font-weight:300;margin-bottom:.2rem}
+.edit-subtitle{font-size:.75rem;color:var(--gold);margin-bottom:1.4rem}
+.edit-grid{display:grid;grid-template-columns:1fr 1fr;gap:.8rem;margin-bottom:.6rem}
+.edit-field{display:flex;flex-direction:column;gap:.3rem}
+.edit-field.full{grid-column:1/-1}
+.edit-label{font-size:.67rem;letter-spacing:.1em;text-transform:uppercase;color:var(--muted)}
+.edit-input{background:var(--input-bg);border:1px solid rgba(201,168,76,.15);color:var(--cream);padding:.62rem .85rem;font-family:'DM Sans',sans-serif;font-size:.88rem;outline:none;width:100%;transition:border-color .3s}
+.edit-input:focus{border-color:var(--gold)}
+.edit-input.error{border-color:rgba(248,113,113,.6)}
+.edit-actions{display:flex;gap:.6rem;margin-top:1rem;flex-wrap:wrap;align-items:center}
+.edit-close{position:absolute;top:.75rem;right:.75rem;background:transparent;border:none;color:var(--muted);font-size:1.1rem;cursor:pointer;line-height:1;padding:.2rem}
+.edit-close:hover{color:var(--cream)}
+/* Form date badge */
+.form-date-badge{background:rgba(201,168,76,.08);border:1px solid rgba(201,168,76,.22);padding:.6rem 1rem;font-size:.82rem;color:var(--gold);margin-bottom:.8rem;display:none}
+.form-date-badge.show{display:block}
+.gallery-note{text-align:center;margin-top:2rem;font-size:.8rem;color:var(--muted)}
+.gallery-note a{color:var(--gold);text-decoration:none}
+.gallery-note a:hover{text-decoration:underline}
+.testimonials-wrap{overflow:hidden;margin-top:4rem}
+
+/* ── LOGIN MODAL ── */
+.login-overlay{position:fixed;inset:0;background:rgba(0,0,0,.7);z-index:400;display:flex;align-items:center;justify-content:center;-webkit-backdrop-filter:blur(6px);backdrop-filter:blur(6px)}
+.login-overlay.hidden{display:none}
+.login-box{background:var(--ink2);border:1px solid rgba(201,168,76,.2);padding:2.5rem 2rem;width:min(380px,92vw);position:relative}
+.login-title{font-family:'Cormorant Garamond',serif;font-size:1.6rem;font-weight:300;margin-bottom:.4rem}
+.login-sub{font-size:.8rem;color:var(--muted);margin-bottom:1.8rem}
+.login-field{display:flex;flex-direction:column;gap:.4rem;margin-bottom:1rem}
+.login-field label{font-size:.68rem;letter-spacing:.12em;text-transform:uppercase;color:var(--muted)}
+.login-input{background:var(--input-bg);border:1px solid rgba(201,168,76,.15);color:var(--cream);padding:.75rem 1rem;font-family:'DM Sans',sans-serif;font-size:.9rem;outline:none;width:100%;transition:border-color .3s}
+.login-input:focus{border-color:var(--gold)}
+.login-err{font-size:.75rem;color:#f87171;min-height:1.2rem;margin-top:.2rem}
+.login-submit{width:100%;background:var(--gold);color:var(--ink);padding:.85rem;font-family:'DM Sans',sans-serif;font-size:.82rem;font-weight:500;letter-spacing:.1em;text-transform:uppercase;border:none;cursor:pointer;transition:background .3s;margin-top:.5rem}
+.login-submit:hover{background:var(--gold-light)}
+.login-close{position:absolute;top:1rem;right:1rem;background:transparent;border:none;color:var(--muted);font-size:1.2rem;cursor:pointer;width:28px;height:28px;display:flex;align-items:center;justify-content:center;transition:color .3s}
+.login-close:hover{color:var(--cream)}
+
+/* ── RESPONSIVE ── */
+@media(max-width:900px){
+  nav{padding:1.2rem 2rem}
+  nav.scrolled{padding:.9rem 2rem}
+  .nav-links,.nav-cta{display:none}
+  .hamburger{display:flex}
+  #inicio,#servicios,#como-funciona,#calendario,#registro,#testimonios,#contacto{padding-left:2rem;padding-right:2rem}
+  .hero-stats{display:none}
+  .form-grid{grid-template-columns:1fr}
+  .form-group.full{grid-column:1}
+  footer{padding:2rem;flex-direction:column;gap:1rem;text-align:center}
+  .steps::before{display:none}
+}
+@media(max-width:600px){
+  #inicio{padding:0 1.5rem}
+  #servicios,#como-funciona,#calendario,#registro,#testimonios,#contacto{padding-left:1.5rem;padding-right:1.5rem}
+  .cal-cell{font-size:.72rem}
+}
+</style>
+</head>
+<body>
+
+<!-- CURSORES CUSTOM -->
+<div id="cursor"></div>
+<div id="cursor-ring"></div>
+
+<!-- NAV -->
+<nav id="navbar">
+  <a href="#inicio" class="nav-logo">Hacienda los <span>Pinos</span></a>
+  <ul class="nav-links">
+    <li><a href="#inicio">Inicio</a></li>
+    <li><a href="#galeria">Galería</a></li>
+    <li><a href="#servicios">Servicios</a></li>
+    <li><a href="#calendario">Calendario</a></li>
+    <li><a href="#registro">Solicitar información</a></li>
+    <li><a href="#contacto">Contacto</a></li>
+  </ul>
+  <button type="button" class="nav-cta" onclick="document.getElementById('registro').scrollIntoView({behavior:'smooth'})">Reservar</button>
+  <button type="button" class="theme-toggle" id="themeToggle" onclick="toggleTheme()" aria-label="Cambiar tema"></button>
+  <div class="hamburger" id="hamburger" onclick="toggleMenu()">
+    <span></span><span></span><span></span>
+  </div>
+</nav>
+
+<!-- MENÚ MÓVIL -->
+<div class="mobile-menu" id="mobileMenu">
+  <a href="#inicio" onclick="toggleMenu()">Inicio</a>
+  <a href="#galeria" onclick="toggleMenu()">Galería</a>
+  <a href="#servicios" onclick="toggleMenu()">Servicios</a>
+  <a href="#calendario" onclick="toggleMenu()">Calendario</a>
+  <a href="#registro" onclick="toggleMenu()">Solicitar información</a>
+  <a href="#contacto" onclick="toggleMenu()">Contacto</a>
+</div>
+
+<!-- HERO -->
+<section id="inicio">
+  <div class="hero-img-wrap">
+    <img src="assets/img/hero.jpg" alt="Hacienda los Pinos" onerror="this.style.display='none'"/>
+  </div>
+  <div class="hero-bg"></div>
+  <div class="hero-grid"></div>
+  <div class="hero-content">
+    <div class="hero-tag">Cota, Cundinamarca · Colombia</div>
+    <h1 class="hero-h1">Hacienda<br/>los <em>Pinos</em></h1>
+    <p class="hero-sub">Un espacio único rodeado de naturaleza para bodas, celebraciones corporativas y eventos sociales. Vive momentos que perduran para siempre.</p>
+    <div class="hero-actions">
+      <a href="#registro" class="btn-primary">Solicitar información</a>
+      <a href="#calendario" class="btn-secondary">Ver disponibilidad</a>
+    </div>
+  </div>
+  <div class="hero-stats">
+    <div class="stat"><div class="stat-num">500+</div><div class="stat-label">Eventos realizados</div></div>
+    <div class="stat"><div class="stat-num">98%</div><div class="stat-label">Satisfacción</div></div>
+    <div class="stat"><div class="stat-num">12K</div><div class="stat-label">Participantes</div></div>
+  </div>
+  <div class="scroll-indicator">
+    <div class="scroll-line"></div>
+    <span class="scroll-text">Explorar</span>
+  </div>
+</section>
+
+<!-- GALERÍA -->
+<section id="galeria">
+  <div class="section-header reveal">
+    <div class="section-tag">Nuestros espacios</div>
+    <h2 class="section-title">Un lugar para cada <em>momento especial</em></h2>
+    <div class="section-line"></div>
+  </div>
+  <div class="gallery-grid reveal">
+    <div class="gallery-item">
+      <img src="assets/img/galeria1.jpg" alt="Hacienda los Pinos" onerror="this.style.display='none'"/>
+      <div class="gallery-placeholder"><span>🌿</span>Foto del espacio</div>
+    </div>
+    <div class="gallery-item">
+      <img src="assets/img/galeria2.jpg" alt="Salón principal" onerror="this.style.display='none'"/>
+      <div class="gallery-placeholder"><span>🏛</span>Salón principal</div>
+    </div>
+    <div class="gallery-item">
+      <img src="assets/img/galeria3.jpg" alt="Jardín exterior" onerror="this.style.display='none'"/>
+      <div class="gallery-placeholder"><span>🌸</span>Jardín exterior</div>
+    </div>
+    <div class="gallery-item">
+      <img src="assets/img/galeria4.jpg" alt="Montaje de mesas" onerror="this.style.display='none'"/>
+      <div class="gallery-placeholder"><span>🍽</span>Montaje de mesas</div>
+    </div>
+    <div class="gallery-item">
+      <img src="assets/img/galeria5.jpg" alt="Decoración" onerror="this.style.display='none'"/>
+      <div class="gallery-placeholder"><span>💐</span>Decoración</div>
+    </div>
+    <div class="gallery-item">
+      <img src="assets/img/galeria6.jpg" alt="Vista panorámica" onerror="this.style.display='none'"/>
+      <div class="gallery-placeholder"><span>🌄</span>Vista panorámica</div>
+    </div>
+  </div>
+  <p class="gallery-note">
+    Síguenos en Instagram <a href="https://www.instagram.com/casa.gourmet7" target="_blank" rel="noopener noreferrer">@casa.gourmet7</a> para ver más
+  </p>
+</section>
+
+<!-- SERVICIOS -->
+<section id="servicios">
+  <div class="section-header reveal">
+    <div class="section-tag">Lo que ofrecemos</div>
+    <h2 class="section-title">Espacios para cada <em>tipo de evento</em></h2>
+    <div class="section-line"></div>
+  </div>
+  <div class="services-grid">
+    <div class="service-card reveal">
+      <span class="service-icon">💍</span>
+      <h3>Bodas & Quinceañeras</h3>
+      <p>Celebra el día más especial rodeado de naturaleza y elegancia. Salón, jardín y todos los servicios coordinados al detalle.</p>
+    </div>
+    <div class="service-card reveal">
+      <span class="service-icon">🏢</span>
+      <h3>Eventos Corporativos</h3>
+      <p>Conferencias, lanzamientos, cenas de gala y team buildings en un entorno único a minutos de Bogotá.</p>
+    </div>
+    <div class="service-card reveal">
+      <span class="service-icon">🎂</span>
+      <h3>Celebraciones Sociales</h3>
+      <p>Cumpleaños, baby showers, grados y aniversarios con ambientación personalizada y catering gourmet.</p>
+    </div>
+    <div class="service-card reveal">
+      <span class="service-icon">🍽</span>
+      <h3>Gastronomía</h3>
+      <p>Menús personalizados, estaciones gourmet, coctelería y pastelería artesanal para completar tu evento.</p>
+    </div>
+    <div class="service-card reveal">
+      <span class="service-icon">🌿</span>
+      <h3>Jardín & Naturaleza</h3>
+      <p>Espacios al aire libre con vegetación exuberante. El entorno natural se convierte en la mejor decoración.</p>
+    </div>
+    <div class="service-card reveal">
+      <span class="service-icon">🎭</span>
+      <h3>Decoración & Flores</h3>
+      <p>Diseño floral, iluminación escénica, mobiliario y todos los detalles para crear la atmósfera perfecta.</p>
+    </div>
+  </div>
+</section>
+
+<!-- CÓMO FUNCIONA -->
+<section id="como-funciona">
+  <div class="section-header reveal">
+    <div class="section-tag">El proceso</div>
+    <h2 class="section-title">Simple como debe <em>ser</em></h2>
+    <div class="section-line"></div>
+  </div>
+  <div class="steps">
+    <div class="step reveal">
+      <div class="step-num">01</div>
+      <div class="step-icon">📅</div>
+      <h3>Revisa el calendario</h3>
+      <p>Consulta la disponibilidad de fechas y espacios en tiempo real sin necesidad de llamar.</p>
+    </div>
+    <div class="step reveal">
+      <div class="step-num">02</div>
+      <div class="step-icon">✍️</div>
+      <h3>Solicita información</h3>
+      <p>Completa el formulario en menos de 2 minutos. Nuestro equipo te responderá en menos de 24 horas.</p>
+    </div>
+    <div class="step reveal">
+      <div class="step-num">03</div>
+      <div class="step-icon">💬</div>
+      <h3>Recibe tu cotización</h3>
+      <p>Nuestro equipo te envía una propuesta personalizada con todos los servicios seleccionados.</p>
+    </div>
+    <div class="step reveal">
+      <div class="step-num">04</div>
+      <div class="step-icon">🎉</div>
+      <h3>Vive tu evento</h3>
+      <p>El día llegó. Tú disfruta, nosotros nos encargamos de cada detalle de la logística.</p>
+    </div>
+  </div>
+</section>
+
+<!-- CALENDARIO -->
+<section id="calendario">
+  <div class="section-header reveal">
+    <div class="section-tag">Disponibilidad</div>
+    <h2 class="section-title">Elige tu <em>fecha ideal</em></h2>
+    <div class="section-line"></div>
+  </div>
+  <div class="calendar-container reveal">
+    <div class="calendar-wrapper">
+      <!-- Barra de login y selector de espacios -->
+      <div class="cal-login-bar">
+        <div class="cal-space-tabs" id="spaceTabsWrap">
+          <!-- tabs generados por JS -->
+        </div>
+        <div id="loginArea">
+          <span id="calUserInfo" class="cal-user-info"></span>
+          <button type="button" class="cal-btn-login" id="calLoginBtn" onclick="openLoginModal()">🔐 Acceso admin</button>
+          <button type="button" class="cal-btn-logout" id="calLogoutBtn" onclick="calLogout()">Cerrar sesión</button>
+        </div>
+      </div>
+      <div class="cal-header">
+        <div class="cal-title" id="calTitle">Junio 2026</div>
+        <div class="cal-nav">
+          <button type="button" class="cal-btn" onclick="changeMonth(-1)">&#8592;</button>
+          <button type="button" class="cal-btn" onclick="changeMonth(1)">&#8594;</button>
+        </div>
+      </div>
+      <div class="cal-days-header">
+        <div class="cal-day-name">Dom</div>
+        <div class="cal-day-name">Lun</div>
+        <div class="cal-day-name">Mar</div>
+        <div class="cal-day-name">Mié</div>
+        <div class="cal-day-name">Jue</div>
+        <div class="cal-day-name">Vie</div>
+        <div class="cal-day-name">Sáb</div>
+      </div>
+      <div class="cal-grid" id="calGrid"></div>
+      <div class="cal-legend">
+        <div class="legend-item"><div class="legend-dot legend-dot-avail"></div>Disponible</div>
+        <div class="legend-item"><div class="legend-dot legend-dot-occ"></div>Ocupado</div>
+        <div class="legend-item"><div class="legend-dot legend-dot-pend"></div>Pendiente</div>
+        <div class="legend-item"><div class="legend-dot legend-dot-evt"></div>Evento programado</div>
+      </div>
+      <div class="cal-event-detail" id="calDetail">
+        <div class="detail-date-badge" id="detailDate"></div>
+        <div class="event-detail-title" id="detailTitle">—</div>
+        <div class="event-detail-grid">
+          <div class="detail-item">Responsable: <span id="detailResp">—</span></div>
+          <div class="detail-item">Estado: <span id="detailEstado">—</span></div>
+          <div class="detail-item">Inicio: <span id="detailInicio">—</span></div>
+          <div class="detail-item">Fin: <span id="detailFin">—</span></div>
+        </div>
+        <a href="#registro" class="btn-primary cal-request-btn" id="detailRequestBtn" onclick="prefillDate()">Solicitar esta fecha</a>
+        <div class="detail-admin-btns" id="detailAdminBtns">
+          <button type="button" class="btn-edit" id="detailEditBtn">✏ Editar</button>
+          <button type="button" class="btn-del" id="detailDeleteBtn">✕ Eliminar</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- REGISTRO -->
+<section id="registro">
+  <div class="section-header reveal">
+    <div class="section-tag">Solicitar información</div>
+    <h2 class="section-title">Cuéntanos sobre tu <em>evento</em></h2>
+    <div class="section-line"></div>
+  </div>
+  <div class="register-container">
+    <div id="registerForm" class="reveal">
+      <form class="form-grid" novalidate onsubmit="handleSubmit(event)">
+        <div class="form-date-badge" id="formDateBadge"></div>
+        <input type="hidden" id="fechaSel">
+        <div class="form-group">
+          <label class="form-label">Nombre completo *</label>
+          <input class="form-input" type="text" id="nombre" placeholder="Juan Pérez" required/>
+          <span class="form-error" id="err-nombre">Ingresa tu nombre completo</span>
+        </div>
+        <div class="form-group">
+          <label class="form-label">Tipo de documento *</label>
+          <select class="form-select" id="tipodoc" required aria-label="Tipo de documento">
+            <option value="">Seleccionar</option>
+            <option value="CC">Cédula de Ciudadanía</option>
+            <option value="CE">Cédula de Extranjería</option>
+            <option value="PA">Pasaporte</option>
+            <option value="NIT">NIT</option>
+          </select>
+          <span class="form-error" id="err-tipodoc">Selecciona el tipo de documento</span>
+        </div>
+        <div class="form-group">
+          <label class="form-label">Número de documento *</label>
+          <input class="form-input" type="text" id="numdoc" placeholder="1234567890" required/>
+          <span class="form-error" id="err-numdoc">Ingresa tu número de documento</span>
+        </div>
+        <div class="form-group">
+          <label class="form-label">Correo electrónico *</label>
+          <input class="form-input" type="email" id="correo" placeholder="juan@empresa.com" required/>
+          <span class="form-error" id="err-correo">Correo electrónico no válido</span>
+        </div>
+        <div class="form-group">
+          <label class="form-label">Teléfono móvil *</label>
+          <input class="form-input" type="tel" id="telefono" placeholder="300 123 4567" required/>
+          <span class="form-error" id="err-telefono">Teléfono no válido</span>
+        </div>
+        <div class="form-group">
+          <label class="form-label">Ciudad *</label>
+          <input class="form-input" type="text" id="ciudad" placeholder="Bogotá" required/>
+          <span class="form-error" id="err-ciudad">Ingresa tu ciudad</span>
+        </div>
+        <div class="form-group">
+          <label class="form-label">Empresa</label>
+          <input class="form-input" type="text" id="empresa" placeholder="Opcional"/>
+        </div>
+        <div class="form-group">
+          <label class="form-label">Cargo</label>
+          <input class="form-input" type="text" id="cargo" placeholder="Opcional"/>
+        </div>
+        <div class="form-group full">
+          <label class="form-label">Comentarios</label>
+          <textarea class="form-textarea" id="comentarios" placeholder="¿Alguna consulta o requerimiento especial?"></textarea>
+        </div>
+        <div class="form-group full">
+          <label class="form-check">
+            <input type="checkbox" id="politica" required/>
+            <span>Acepto la <a href="#">política de tratamiento de datos personales</a> y autorizo el uso de mi información para la gestión del evento. *</span>
+          </label>
+          <span class="form-error" id="err-politica">Debes aceptar la política de datos</span>
+        </div>
+        <div class="form-group full">
+          <button type="submit" class="form-submit">Enviar solicitud</button>
+        </div>
+      </form>
+    </div>
+    <div class="success-msg" id="successMsg">
+      <div class="success-icon">✨</div>
+      <h3>¡Solicitud enviada!</h3>
+      <p>Hemos recibido tu solicitud. En breve nuestro equipo te contactará por correo o WhatsApp con una propuesta personalizada.</p>
+    </div>
+  </div>
+</section>
+
+<!-- TESTIMONIOS -->
+<section id="testimonios">
+  <div class="section-header reveal">
+    <div class="section-tag">Testimonios</div>
+    <h2 class="section-title">Lo que dicen nuestros <em>clientes</em></h2>
+    <div class="section-line"></div>
+  </div>
+  <div class="testimonials-wrap">
+    <div class="testimonials-track">
+      <div class="testimonial"><p class="testimonial-text">La plataforma nos permitió gestionar 300 participantes sin ningún inconveniente. El calendario de disponibilidad es intuitivo y las notificaciones automáticas ahorraron horas de trabajo.</p><div class="testimonial-author"><div class="author-avatar">M</div><div><div class="author-name">María Rodríguez</div><div class="author-role">Directora de Eventos — Grupo Empresarial XYZ</div></div></div></div>
+      <div class="testimonial"><p class="testimonial-text">Organizamos nuestra boda a en Hacienda los Pinos y fue una experiencia impecable. La cotización en PDF fue perfecta para presentar a la familia y el equipo estuvo disponible en todo momento.</p><div class="testimonial-author"><div class="author-avatar">C</div><div><div class="author-name">Carlos & Ana Gómez</div><div class="author-role">Boda — Diciembre 2025</div></div></div></div>
+      <div class="testimonial"><p class="testimonial-text">Llevamos 3 congresos anuales en Hacienda los Pinos. La gestión de ponentes, el sistema de acreditaciones y los reportes de asistencia son exactamente lo que necesitábamos.</p><div class="testimonial-author"><div class="author-avatar">J</div><div><div class="author-name">Jorge Mendoza</div><div class="author-role">Coordinador Académico — Universidad Central</div></div></div></div>
+      <div class="testimonial"><p class="testimonial-text">El módulo de cotizaciones nos ahorró horas. Antes hacíamos todo en Excel; ahora en 5 minutos tenemos el documento listo para enviar al cliente con logo y todo.</p><div class="testimonial-author"><div class="author-avatar">L</div><div><div class="author-name">Laura Herrera</div><div class="author-role">Comercial — Eventos & Banquetes S.A.</div></div></div></div>
+      <!-- duplicate for infinite scroll -->
+      <div class="testimonial"><p class="testimonial-text">La plataforma nos permitió gestionar 300 participantes sin ningún inconveniente. El calendario de disponibilidad es intuitivo y las notificaciones automáticas ahorraron horas de trabajo.</p><div class="testimonial-author"><div class="author-avatar">M</div><div><div class="author-name">María Rodríguez</div><div class="author-role">Directora de Eventos — Grupo Empresarial XYZ</div></div></div></div>
+      <div class="testimonial"><p class="testimonial-text">Organizamos nuestra boda a en Hacienda los Pinos y fue una experiencia impecable. La cotización en PDF fue perfecta para presentar a la familia y el equipo estuvo disponible en todo momento.</p><div class="testimonial-author"><div class="author-avatar">C</div><div><div class="author-name">Carlos & Ana Gómez</div><div class="author-role">Boda — Diciembre 2025</div></div></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACTO / CTA -->
+<section id="contacto">
+  <div class="cta-bg"></div>
+  <div class="cta-inner reveal">
+    <h2>¿Listo para crear algo <em>memorable</em>?</h2>
+    <p>Cuéntanos sobre tu evento y nuestro equipo te contactará en menos de 24 horas con una propuesta a tu medida.</p>
+    <div class="cta-actions">
+      <a href="#registro" class="btn-primary">Solicitar información</a>
+      <a href="https://wa.me/573001234567?text=Hola%2C%20deseo%20obtener%20informaci%C3%B3n%20sobre%20los%20eventos%20y%20servicios%20disponibles." class="btn-secondary" target="_blank" rel="noopener noreferrer">Escribir por WhatsApp</a>
+    </div>
+    <div class="contact-info">
+      <div class="contact-item"><div class="contact-item-icon">📍</div><div class="contact-item-label">Ubicación</div><a class="contact-item-value contact-item-link" href="https://maps.google.com/maps?q=4.816139,-74.10597" target="_blank" rel="noopener">Calle 14 9 89, Puente de la Cruz<br>Cota, Cundinamarca, Colombia</a></div>
+      <div class="contact-item"><div class="contact-item-icon">📧</div><div class="contact-item-label">Correo</div><div class="contact-item-value">info@haciendaglospinos.co</div></div>
+      <div class="contact-item"><div class="contact-item-icon">📞</div><div class="contact-item-label">Teléfono</div><div class="contact-item-value">+57 300 123 4567</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-logo">Hacienda los <span>Pinos</span></div>
+  <p class="footer-copy">© 2026 Hacienda los Pinos. Todos los derechos reservados.</p>
+  <div class="footer-links">
+    <a href="#">Privacidad</a>
+    <a href="#">Términos</a>
+    <a href="#">Admin</a>
+  </div>
+</footer>
+
+<!-- WHATSAPP FLOAT -->
+<a class="wa-float" href="https://wa.me/573001234567?text=Hola%2C%20deseo%20obtener%20informaci%C3%B3n%20sobre%20los%20eventos%20y%20servicios%20disponibles." target="_blank" rel="noopener noreferrer">
+  <div class="wa-tooltip">Escríbenos</div>
+  <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.136.562 4.14 1.535 5.876L.057 23.617a.75.75 0 00.918.899l5.9-1.547A11.952 11.952 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 22c-1.891 0-3.673-.497-5.217-1.369l-.374-.216-3.878 1.017 1.035-3.783-.234-.381A9.953 9.953 0 012 12C2 6.477 6.477 2 12 2s10 4.477 10 10-4.477 10-10 10z"/></svg>
+</a>
+
+<!-- EDIT MODAL (admin) -->
+<div class="edit-overlay hidden" id="editOverlay">
+  <div class="edit-box">
+    <button type="button" class="edit-close" onclick="closeEditModal()" aria-label="Cerrar">✕</button>
+    <h3 class="edit-title" id="editModalTitle">Editar reserva</h3>
+    <p class="edit-subtitle" id="editModalSubtitle"></p>
+    <div class="edit-grid">
+      <div class="edit-field full">
+        <label class="edit-label" for="editNombre">Nombre del evento *</label>
+        <input class="edit-input" type="text" id="editNombre" placeholder="Ej. Boda García-López">
+      </div>
+      <div class="edit-field full">
+        <label class="edit-label" for="editEstado">Estado</label>
+        <select class="edit-input" id="editEstado" aria-label="Estado de la reserva">
+          <option value="available">Disponible</option>
+          <option value="pending">Pendiente confirmación</option>
+          <option value="event">Programado</option>
+          <option value="occupied">Ocupado</option>
+        </select>
+      </div>
+      <div class="edit-field full">
+        <label class="edit-label" for="editResp">Responsable</label>
+        <input class="edit-input" type="text" id="editResp" placeholder="Nombre del responsable">
+      </div>
+      <div class="edit-field">
+        <label class="edit-label" for="editInicio">Hora inicio</label>
+        <input class="edit-input" type="time" id="editInicio">
+      </div>
+      <div class="edit-field">
+        <label class="edit-label" for="editFin">Hora fin</label>
+        <input class="edit-input" type="time" id="editFin">
+      </div>
+    </div>
+    <div class="edit-actions">
+      <button type="button" class="login-submit" id="editSaveBtn">Guardar</button>
+      <button type="button" class="btn-edit" onclick="closeEditModal()">Cancelar</button>
+    </div>
+  </div>
+</div>
+
+<!-- LOGIN MODAL -->
+<div class="login-overlay hidden" id="calLoginOverlay">
+  <div class="login-box">
+    <button type="button" class="login-close" onclick="closeLoginModal()" aria-label="Cerrar">✕</button>
+    <h3 class="login-title">Acceso Admin</h3>
+    <p class="login-sub">Ingresa tus credenciales para gestionar el calendario por espacio.</p>
+    <form onsubmit="submitCalLogin(event)" novalidate>
+      <div class="login-field">
+        <label for="calLoginUser">Usuario</label>
+        <input class="login-input" type="text" id="calLoginUser" placeholder="usuario" autocomplete="username" required>
+      </div>
+      <div class="login-field">
+        <label for="calLoginPass">Contraseña</label>
+        <input class="login-input" type="password" id="calLoginPass" placeholder="••••••" autocomplete="current-password" required>
+      </div>
+      <p class="login-err" id="calLoginErr"></p>
+      <button type="submit" class="login-submit">Ingresar</button>
+    </form>
+  </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+<script>
+// ── EMAILJS ──
+const EJS_PUBLIC_KEY  = 'nEGTMO_zDy5JurAjY';
+const EJS_SERVICE_ID  = 'service_wry39h7';
+const EJS_TEMPLATE_ID = 'template_ktzt0sn';
+emailjs.init({ publicKey: EJS_PUBLIC_KEY });
+// ── CURSOR ──
+const cursor = document.getElementById('cursor');
+const ring   = document.getElementById('cursor-ring');
+document.addEventListener('mousemove', e => {
+  cursor.style.left = e.clientX + 'px';
+  cursor.style.top  = e.clientY + 'px';
+  ring.style.left   = e.clientX + 'px';
+  ring.style.top    = e.clientY + 'px';
+});
+
+// ── NAVBAR SCROLL ──
+window.addEventListener('scroll', () => {
+  document.getElementById('navbar').classList.toggle('scrolled', window.scrollY > 60);
+});
+
+// ── MOBILE MENU ──
+function toggleMenu(){
+  document.getElementById('mobileMenu').classList.toggle('open');
+}
+
+// ── SCROLL REVEAL ──
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach((e,i) => {
+    if(e.isIntersecting){
+      setTimeout(()=>e.target.classList.add('visible'), i*80);
+    }
+  });
+},{threshold:.12});
+document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+// ── CALENDARIO ──
+const SPACES = ['Salón Principal', 'Jardín', 'Salón Pequeño', 'Terraza'];
+const USERS = [
+  {user:'admin',   pass:'pinos2026',  spaces: SPACES},
+  {user:'salon',   pass:'salon123',   spaces: ['Salón Principal']},
+  {user:'jardin',  pass:'jardin123',  spaces: ['Jardín']},
+  {user:'salon2',  pass:'peq2026',    spaces: ['Salón Pequeño']},
+  {user:'terraza', pass:'terraza123', spaces: ['Terraza']},
+];
+
+const EVENTS_BY_SPACE = {
+  'Salón Principal': {
+    '2026-06-07': {tipo:'occupied', nombre:'Conferencia Tech 2026',   resp:'Laura Torres',  inicio:'09:00', fin:'18:00', estado:'Ocupado'},
+    '2026-06-12': {tipo:'event',    nombre:'Gala Corporativa',        resp:'Mario Ruiz',    inicio:'19:00', fin:'23:00', estado:'Programado'},
+    '2026-06-14': {tipo:'pending',  nombre:'Boda García-López',       resp:'Ana García',    inicio:'16:00', fin:'22:00', estado:'Pendiente'},
+    '2026-06-20': {tipo:'event',    nombre:'Workshop Innovación',     resp:'Pedro Mora',    inicio:'08:00', fin:'17:00', estado:'Programado'},
+    '2026-06-21': {tipo:'occupied', nombre:'Congreso Salud',          resp:'Dr. Herrera',   inicio:'07:00', fin:'20:00', estado:'Ocupado'},
+    '2026-06-26': {tipo:'pending',  nombre:'Cumpleaños Empresarial',  resp:'Sofía León',    inicio:'18:00', fin:'23:00', estado:'Pendiente'},
+    '2026-07-04': {tipo:'event',    nombre:'Feria Comercial',         resp:'Roberto Silva', inicio:'09:00', fin:'19:00', estado:'Programado'},
+    '2026-07-10': {tipo:'occupied', nombre:'Seminario Marketing',     resp:'Diana Pérez',   inicio:'08:00', fin:'17:00', estado:'Ocupado'},
+  },
+  'Jardín': {
+    '2026-06-13': {tipo:'event',    nombre:'Boda Martínez-Suárez',   resp:'Carlos M.',      inicio:'16:00', fin:'23:00', estado:'Programado'},
+    '2026-06-27': {tipo:'occupied', nombre:'Fiesta de Grado',        resp:'Familia Torres', inicio:'14:00', fin:'22:00', estado:'Ocupado'},
+    '2026-07-11': {tipo:'pending',  nombre:'Quince años',            resp:'Luisa Gómez',    inicio:'15:00', fin:'23:00', estado:'Pendiente'},
+  },
+  'Salón Pequeño': {
+    '2026-06-08': {tipo:'event',    nombre:'Reunión Empresarial',    resp:'Grupo ABC',      inicio:'09:00', fin:'14:00', estado:'Programado'},
+    '2026-06-22': {tipo:'occupied', nombre:'Baby Shower',            resp:'Andrea López',   inicio:'15:00', fin:'20:00', estado:'Ocupado'},
+  },
+  'Terraza': {
+    '2026-06-06': {tipo:'event',    nombre:'Cóctel Corporativo',     resp:'Empresa XYZ',    inicio:'18:00', fin:'23:00', estado:'Programado'},
+    '2026-06-24': {tipo:'pending',  nombre:'Cena Romántica',         resp:'J. Ramírez',     inicio:'19:00', fin:'23:00', estado:'Pendiente'},
+  },
+};
+
+// Cargar ediciones admin persistidas en localStorage
+SPACES.forEach(sp => {
+  const s = localStorage.getItem('hp-ev-' + sp);
+  if(s){ try{ EVENTS_BY_SPACE[sp] = JSON.parse(s); } catch(e){} }
+});
+
+const monthNames = ['Enero','Febrero','Marzo','Abril','Mayo','Junio','Julio','Agosto','Septiembre','Octubre','Noviembre','Diciembre'];
+let currentYear  = 2026;
+let currentMonth = 5; // Junio
+let selectedKey  = null;
+let isAdmin      = false;
+let activeSpace  = null;
+const events     = {};
+Object.assign(events, EVENTS_BY_SPACE['Salón Principal']); // vista pública por defecto
+
+// ── Helpers ──
+function fmtDate(k){
+  const [y,m,d] = k.split('-');
+  return `${parseInt(d,10)} de ${monthNames[parseInt(m,10)-1]} de ${y}`;
+}
+function isPastDate(k){
+  const t = new Date(); t.setHours(0,0,0,0);
+  return new Date(k + 'T00:00:00') < t;
+}
+function tipoLabel(tipo){
+  return {available:'Disponible', pending:'Pendiente', event:'Programado', occupied:'Ocupado'}[tipo] || tipo;
+}
+function saveSpaceEvents(sp){
+  if(sp) localStorage.setItem('hp-ev-' + sp, JSON.stringify(EVENTS_BY_SPACE[sp]));
+}
+
+// ── Render ──
+function renderCalendar(){
+  const grid  = document.getElementById('calGrid');
+  document.getElementById('calTitle').textContent = monthNames[currentMonth] + ' ' + currentYear;
+  grid.innerHTML = '';
+  const firstDay    = new Date(currentYear, currentMonth, 1).getDay();
+  const daysInMonth = new Date(currentYear, currentMonth + 1, 0).getDate();
+  const todayMs     = new Date(new Date().setHours(0,0,0,0)).getTime();
+
+  for(let i = 0; i < firstDay; i++){
+    const b = document.createElement('div');
+    b.className = 'cal-cell empty';
+    grid.appendChild(b);
+  }
+  for(let d = 1; d <= daysInMonth; d++){
+    const cell  = document.createElement('div');
+    const key   = `${currentYear}-${String(currentMonth+1).padStart(2,'0')}-${String(d).padStart(2,'0')}`;
+    const dayMs = new Date(currentYear, currentMonth, d).getTime();
+    const past  = dayMs < todayMs;
+    const isToday = dayMs === todayMs;
+    let cls = 'cal-cell';
+    if(isToday)          cls += ' today';
+    if(past && !isAdmin) cls += ' past';
+    if(events[key])      cls += ' ' + events[key].tipo;
+    if(key === selectedKey) cls += ' selected';
+    if(!past || isAdmin) cls += ' free';
+    cell.className   = cls;
+    cell.textContent = d;
+    if(!past || isAdmin) cell.addEventListener('click', () => handleDayClick(key));
+    grid.appendChild(cell);
+  }
+}
+
+function handleDayClick(key){
+  selectedKey = key;
+  renderCalendar();
+  if(events[key]) showDetail(key, events[key]);
+  else            showEmptyDetail(key);
+}
+
+function showDetail(key, ev){
+  document.getElementById('detailDate').textContent   = fmtDate(key);
+  document.getElementById('detailTitle').textContent  = ev.nombre;
+  document.getElementById('detailResp').textContent   = ev.resp    || '—';
+  document.getElementById('detailEstado').textContent = ev.estado  || '—';
+  document.getElementById('detailInicio').textContent = ev.inicio  || '—';
+  document.getElementById('detailFin').textContent    = ev.fin     || '—';
+
+  const reqBtn  = document.getElementById('detailRequestBtn');
+  const admBtns = document.getElementById('detailAdminBtns');
+  const editBtn = document.getElementById('detailEditBtn');
+  const delBtn  = document.getElementById('detailDeleteBtn');
+
+  if(isAdmin){
+    reqBtn.style.display  = 'none';
+    admBtns.style.display = 'flex';
+    editBtn.textContent   = '✏ Editar';
+    editBtn.onclick       = () => openEditModal(key);
+    delBtn.style.display  = '';
+    delBtn.onclick        = () => deleteReservation(key);
+  } else {
+    const canReq = !isPastDate(key) && ev.tipo !== 'occupied';
+    reqBtn.style.display  = canReq ? '' : 'none';
+    admBtns.style.display = 'none';
+  }
+  pulseDetail();
+}
+
+function showEmptyDetail(key){
+  document.getElementById('detailDate').textContent   = fmtDate(key);
+  document.getElementById('detailTitle').textContent  = 'Fecha disponible';
+  document.getElementById('detailResp').textContent   = '—';
+  document.getElementById('detailEstado').textContent = 'Disponible';
+  document.getElementById('detailInicio').textContent = '—';
+  document.getElementById('detailFin').textContent    = '—';
+
+  const reqBtn  = document.getElementById('detailRequestBtn');
+  const admBtns = document.getElementById('detailAdminBtns');
+  const editBtn = document.getElementById('detailEditBtn');
+  const delBtn  = document.getElementById('detailDeleteBtn');
+
+  if(isAdmin){
+    reqBtn.style.display  = 'none';
+    admBtns.style.display = 'flex';
+    editBtn.textContent   = '+ Nueva reserva';
+    editBtn.onclick       = () => openEditModal(key);
+    delBtn.style.display  = 'none';
+  } else {
+    reqBtn.style.display  = isPastDate(key) ? 'none' : '';
+    admBtns.style.display = 'none';
+  }
+  pulseDetail();
+}
+
+function pulseDetail(){
+  const el = document.getElementById('calDetail');
+  el.classList.remove('show'); void el.offsetWidth; el.classList.add('show');
+}
+
+function prefillDate(){
+  if(!selectedKey) return;
+  const badge = document.getElementById('formDateBadge');
+  badge.textContent = '📅 Fecha solicitada: ' + fmtDate(selectedKey);
+  badge.classList.add('show');
+  document.getElementById('fechaSel').value = selectedKey;
+}
+
+function changeMonth(dir){
+  currentMonth += dir;
+  if(currentMonth > 11){ currentMonth = 0; currentYear++; }
+  if(currentMonth < 0) { currentMonth = 11; currentYear--; }
+  selectedKey = null;
+  renderCalendar();
+  document.getElementById('calDetail').classList.remove('show');
+}
+
+renderCalendar();
+
+// ── EDIT MODAL ──
+function openEditModal(key){
+  const ev = events[key] || {};
+  const isNew = !ev.nombre;
+  document.getElementById('editModalTitle').textContent    = isNew ? 'Nueva reserva' : 'Editar reserva';
+  document.getElementById('editModalSubtitle').textContent = fmtDate(key);
+  document.getElementById('editNombre').value  = isNew ? '' : ev.nombre;
+  document.getElementById('editResp').value    = (!isNew && ev.resp   !== '—') ? ev.resp   : '';
+  document.getElementById('editInicio').value  = (!isNew && ev.inicio !== '—') ? ev.inicio : '';
+  document.getElementById('editFin').value     = (!isNew && ev.fin    !== '—') ? ev.fin    : '';
+  document.getElementById('editEstado').value  = ev.tipo || 'available';
+  document.getElementById('editNombre').classList.remove('error');
+  document.getElementById('editOverlay').classList.remove('hidden');
+  setTimeout(() => document.getElementById('editNombre').focus(), 50);
+  document.getElementById('editSaveBtn').onclick = () => saveEdit(key);
+}
+
+function closeEditModal(){
+  document.getElementById('editOverlay').classList.add('hidden');
+}
+
+function saveEdit(key){
+  const nombre = document.getElementById('editNombre').value.trim();
+  if(!nombre){
+    document.getElementById('editNombre').classList.add('error');
+    document.getElementById('editNombre').focus();
+    return;
+  }
+  document.getElementById('editNombre').classList.remove('error');
+  const tipo   = document.getElementById('editEstado').value;
+  const resp   = document.getElementById('editResp').value.trim()  || '—';
+  const inicio = document.getElementById('editInicio').value        || '—';
+  const fin    = document.getElementById('editFin').value           || '—';
+  const entry  = { tipo, nombre, resp, inicio, fin, estado: tipoLabel(tipo) };
+  events[key] = entry;
+  if(activeSpace){ EVENTS_BY_SPACE[activeSpace][key] = entry; saveSpaceEvents(activeSpace); }
+  closeEditModal();
+  renderCalendar();
+  showDetail(key, entry);
+}
+
+function deleteReservation(key){
+  if(!confirm('¿Eliminar la reserva de ' + fmtDate(key) + '?')) return;
+  delete events[key];
+  if(activeSpace){ delete EVENTS_BY_SPACE[activeSpace][key]; saveSpaceEvents(activeSpace); }
+  selectedKey = null;
+  renderCalendar();
+  document.getElementById('calDetail').classList.remove('show');
+}
+
+// ── LOGIN MODAL ──
+function openLoginModal(){
+  document.getElementById('calLoginOverlay').classList.remove('hidden');
+  setTimeout(() => document.getElementById('calLoginUser').focus(), 50);
+}
+
+function closeLoginModal(){
+  document.getElementById('calLoginOverlay').classList.add('hidden');
+  document.getElementById('calLoginErr').textContent = '';
+  document.getElementById('calLoginPass').value = '';
+}
+
+function submitCalLogin(e){
+  e.preventDefault();
+  const u = document.getElementById('calLoginUser').value.trim();
+  const p = document.getElementById('calLoginPass').value;
+  const found = USERS.find(x => x.user === u && x.pass === p);
+  if(!found){
+    document.getElementById('calLoginErr').textContent = 'Usuario o contraseña incorrectos';
+    return;
+  }
+  sessionStorage.setItem('cal-session', JSON.stringify({user: found.user, spaces: found.spaces}));
+  applyCalLogin(found);
+  closeLoginModal();
+}
+
+function applyCalLogin(found){
+  isAdmin = true;
+  const info = document.getElementById('calUserInfo');
+  info.textContent = '👤 ' + found.user;
+  info.style.display = 'inline';
+  document.getElementById('calLoginBtn').style.display = 'none';
+  document.getElementById('calLogoutBtn').style.display = 'inline-block';
+  renderSpaceTabs(found.spaces);
+  document.getElementById('spaceTabsWrap').style.display = 'flex';
+  switchSpace(found.spaces[0]);
+}
+
+function calLogout(){
+  isAdmin      = false;
+  selectedKey  = null;
+  sessionStorage.removeItem('cal-session');
+  document.getElementById('calUserInfo').style.display = '';
+  document.getElementById('calLoginBtn').style.display = '';
+  document.getElementById('calLogoutBtn').style.display = '';
+  document.getElementById('spaceTabsWrap').style.display = '';
+  document.getElementById('spaceTabsWrap').innerHTML = '';
+  activeSpace = null;
+  Object.keys(events).forEach(k => delete events[k]);
+  Object.assign(events, EVENTS_BY_SPACE['Salón Principal']);
+  renderCalendar();
+  document.getElementById('calDetail').classList.remove('show');
+}
+
+function renderSpaceTabs(spaces){
+  const wrap = document.getElementById('spaceTabsWrap');
+  wrap.innerHTML = '';
+  spaces.forEach(sp => {
+    const btn = document.createElement('button');
+    btn.type = 'button';
+    btn.className = 'cal-space-tab';
+    btn.textContent = sp;
+    btn.addEventListener('click', () => switchSpace(sp));
+    wrap.appendChild(btn);
+  });
+}
+
+function switchSpace(sp){
+  activeSpace = sp;
+  selectedKey = null;
+  Object.keys(events).forEach(k => delete events[k]);
+  Object.assign(events, EVENTS_BY_SPACE[sp] || {});
+  renderCalendar();
+  document.getElementById('calDetail').classList.remove('show');
+  document.querySelectorAll('.cal-space-tab').forEach(b => b.classList.toggle('active', b.textContent === sp));
+}
+
+// Restaurar sesión admin
+(function(){
+  const saved = sessionStorage.getItem('cal-session');
+  if(saved){ try{ applyCalLogin(JSON.parse(saved)); } catch(err){ sessionStorage.removeItem('cal-session'); } }
+})();
+
+// ── TEMA ──
+function toggleTheme(){
+  const next = document.documentElement.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
+  document.documentElement.setAttribute('data-theme', next);
+  localStorage.setItem('eventara-theme', next);
+}
+(function(){
+  const saved = localStorage.getItem('eventara-theme') || 'light';
+  document.documentElement.setAttribute('data-theme', saved);
+})();
+
+// ── FORMULARIO ──
+function validate(id, test){
+  const el  = document.getElementById(id);
+  const err = document.getElementById('err-'+id);
+  const ok  = test(el.value);
+  if(err){ err.classList.toggle('show', !ok); }
+  el.style.borderColor = ok ? '' : 'rgba(248,113,113,.6)';
+  return ok;
+}
+
+function handleSubmit(e){
+  e.preventDefault();
+  const checks = [
+    validate('nombre',   v => v.trim().length > 2),
+    validate('tipodoc',  v => v !== ''),
+    validate('numdoc',   v => /^\d{6,15}$/.test(v.trim())),
+    validate('correo',   v => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v)),
+    validate('telefono', v => /^[\d\s+\-]{7,15}$/.test(v.trim())),
+    validate('ciudad',   v => v.trim().length > 1),
+  ];
+  const pol = document.getElementById('politica');
+  const polOk = pol.checked;
+  document.getElementById('err-politica').classList.toggle('show', !polOk);
+  if(checks.every(Boolean) && polOk){
+    const params = {
+      nombre:      document.getElementById('nombre').value,
+      tipodoc:     document.getElementById('tipodoc').value,
+      numdoc:      document.getElementById('numdoc').value,
+      correo:      document.getElementById('correo').value,
+      telefono:    document.getElementById('telefono').value,
+      ciudad:      document.getElementById('ciudad').value,
+      empresa:     document.getElementById('empresa').value || '—',
+      cargo:       document.getElementById('cargo').value   || '—',
+      comentarios: document.getElementById('comentarios').value || '—',
+    };
+    if(EJS_PUBLIC_KEY !== 'TU_PUBLIC_KEY'){
+      emailjs.send(EJS_SERVICE_ID, EJS_TEMPLATE_ID, params).catch(()=>{});
+    }
+    document.getElementById('registerForm').style.display = 'none';
+    const msg = document.getElementById('successMsg');
+    msg.classList.add('show');
+    msg.scrollIntoView({behavior:'smooth', block:'center'});
+  }
+}
+</script>
+</body>
+</html>

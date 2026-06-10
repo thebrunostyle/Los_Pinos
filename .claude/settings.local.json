@@ -1,0 +1,11 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(mkdir \"c:\\\\xampp\\\\htdocs\\\\SitioDB\\\\Eventos\" 2>nul; echo done)",
+      "PowerShell(New-Item -ItemType Directory -Path \"c:\\\\xampp\\\\htdocs\\\\SitioDB\\\\eventara-xampp\\\\assets\\\\img\" -Force)"
+    ],
+    "additionalDirectories": [
+      "c:\\xampp\\htdocs\\SitioDB"
+    ]
+  }
+}
