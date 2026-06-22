@@ -220,6 +220,9 @@ footer{border-top:1px solid rgba(201,168,76,.1);padding:3rem 4rem;display:flex;a
 .footer-links a:hover{color:var(--gold)}
 .footer-powered-link{color:var(--muted);text-decoration:none;transition:color .3s}
 .footer-powered-link:hover{color:var(--gold)}
+.footer-visitas{display:flex;align-items:center;gap:.4rem;font-size:.78rem;color:var(--muted)}
+.footer-visitas-icon{font-size:.9rem;opacity:.7}
+#visitCounter{color:var(--gold);font-weight:500}
 
 /* ── WHATSAPP FLOAT ── */
 .wa-float{position:fixed;bottom:2rem;right:2rem;z-index:200;width:54px;height:54px;background:#25D366;border-radius:50%;display:flex;align-items:center;justify-content:center;box-shadow:0 4px 20px rgba(37,211,102,.3);cursor:none;transition:transform .3s,box-shadow .3s;text-decoration:none}
@@ -406,6 +409,7 @@ footer{border-top:1px solid rgba(201,168,76,.1);padding:3rem 4rem;display:flex;a
     <div class="stat"><div class="stat-num">500+</div><div class="stat-label">Eventos realizados</div></div>
     <div class="stat"><div class="stat-num">98%</div><div class="stat-label">Satisfacción</div></div>
     <div class="stat"><div class="stat-num">12K</div><div class="stat-label">Participantes</div></div>
+    <div class="stat"><div class="stat-num" id="visitCounter">—</div><div class="stat-label">Visitas</div></div>
   </div>
   <div class="scroll-indicator">
     <div class="scroll-line"></div>
@@ -1600,6 +1604,20 @@ async function postTestimonial(){
     if(res.ok){
       const data = await res.json();
       if(Array.isArray(data)) data.forEach(addTestimonialToDOM);
+    }
+  } catch(e){}
+})();
+
+// ── CONTADOR DE VISITAS ──
+(async function contarVisita(){
+  try {
+    const method = sessionStorage.getItem('visitado') ? 'GET' : 'POST';
+    const res    = await fetch('api/visitas.php', { method });
+    if(res.ok){
+      const data = await res.json();
+      const el   = document.getElementById('visitCounter');
+      if(el) el.textContent = data.total.toLocaleString('es-CO');
+      if(method === 'POST') sessionStorage.setItem('visitado', '1');
     }
   } catch(e){}
 })();
