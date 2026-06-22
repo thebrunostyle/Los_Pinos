@@ -7,6 +7,30 @@
             "inicio": "01:01",
             "fin": "17:05",
             "estado": "Programado"
+        },
+        "2026-06-27": {
+            "tipo": "pending",
+            "nombre": "Eventos deportivos",
+            "resp": "juan",
+            "correo": "juan@prueba.com",
+            "celular": "3001234569",
+            "personas": "20",
+            "comentarios": "prueba.com",
+            "inicio": "—",
+            "fin": "—",
+            "estado": "Pendiente confirmación"
+        },
+        "2026-06-28": {
+            "tipo": "occupied",
+            "nombre": "Aniversarios",
+            "resp": "Prueba de inicial",
+            "correo": "prueba@hotmail.com",
+            "celular": "30054545454",
+            "personas": "15",
+            "comentarios": "prueba de validacion",
+            "inicio": "18:00",
+            "fin": "01:00",
+            "estado": "Reservado"
         }
     },
     "Jardín": []

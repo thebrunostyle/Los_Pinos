@@ -131,6 +131,7 @@ nav.scrolled{background:var(--nav-bg);-webkit-backdrop-filter:blur(20px);backdro
 .event-detail-grid{display:grid;grid-template-columns:1fr 1fr;gap:.5rem}
 .detail-item{font-size:.8rem;color:var(--muted)}
 .detail-item span{color:var(--cream);font-weight:400}
+.detail-item.full{grid-column:1/-1}
 
 /* ── REGISTRO ── */
 #registro{padding:8rem 4rem;background:var(--ink2)}
@@ -576,10 +577,14 @@ footer{border-top:1px solid rgba(201,168,76,.1);padding:3rem 4rem;display:flex;a
         <div class="detail-date-badge" id="detailDate"></div>
         <div class="event-detail-title" id="detailTitle">—</div>
         <div class="event-detail-grid">
-          <div class="detail-item">Responsable: <span id="detailResp">—</span></div>
+          <div class="detail-item full">Nombre: <span id="detailResp">—</span></div>
+          <div class="detail-item">Correo: <span id="detailCorreo">—</span></div>
+          <div class="detail-item">Celular: <span id="detailCelular">—</span></div>
+          <div class="detail-item">N° personas: <span id="detailPersonas">—</span></div>
           <div class="detail-item">Estado: <span id="detailEstado">—</span></div>
-          <div class="detail-item">Inicio: <span id="detailInicio">—</span></div>
-          <div class="detail-item">Fin: <span id="detailFin">—</span></div>
+          <div class="detail-item">Hora inicio: <span id="detailInicio">—</span></div>
+          <div class="detail-item">Hora fin: <span id="detailFin">—</span></div>
+          <div class="detail-item full">Comentarios: <span id="detailComentarios">—</span></div>
         </div>
         <a href="#registro" class="btn-primary cal-request-btn" id="detailRequestBtn" onclick="prefillDate()">Solicitar esta fecha</a>
         <div class="detail-admin-btns" id="detailAdminBtns">
@@ -821,8 +826,20 @@ footer{border-top:1px solid rgba(201,168,76,.1);padding:3rem 4rem;display:flex;a
         </select>
       </div>
       <div class="edit-field full">
-        <label class="edit-label" for="editResp">Responsable</label>
-        <input class="edit-input" type="text" id="editResp" placeholder="Nombre del responsable">
+        <label class="edit-label" for="editResp">Nombres y apellidos</label>
+        <input class="edit-input" type="text" id="editResp" placeholder="Nombre completo del cliente">
+      </div>
+      <div class="edit-field full">
+        <label class="edit-label" for="editCorreo">Correo electrónico</label>
+        <input class="edit-input" type="email" id="editCorreo" placeholder="correo@ejemplo.com">
+      </div>
+      <div class="edit-field">
+        <label class="edit-label" for="editCelular">Celular</label>
+        <input class="edit-input" type="tel" id="editCelular" placeholder="300 123 4567">
+      </div>
+      <div class="edit-field">
+        <label class="edit-label" for="editPersonas">N° de personas</label>
+        <input class="edit-input" type="number" id="editPersonas" placeholder="Ej: 150" min="1">
       </div>
       <div class="edit-field">
         <label class="edit-label" for="editInicio">Hora inicio</label>
@@ -831,6 +848,10 @@ footer{border-top:1px solid rgba(201,168,76,.1);padding:3rem 4rem;display:flex;a
       <div class="edit-field">
         <label class="edit-label" for="editFin">Hora fin</label>
         <input class="edit-input" type="time" id="editFin">
+      </div>
+      <div class="edit-field full">
+        <label class="edit-label" for="editComentarios">Comentarios</label>
+        <textarea class="edit-input" id="editComentarios" placeholder="Observaciones o requerimientos especiales" style="resize:vertical;min-height:70px;font-family:'DM Sans',sans-serif"></textarea>
       </div>
     </div>
     <div class="edit-actions">
@@ -1001,10 +1022,14 @@ function showDetail(key, ev){
   titleEl.textContent = ev.nombre;
   titleEl.style.color = '';
   grid.style.display  = '';
-  document.getElementById('detailResp').textContent   = ev.resp    || '—';
-  document.getElementById('detailEstado').textContent = ev.estado  || '—';
-  document.getElementById('detailInicio').textContent = ev.inicio  || '—';
-  document.getElementById('detailFin').textContent    = ev.fin     || '—';
+  document.getElementById('detailResp').textContent        = ev.resp        || '—';
+  document.getElementById('detailCorreo').textContent      = ev.correo      || '—';
+  document.getElementById('detailCelular').textContent     = ev.celular     || '—';
+  document.getElementById('detailPersonas').textContent    = ev.personas    || '—';
+  document.getElementById('detailEstado').textContent      = ev.estado      || '—';
+  document.getElementById('detailInicio').textContent      = ev.inicio      || '—';
+  document.getElementById('detailFin').textContent         = ev.fin         || '—';
+  document.getElementById('detailComentarios').textContent = ev.comentarios || '—';
 
   const editBtn = document.getElementById('detailEditBtn');
   const delBtn  = document.getElementById('detailDeleteBtn');
@@ -1023,8 +1048,14 @@ function showEmptyDetail(key){
   titleEl.style.color = '';
   titleEl.textContent  = 'Fecha disponible';
   document.querySelector('.event-detail-grid').style.display = '';
-  document.getElementById('detailResp').textContent   = '—';
-  document.getElementById('detailEstado').textContent = 'Disponible';
+  document.getElementById('detailResp').textContent        = '—';
+  document.getElementById('detailCorreo').textContent      = '—';
+  document.getElementById('detailCelular').textContent     = '—';
+  document.getElementById('detailPersonas').textContent    = '—';
+  document.getElementById('detailEstado').textContent      = 'Disponible';
+  document.getElementById('detailInicio').textContent      = '—';
+  document.getElementById('detailFin').textContent         = '—';
+  document.getElementById('detailComentarios').textContent = '—';
   document.getElementById('detailInicio').textContent = '—';
   document.getElementById('detailFin').textContent    = '—';
 
@@ -1073,12 +1104,16 @@ function openEditModal(key){
   const isNew = !ev.nombre;
   document.getElementById('editModalTitle').textContent    = isNew ? 'Nueva reserva' : 'Editar reserva';
   document.getElementById('editModalSubtitle').textContent = fmtDate(key);
-  document.getElementById('editNombre').value  = isNew ? '' : ev.nombre;
-  document.getElementById('editResp').value    = (!isNew && ev.resp   !== '—') ? ev.resp   : '';
-  document.getElementById('editInicio').value  = (!isNew && ev.inicio !== '—') ? ev.inicio : '';
-  document.getElementById('editFin').value     = (!isNew && ev.fin    !== '—') ? ev.fin    : '';
+  document.getElementById('editNombre').value      = isNew ? '' : (ev.nombre      || '');
+  document.getElementById('editResp').value        = (!isNew && ev.resp       && ev.resp       !== '—') ? ev.resp       : '';
+  document.getElementById('editCorreo').value      = (!isNew && ev.correo     && ev.correo     !== '—') ? ev.correo     : '';
+  document.getElementById('editCelular').value     = (!isNew && ev.celular    && ev.celular    !== '—') ? ev.celular    : '';
+  document.getElementById('editPersonas').value    = (!isNew && ev.personas   && ev.personas   !== '—') ? ev.personas   : '';
+  document.getElementById('editComentarios').value = (!isNew && ev.comentarios && ev.comentarios !== '—') ? ev.comentarios : '';
+  document.getElementById('editInicio').value      = (!isNew && ev.inicio && ev.inicio !== '—') ? ev.inicio : '18:00';
+  document.getElementById('editFin').value         = (!isNew && ev.fin    && ev.fin    !== '—') ? ev.fin    : '01:00';
   const tipoNorm = (ev.tipo === 'pending') ? 'pending' : 'occupied';
-  document.getElementById('editEstado').value  = tipoNorm;
+  document.getElementById('editEstado').value      = tipoNorm;
   document.getElementById('editNombre').classList.remove('error');
   document.getElementById('editOverlay').classList.remove('hidden');
   setTimeout(() => document.getElementById('editNombre').focus(), 50);
@@ -1097,11 +1132,15 @@ function saveEdit(key){
     return;
   }
   document.getElementById('editNombre').classList.remove('error');
-  const tipo   = document.getElementById('editEstado').value;
-  const resp   = document.getElementById('editResp').value.trim()  || '—';
-  const inicio = document.getElementById('editInicio').value        || '—';
-  const fin    = document.getElementById('editFin').value           || '—';
-  const entry  = { tipo, nombre, resp, inicio, fin, estado: tipoLabel(tipo) };
+  const tipo        = document.getElementById('editEstado').value;
+  const resp        = document.getElementById('editResp').value.trim()        || '—';
+  const correo      = document.getElementById('editCorreo').value.trim()      || '—';
+  const celular     = document.getElementById('editCelular').value.trim()     || '—';
+  const personas    = document.getElementById('editPersonas').value.trim()    || '—';
+  const comentarios = document.getElementById('editComentarios').value.trim() || '—';
+  const inicio      = document.getElementById('editInicio').value             || '18:00';
+  const fin         = document.getElementById('editFin').value                || '01:00';
+  const entry  = { tipo, nombre, resp, correo, celular, personas, comentarios, inicio, fin, estado: tipoLabel(tipo) };
   events[key] = entry;
   if(activeSpace){ EVENTS_BY_SPACE[activeSpace][key] = entry; saveSpaceEvents(activeSpace); }
   closeEditModal();
@@ -1615,12 +1654,16 @@ function handleSubmit(e){
     const fechaKey = document.getElementById('fechaSel').value;
     if(fechaKey){
       const entrada = {
-        tipo:   'pending',
-        nombre: document.getElementById('tipoevento').value,
-        resp:   document.getElementById('nombre').value,
-        inicio: '—',
-        fin:    '—',
-        estado: 'Pendiente confirmación'
+        tipo:        'pending',
+        nombre:      document.getElementById('tipoevento').value,
+        resp:        document.getElementById('nombre').value,
+        correo:      document.getElementById('correo').value,
+        celular:     document.getElementById('celular').value,
+        personas:    document.getElementById('personas').value,
+        comentarios: document.getElementById('comentarios').value || '—',
+        inicio:      '—',
+        fin:         '—',
+        estado:      'Pendiente confirmación'
       };
       EVENTS_BY_SPACE['Salón Principal'][fechaKey] = entrada;
       events[fechaKey] = entrada;

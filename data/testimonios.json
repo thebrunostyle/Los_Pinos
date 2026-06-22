@@ -10,5 +10,11 @@
         "comentario": "Prueba de comunicación",
         "estrellas": 4,
         "fecha": "22 de junio de 2026"
+    },
+    {
+        "nombre": "alejandro2",
+        "comentario": "Preciosa que te vaya muy bien en la presentación de los productos :)",
+        "estrellas": 5,
+        "fecha": "22 de junio de 2026"
     }
 ]
