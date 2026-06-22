@@ -197,7 +197,16 @@ nav.scrolled{background:var(--nav-bg);-webkit-backdrop-filter:blur(20px);backdro
 .red-social:hover{border-color:var(--gold);color:var(--gold);transform:translateY(-4px);box-shadow:0 8px 24px rgba(201,168,76,.15)}
 .red-social svg{width:24px;height:24px;fill:currentColor}
 #calRedesBtn{display:none}
+#calTiposBtn{display:none}
 #redes{display:none}
+.tipo-add-row{display:flex;gap:.5rem;margin-bottom:1rem}
+.tipo-add-row .login-input{flex:1}
+.tipo-add-btn{background:var(--gold);color:var(--ink);border:none;padding:.5rem 1rem;font-size:.8rem;font-weight:600;cursor:pointer;transition:background .2s;white-space:nowrap;font-family:'DM Sans',sans-serif}
+.tipo-add-btn:hover{background:#e6b800}
+.tipo-list-item{display:flex;justify-content:space-between;align-items:center;padding:.5rem 0;border-bottom:1px solid rgba(201,168,76,.08)}
+.tipo-list-item span{font-size:.85rem;color:var(--cream2)}
+.tipo-list-btn-del{background:transparent;border:none;color:rgba(248,113,113,.5);cursor:pointer;font-size:1rem;padding:.2rem .4rem;transition:color .2s;line-height:1}
+.tipo-list-btn-del:hover{color:#f87171}
 .login-box-scroll{max-height:80vh;overflow-y:auto}
 
 /* ── FOOTER ── */
@@ -535,6 +544,7 @@ footer{border-top:1px solid rgba(201,168,76,.1);padding:3rem 4rem;display:flex;a
           <span id="calUserInfo" class="cal-user-info"></span>
           <button type="button" class="cal-btn-login" id="calLoginBtn" onclick="openLoginModal()">🔐 Acceso admin</button>
           <button type="button" class="cal-btn-login" id="calContactBtn" onclick="openContactModal()">📋 Datos de contacto</button>
+          <button type="button" class="cal-btn-login" id="calTiposBtn"   onclick="openTiposModal()">📝 Tipos de evento</button>
           <button type="button" class="cal-btn-login" id="calRedesBtn"   onclick="openRedesModal()">📱 Redes</button>
           <button type="button" class="cal-btn-logout" id="calLogoutBtn" onclick="calLogout()">Cerrar sesión</button>
         </div>
@@ -615,32 +625,6 @@ footer{border-top:1px solid rgba(201,168,76,.1);padding:3rem 4rem;display:flex;a
           <label class="form-label">Tipo de evento *</label>
           <select class="form-select" id="tipoevento" required aria-label="Tipo de evento">
             <option value="">Seleccionar tipo de evento</option>
-            <option value="Bodas">Bodas</option>
-            <option value="Quinceañeras">Quinceañeras</option>
-            <option value="Eventos corporativos">Eventos corporativos</option>
-            <option value="Celebraciones sociales">Celebraciones sociales</option>
-            <option value="Cumpleaños">Cumpleaños</option>
-            <option value="Aniversarios">Aniversarios</option>
-            <option value="Bautizos">Bautizos</option>
-            <option value="Primeras comuniones">Primeras comuniones</option>
-            <option value="Baby showers">Baby showers</option>
-            <option value="Graduaciones">Graduaciones</option>
-            <option value="Fiestas infantiles">Fiestas infantiles</option>
-            <option value="Reuniones familiares">Reuniones familiares</option>
-            <option value="Lanzamientos de productos">Lanzamientos de productos</option>
-            <option value="Conferencias y seminarios">Conferencias y seminarios</option>
-            <option value="Ferias y exposiciones">Ferias y exposiciones</option>
-            <option value="Cenas empresariales">Cenas empresariales</option>
-            <option value="Cócteles y recepciones">Cócteles y recepciones</option>
-            <option value="Eventos culturales">Eventos culturales</option>
-            <option value="Eventos deportivos">Eventos deportivos</option>
-            <option value="Celebraciones privadas">Celebraciones privadas</option>
-            <option value="Fiestas temáticas">Fiestas temáticas</option>
-            <option value="Despedidas de soltero/a">Despedidas de soltero/a</option>
-            <option value="Propuestas de matrimonio">Propuestas de matrimonio</option>
-            <option value="Inauguraciones">Inauguraciones</option>
-            <option value="Activaciones de marca">Activaciones de marca</option>
-            <option value="Otro">Otro</option>
           </select>
           <span class="form-error" id="err-tipoevento">Selecciona el tipo de evento</span>
         </div>
@@ -737,6 +721,21 @@ footer{border-top:1px solid rgba(201,168,76,.1);padding:3rem 4rem;display:flex;a
   <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.136.562 4.14 1.535 5.876L.057 23.617a.75.75 0 00.918.899l5.9-1.547A11.952 11.952 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 22c-1.891 0-3.673-.497-5.217-1.369l-.374-.216-3.878 1.017 1.035-3.783-.234-.381A9.953 9.953 0 012 12C2 6.477 6.477 2 12 2s10 4.477 10 10-4.477 10-10 10z"/></svg>
 </a>
 
+<!-- TIPOS EVENTO MODAL (admin) -->
+<div class="login-overlay hidden" id="tiposOverlay">
+  <div class="login-box login-box-scroll">
+    <button type="button" class="login-close" onclick="closeTiposModal()" aria-label="Cerrar">✕</button>
+    <h3 class="login-title">Tipos de evento</h3>
+    <p class="login-sub">Agrega o elimina tipos de la lista desplegable.</p>
+    <div class="tipo-add-row">
+      <input class="login-input" type="text" id="nuevoTipo" placeholder="Ej: Retiro espiritual">
+      <button type="button" class="tipo-add-btn" onclick="addTipo()">+ Agregar</button>
+    </div>
+    <p class="login-err" id="tiposErr"></p>
+    <div id="tiposList"></div>
+  </div>
+</div>
+
 <!-- REDES MODAL (admin) -->
 <div class="login-overlay hidden" id="redesOverlay">
   <div class="login-box login-box-scroll">
@@ -809,8 +808,10 @@ footer{border-top:1px solid rgba(201,168,76,.1);padding:3rem 4rem;display:flex;a
     <p class="edit-subtitle" id="editModalSubtitle"></p>
     <div class="edit-grid">
       <div class="edit-field full">
-        <label class="edit-label" for="editNombre">Nombre del evento *</label>
-        <input class="edit-input" type="text" id="editNombre" placeholder="Ej. Boda García-López">
+        <label class="edit-label" for="editNombre">Tipo de evento *</label>
+        <select class="edit-input" id="editNombre" aria-label="Tipo de evento">
+          <option value="">— Seleccionar —</option>
+        </select>
       </div>
       <div class="edit-field full">
         <label class="edit-label" for="editEstado">Estado</label>
@@ -1150,6 +1151,7 @@ function applyCalLogin(found){
   info.style.display = 'inline';
   document.getElementById('calLoginBtn').style.display  = 'none';
   document.getElementById('calContactBtn').style.display = 'inline-block';
+  document.getElementById('calTiposBtn').style.display   = 'inline-block';
   document.getElementById('calRedesBtn').style.display   = 'inline-block';
   document.getElementById('calLogoutBtn').style.display  = 'inline-block';
   renderSpaceTabs(found.spaces);
@@ -1164,6 +1166,7 @@ function calLogout(){
   document.getElementById('calUserInfo').style.display = '';
   document.getElementById('calLoginBtn').style.display   = '';
   document.getElementById('calContactBtn').style.display = '';
+  document.getElementById('calTiposBtn').style.display   = '';
   document.getElementById('calRedesBtn').style.display   = '';
   document.getElementById('calLogoutBtn').style.display  = '';
   document.getElementById('spaceTabsWrap').style.display = '';
@@ -1222,6 +1225,99 @@ async function initCalendar(){
 }
 initCalendar();
 
+
+// ── TIPOS DE EVENTO ──
+const TIPOS_DEFAULT = ["Activaciones de marca","Aniversarios","Baby showers","Bautizos","Bodas","Celebraciones privadas","Celebraciones sociales","Cenas empresariales","Conferencias y seminarios","Cócteles y recepciones","Cumpleaños","Despedidas de soltero/a","Eventos corporativos","Eventos culturales","Eventos deportivos","Ferias y exposiciones","Fiestas infantiles","Fiestas temáticas","Graduaciones","Inauguraciones","Lanzamientos de productos","Primeras comuniones","Propuestas de matrimonio","Quinceañeras","Reuniones familiares","Otro"];
+let TIPOS_EVENTO = [...TIPOS_DEFAULT];
+
+function populateSelects(){
+  [
+    {id:'tipoevento', ph:'Seleccionar tipo de evento'},
+    {id:'editNombre', ph:'— Seleccionar —'}
+  ].forEach(({id, ph}) => {
+    const sel = document.getElementById(id);
+    if(!sel) return;
+    const prev = sel.value;
+    sel.innerHTML = `<option value="">${ph}</option>`;
+    TIPOS_EVENTO.forEach(t => {
+      const opt = document.createElement('option');
+      opt.value = opt.textContent = t;
+      sel.appendChild(opt);
+    });
+    if(prev) sel.value = prev;
+  });
+}
+
+function renderTiposList(){
+  const list = document.getElementById('tiposList');
+  if(!list) return;
+  list.innerHTML = '';
+  TIPOS_EVENTO.forEach(t => {
+    const div  = document.createElement('div');  div.className  = 'tipo-list-item';
+    const span = document.createElement('span'); span.textContent = t;
+    const btn  = document.createElement('button');
+    btn.type      = 'button';
+    btn.className = 'tipo-list-btn-del';
+    btn.title     = 'Eliminar';
+    btn.textContent = '🗑';
+    btn.onclick = () => deleteTipo(t);
+    div.appendChild(span); div.appendChild(btn);
+    list.appendChild(div);
+  });
+}
+
+function openTiposModal(){
+  document.getElementById('nuevoTipo').value = '';
+  document.getElementById('tiposErr').textContent = '';
+  renderTiposList();
+  document.getElementById('tiposOverlay').classList.remove('hidden');
+  setTimeout(() => document.getElementById('nuevoTipo').focus(), 50);
+}
+function closeTiposModal(){
+  document.getElementById('tiposOverlay').classList.add('hidden');
+}
+
+async function addTipo(){
+  const input = document.getElementById('nuevoTipo');
+  const tipo  = input.value.trim();
+  const err   = document.getElementById('tiposErr');
+  if(!tipo){ err.textContent = 'Escribe el nombre del tipo'; return; }
+  if(TIPOS_EVENTO.map(t=>t.toLowerCase()).includes(tipo.toLowerCase())){ err.textContent = 'Ya existe ese tipo'; return; }
+  err.textContent = '';
+  try {
+    await fetch('api/tipos-evento.php', {
+      method:'POST', headers:{'Content-Type':'application/json'}, body: JSON.stringify({tipo})
+    });
+  } catch(e){}
+  TIPOS_EVENTO.push(tipo);
+  TIPOS_EVENTO.sort((a,b) => a.localeCompare(b,'es'));
+  populateSelects();
+  renderTiposList();
+  input.value = '';
+}
+
+async function deleteTipo(tipo){
+  if(!confirm('¿Eliminar "' + tipo + '" de la lista?')) return;
+  try {
+    await fetch('api/tipos-evento.php', {
+      method:'DELETE', headers:{'Content-Type':'application/json'}, body: JSON.stringify({tipo})
+    });
+  } catch(e){}
+  TIPOS_EVENTO = TIPOS_EVENTO.filter(t => t !== tipo);
+  populateSelects();
+  renderTiposList();
+}
+
+(async function loadTipos(){
+  try {
+    const res = await fetch('api/tipos-evento.php');
+    if(res.ok){
+      const data = await res.json();
+      if(Array.isArray(data) && data.length > 0) TIPOS_EVENTO = data;
+    }
+  } catch(e){}
+  populateSelects();
+})();
 
 // ── REDES SOCIALES ──
 const REDES_DEF = [
