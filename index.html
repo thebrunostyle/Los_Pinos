@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html lang="es" data-theme="light">
+<html lang="es" data-theme="dark">
 <head>
 <meta charset="UTF-8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-<title>Hacienda los Pinos — Eventos & Celebraciones</title>
+<title>Quinta los Pinos — Eventos & Celebraciones</title>
 <link rel="preconnect" href="https://fonts.googleapis.com"/>
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet"/>
@@ -25,18 +25,6 @@
   --menu-bg:rgba(13,17,23,.98);
   --card-hover:#1a2230;
   --input-bg:rgba(13,17,23,.8);
-}
-[data-theme="light"]{
-  --ink:#FAFAF5;
-  --ink2:#F0E8D2;
-  --cream:#1A1209;
-  --cream2:#2D2416;
-  --muted:#6B5E4A;
-  --glass:rgba(201,168,76,.06);
-  --nav-bg:rgba(250,250,245,.94);
-  --menu-bg:rgba(250,250,245,.98);
-  --card-hover:#E5DAC4;
-  --input-bg:rgba(250,250,245,.9);
 }
 html{scroll-behavior:smooth;font-size:16px}
 body{background:var(--ink);color:var(--cream);font-family:'DM Sans',sans-serif;font-weight:300;overflow-x:hidden;cursor:none}
@@ -130,11 +118,10 @@ nav.scrolled{background:var(--nav-bg);-webkit-backdrop-filter:blur(20px);backdro
 .cal-cell{aspect-ratio:1;display:flex;flex-direction:column;align-items:center;justify-content:center;font-size:.85rem;position:relative;cursor:none;transition:all .2s;border:1px solid transparent}
 .cal-cell:not(.empty):hover{border-color:rgba(201,168,76,.3);background:rgba(201,168,76,.05)}
 .cal-cell.empty{pointer-events:none;opacity:.2}
-.cal-cell.today{background:rgba(201,168,76,.1);border-color:rgba(201,168,76,.3);color:var(--gold);font-weight:500}
-.cal-cell.available::after{content:'';width:6px;height:6px;border-radius:50%;background:#4ade80;position:absolute;bottom:4px}
-.cal-cell.occupied::after{content:'';width:6px;height:6px;border-radius:50%;background:#f87171;position:absolute;bottom:4px}
-.cal-cell.pending::after{content:'';width:6px;height:6px;border-radius:50%;background:#fbbf24;position:absolute;bottom:4px}
-.cal-cell.event::after{content:'';width:6px;height:6px;border-radius:50%;background:#60a5fa;position:absolute;bottom:4px}
+.cal-cell.today{color:var(--gold);font-weight:700}
+.cal-cell.occupied,
+.cal-cell.event{background:rgba(248,113,113,.18);border-color:rgba(248,113,113,.5);color:#f87171;font-weight:500}
+.cal-cell.pending{background:rgba(96,165,250,.18);border-color:rgba(96,165,250,.5);color:#60a5fa;font-weight:500}
 .cal-legend{display:flex;gap:1.5rem;margin-top:1.5rem;flex-wrap:wrap}
 .legend-item{display:flex;align-items:center;gap:.5rem;font-size:.75rem;color:var(--muted)}
 .legend-dot{width:8px;height:8px;border-radius:50%}
@@ -174,8 +161,7 @@ nav.scrolled{background:var(--nav-bg);-webkit-backdrop-filter:blur(20px);backdro
 
 /* ── TESTIMONIOS ── */
 #testimonios{padding:8rem 4rem;overflow:hidden}
-.testimonials-track{display:flex;gap:2rem;margin-top:4rem;animation:slide 30s linear infinite}
-.testimonials-track:hover{animation-play-state:paused}
+.testimonials-track{display:flex;gap:2rem;margin-top:4rem;will-change:transform}
 .testimonial{flex-shrink:0;width:380px;background:var(--ink2);border:1px solid rgba(201,168,76,.1);padding:2.5rem;position:relative}
 .testimonial::before{content:'\201C';font-family:'Cormorant Garamond',serif;font-size:5rem;color:rgba(201,168,76,.15);position:absolute;top:.5rem;left:1.5rem;line-height:1}
 .testimonial-text{font-size:.9rem;line-height:1.8;color:var(--cream2);position:relative;z-index:1;margin-bottom:1.5rem}
@@ -183,6 +169,12 @@ nav.scrolled{background:var(--nav-bg);-webkit-backdrop-filter:blur(20px);backdro
 .author-avatar{width:40px;height:40px;border-radius:50%;background:linear-gradient(135deg,var(--gold),var(--muted));display:flex;align-items:center;justify-content:center;font-family:'Cormorant Garamond',serif;font-size:1.1rem;font-weight:600;color:var(--ink);flex-shrink:0}
 .author-name{font-size:.85rem;font-weight:500}
 .author-role{font-size:.75rem;color:var(--muted)}
+.testi-stars{color:var(--gold)!important}
+.testimonial-cta{text-align:center;margin-top:3rem}
+.star-rating{display:flex;gap:.25rem;margin-top:.5rem}
+.star-rating span{font-size:2rem;cursor:pointer;color:rgba(138,126,106,.3);transition:color .15s;line-height:1;-webkit-user-select:none;user-select:none}
+.star-rating span.active,.star-rating span.hov{color:var(--gold)}
+.testi-textarea{resize:vertical;min-height:90px}
 
 /* ── CONTACTO / CTA ── */
 #contacto{padding:8rem 4rem;position:relative;overflow:hidden}
@@ -197,6 +189,16 @@ nav.scrolled{background:var(--nav-bg);-webkit-backdrop-filter:blur(20px);backdro
 .contact-item-icon{font-size:1.5rem;margin-bottom:.5rem}
 .contact-item-label{font-size:.7rem;letter-spacing:.15em;text-transform:uppercase;color:var(--gold);margin-bottom:.2rem}
 .contact-item-value{font-size:.9rem;color:var(--cream2)}
+
+/* ── REDES SOCIALES ── */
+#redes{padding:5rem 4rem;text-align:center;border-top:1px solid rgba(201,168,76,.08)}
+.redes-grid{display:flex;gap:1.5rem;justify-content:center;flex-wrap:wrap;margin-top:2.5rem}
+.red-social{width:62px;height:62px;border-radius:50%;border:1px solid rgba(201,168,76,.2);display:flex;align-items:center;justify-content:center;color:var(--muted);text-decoration:none;transition:all .3s;background:var(--ink2)}
+.red-social:hover{border-color:var(--gold);color:var(--gold);transform:translateY(-4px);box-shadow:0 8px 24px rgba(201,168,76,.15)}
+.red-social svg{width:24px;height:24px;fill:currentColor}
+#calRedesBtn{display:none}
+#redes{display:none}
+.login-box-scroll{max-height:80vh;overflow-y:auto}
 
 /* ── FOOTER ── */
 footer{border-top:1px solid rgba(201,168,76,.1);padding:3rem 4rem;display:flex;align-items:center;justify-content:space-between;flex-wrap:gap}
@@ -224,11 +226,6 @@ footer{border-top:1px solid rgba(201,168,76,.1);padding:3rem 4rem;display:flex;a
 .reveal{opacity:0;transform:translateY(30px);transition:opacity .7s var(--transition),transform .7s var(--transition)}
 .reveal.visible{opacity:1;transform:translateY(0)}
 
-/* ── THEME TOGGLE ── */
-.theme-toggle{background:transparent;border:1px solid rgba(201,168,76,.25);color:var(--cream);width:36px;height:36px;cursor:none;font-size:1rem;transition:all .3s;display:flex;align-items:center;justify-content:center;border-radius:50%;padding:0;flex-shrink:0}
-.theme-toggle:hover{border-color:var(--gold)}
-.theme-toggle::after{content:'🌙'}
-[data-theme="dark"] .theme-toggle::after{content:'☀️'}
 .contact-item-link{color:inherit;text-decoration:none;transition:color .3s;display:block}
 .contact-item-link:hover{color:var(--gold)}
 
@@ -268,10 +265,11 @@ footer{border-top:1px solid rgba(201,168,76,.1);padding:3rem 4rem;display:flex;a
 #loginArea{display:flex;align-items:center;gap:.8rem}
 #calUserInfo{display:none}
 #calLogoutBtn{display:none}
-.legend-dot-avail{background:#4ade80}
-.legend-dot-occ{background:#f87171}
-.legend-dot-pend{background:#fbbf24}
-.legend-dot-evt{background:#60a5fa}
+#calContactBtn{display:none}
+.legend-dot-reservado{background:rgba(248,113,113,.5);border:1px solid rgba(248,113,113,.8)}
+.legend-dot-pendiente{background:rgba(96,165,250,.5);border:1px solid rgba(96,165,250,.8)}
+.legend-dot-libre{background:transparent;border:1px solid rgba(138,126,106,.4)}
+.legend-today{color:var(--gold);font-weight:700;font-size:.85rem;line-height:1}
 .cal-request-btn{margin-top:1.2rem;display:inline-block;font-size:.78rem}
 .cal-cell.past{opacity:.38;cursor:default!important}
 .cal-cell.free{cursor:pointer}
@@ -300,8 +298,8 @@ footer{border-top:1px solid rgba(201,168,76,.1);padding:3rem 4rem;display:flex;a
 .edit-close{position:absolute;top:.75rem;right:.75rem;background:transparent;border:none;color:var(--muted);font-size:1.1rem;cursor:pointer;line-height:1;padding:.2rem}
 .edit-close:hover{color:var(--cream)}
 /* Form date badge */
-.form-date-badge{background:rgba(201,168,76,.08);border:1px solid rgba(201,168,76,.22);padding:.6rem 1rem;font-size:.82rem;color:var(--gold);margin-bottom:.8rem;display:none}
-.form-date-badge.show{display:block}
+.form-input-readonly{cursor:default;border-color:rgba(201,168,76,.25);color:var(--gold);opacity:.85}
+.form-input-readonly::placeholder{color:rgba(201,168,76,.35)}
 .gallery-note{text-align:center;margin-top:2rem;font-size:.8rem;color:var(--muted)}
 .gallery-note a{color:var(--gold);text-decoration:none}
 .gallery-note a:hover{text-decoration:underline}
@@ -351,7 +349,7 @@ footer{border-top:1px solid rgba(201,168,76,.1);padding:3rem 4rem;display:flex;a
 
 <!-- NAV -->
 <nav id="navbar">
-  <a href="#inicio" class="nav-logo">Hacienda los <span>Pinos</span></a>
+  <a href="#inicio" class="nav-logo">Quinta los <span>Pinos</span></a>
   <ul class="nav-links">
     <li><a href="#inicio">Inicio</a></li>
     <li><a href="#galeria">Galería</a></li>
@@ -361,7 +359,6 @@ footer{border-top:1px solid rgba(201,168,76,.1);padding:3rem 4rem;display:flex;a
     <li><a href="#contacto">Contacto</a></li>
   </ul>
   <button type="button" class="nav-cta" onclick="document.getElementById('registro').scrollIntoView({behavior:'smooth'})">Reservar</button>
-  <button type="button" class="theme-toggle" id="themeToggle" onclick="toggleTheme()" aria-label="Cambiar tema"></button>
   <div class="hamburger" id="hamburger" onclick="toggleMenu()">
     <span></span><span></span><span></span>
   </div>
@@ -380,13 +377,13 @@ footer{border-top:1px solid rgba(201,168,76,.1);padding:3rem 4rem;display:flex;a
 <!-- HERO -->
 <section id="inicio">
   <div class="hero-img-wrap">
-    <img src="assets/img/hero.jpg" alt="Hacienda los Pinos" onerror="this.style.display='none'"/>
+    <img src="assets/img/hero.jpg" alt="Quinta los Pinos" onerror="this.style.display='none'"/>
   </div>
   <div class="hero-bg"></div>
   <div class="hero-grid"></div>
   <div class="hero-content">
     <div class="hero-tag">Cota, Cundinamarca · Colombia</div>
-    <h1 class="hero-h1">Hacienda<br/>los <em>Pinos</em></h1>
+    <h1 class="hero-h1">Quinta<br/>los <em>Pinos</em></h1>
     <p class="hero-sub">Un espacio único rodeado de naturaleza para bodas, celebraciones corporativas y eventos sociales. Vive momentos que perduran para siempre.</p>
     <div class="hero-actions">
       <a href="#registro" class="btn-primary">Solicitar información</a>
@@ -413,7 +410,7 @@ footer{border-top:1px solid rgba(201,168,76,.1);padding:3rem 4rem;display:flex;a
   </div>
   <div class="gallery-grid reveal">
     <div class="gallery-item">
-      <img src="assets/img/galeria1.jpg" alt="Hacienda los Pinos" onerror="this.style.display='none'"/>
+      <img src="assets/img/galeria1.jpg" alt="Quinta los Pinos" onerror="this.style.display='none'"/>
       <div class="gallery-placeholder"><span>🌿</span>Foto del espacio</div>
     </div>
     <div class="gallery-item">
@@ -535,6 +532,8 @@ footer{border-top:1px solid rgba(201,168,76,.1);padding:3rem 4rem;display:flex;a
         <div id="loginArea">
           <span id="calUserInfo" class="cal-user-info"></span>
           <button type="button" class="cal-btn-login" id="calLoginBtn" onclick="openLoginModal()">🔐 Acceso admin</button>
+          <button type="button" class="cal-btn-login" id="calContactBtn" onclick="openContactModal()">📋 Datos de contacto</button>
+          <button type="button" class="cal-btn-login" id="calRedesBtn"   onclick="openRedesModal()">📱 Redes</button>
           <button type="button" class="cal-btn-logout" id="calLogoutBtn" onclick="calLogout()">Cerrar sesión</button>
         </div>
       </div>
@@ -556,10 +555,10 @@ footer{border-top:1px solid rgba(201,168,76,.1);padding:3rem 4rem;display:flex;a
       </div>
       <div class="cal-grid" id="calGrid"></div>
       <div class="cal-legend">
-        <div class="legend-item"><div class="legend-dot legend-dot-avail"></div>Disponible</div>
-        <div class="legend-item"><div class="legend-dot legend-dot-occ"></div>Ocupado</div>
-        <div class="legend-item"><div class="legend-dot legend-dot-pend"></div>Pendiente</div>
-        <div class="legend-item"><div class="legend-dot legend-dot-evt"></div>Evento programado</div>
+        <div class="legend-item"><div class="legend-dot legend-dot-reservado"></div>Reservado</div>
+        <div class="legend-item"><div class="legend-dot legend-dot-pendiente"></div>Pendiente confirmación</div>
+        <div class="legend-item"><div class="legend-dot legend-dot-libre"></div>Disponible</div>
+        <div class="legend-item"><span class="legend-today">•</span>&nbsp;Hoy</div>
       </div>
       <div class="cal-event-detail" id="calDetail">
         <div class="detail-date-badge" id="detailDate"></div>
@@ -590,28 +589,15 @@ footer{border-top:1px solid rgba(201,168,76,.1);padding:3rem 4rem;display:flex;a
   <div class="register-container">
     <div id="registerForm" class="reveal">
       <form class="form-grid" novalidate onsubmit="handleSubmit(event)">
-        <div class="form-date-badge" id="formDateBadge"></div>
         <input type="hidden" id="fechaSel">
-        <div class="form-group">
-          <label class="form-label">Nombre completo *</label>
+        <div class="form-group full">
+          <label class="form-label">Fecha solicitada</label>
+          <input class="form-input form-input-readonly" type="text" id="fechaMostrar" placeholder="Selecciona una fecha desde el calendario arriba" readonly/>
+        </div>
+        <div class="form-group full">
+          <label class="form-label">Nombres y apellidos *</label>
           <input class="form-input" type="text" id="nombre" placeholder="Juan Pérez" required/>
           <span class="form-error" id="err-nombre">Ingresa tu nombre completo</span>
-        </div>
-        <div class="form-group">
-          <label class="form-label">Tipo de documento *</label>
-          <select class="form-select" id="tipodoc" required aria-label="Tipo de documento">
-            <option value="">Seleccionar</option>
-            <option value="CC">Cédula de Ciudadanía</option>
-            <option value="CE">Cédula de Extranjería</option>
-            <option value="PA">Pasaporte</option>
-            <option value="NIT">NIT</option>
-          </select>
-          <span class="form-error" id="err-tipodoc">Selecciona el tipo de documento</span>
-        </div>
-        <div class="form-group">
-          <label class="form-label">Número de documento *</label>
-          <input class="form-input" type="text" id="numdoc" placeholder="1234567890" required/>
-          <span class="form-error" id="err-numdoc">Ingresa tu número de documento</span>
         </div>
         <div class="form-group">
           <label class="form-label">Correo electrónico *</label>
@@ -619,33 +605,51 @@ footer{border-top:1px solid rgba(201,168,76,.1);padding:3rem 4rem;display:flex;a
           <span class="form-error" id="err-correo">Correo electrónico no válido</span>
         </div>
         <div class="form-group">
-          <label class="form-label">Teléfono móvil *</label>
-          <input class="form-input" type="tel" id="telefono" placeholder="300 123 4567" required/>
-          <span class="form-error" id="err-telefono">Teléfono no válido</span>
+          <label class="form-label">Celular *</label>
+          <input class="form-input" type="tel" id="celular" placeholder="300 123 4567" required/>
+          <span class="form-error" id="err-celular">Número de celular no válido</span>
+        </div>
+        <div class="form-group full">
+          <label class="form-label">Tipo de evento *</label>
+          <select class="form-select" id="tipoevento" required aria-label="Tipo de evento">
+            <option value="">Seleccionar tipo de evento</option>
+            <option value="Bodas">Bodas</option>
+            <option value="Quinceañeras">Quinceañeras</option>
+            <option value="Eventos corporativos">Eventos corporativos</option>
+            <option value="Celebraciones sociales">Celebraciones sociales</option>
+            <option value="Cumpleaños">Cumpleaños</option>
+            <option value="Aniversarios">Aniversarios</option>
+            <option value="Bautizos">Bautizos</option>
+            <option value="Primeras comuniones">Primeras comuniones</option>
+            <option value="Baby showers">Baby showers</option>
+            <option value="Graduaciones">Graduaciones</option>
+            <option value="Fiestas infantiles">Fiestas infantiles</option>
+            <option value="Reuniones familiares">Reuniones familiares</option>
+            <option value="Lanzamientos de productos">Lanzamientos de productos</option>
+            <option value="Conferencias y seminarios">Conferencias y seminarios</option>
+            <option value="Ferias y exposiciones">Ferias y exposiciones</option>
+            <option value="Cenas empresariales">Cenas empresariales</option>
+            <option value="Cócteles y recepciones">Cócteles y recepciones</option>
+            <option value="Eventos culturales">Eventos culturales</option>
+            <option value="Eventos deportivos">Eventos deportivos</option>
+            <option value="Celebraciones privadas">Celebraciones privadas</option>
+            <option value="Fiestas temáticas">Fiestas temáticas</option>
+            <option value="Despedidas de soltero/a">Despedidas de soltero/a</option>
+            <option value="Propuestas de matrimonio">Propuestas de matrimonio</option>
+            <option value="Inauguraciones">Inauguraciones</option>
+            <option value="Activaciones de marca">Activaciones de marca</option>
+            <option value="Otro">Otro</option>
+          </select>
+          <span class="form-error" id="err-tipoevento">Selecciona el tipo de evento</span>
         </div>
         <div class="form-group">
-          <label class="form-label">Ciudad *</label>
-          <input class="form-input" type="text" id="ciudad" placeholder="Bogotá" required/>
-          <span class="form-error" id="err-ciudad">Ingresa tu ciudad</span>
-        </div>
-        <div class="form-group">
-          <label class="form-label">Empresa</label>
-          <input class="form-input" type="text" id="empresa" placeholder="Opcional"/>
-        </div>
-        <div class="form-group">
-          <label class="form-label">Cargo</label>
-          <input class="form-input" type="text" id="cargo" placeholder="Opcional"/>
+          <label class="form-label">Número de personas *</label>
+          <input class="form-input" type="number" id="personas" placeholder="Ej: 150" min="1" max="2000" required/>
+          <span class="form-error" id="err-personas">Ingresa el número de personas</span>
         </div>
         <div class="form-group full">
           <label class="form-label">Comentarios</label>
           <textarea class="form-textarea" id="comentarios" placeholder="¿Alguna consulta o requerimiento especial?"></textarea>
-        </div>
-        <div class="form-group full">
-          <label class="form-check">
-            <input type="checkbox" id="politica" required/>
-            <span>Acepto la <a href="#">política de tratamiento de datos personales</a> y autorizo el uso de mi información para la gestión del evento. *</span>
-          </label>
-          <span class="form-error" id="err-politica">Debes aceptar la política de datos</span>
         </div>
         <div class="form-group full">
           <button type="submit" class="form-submit">Enviar solicitud</button>
@@ -670,13 +674,18 @@ footer{border-top:1px solid rgba(201,168,76,.1);padding:3rem 4rem;display:flex;a
   <div class="testimonials-wrap">
     <div class="testimonials-track">
       <div class="testimonial"><p class="testimonial-text">La plataforma nos permitió gestionar 300 participantes sin ningún inconveniente. El calendario de disponibilidad es intuitivo y las notificaciones automáticas ahorraron horas de trabajo.</p><div class="testimonial-author"><div class="author-avatar">M</div><div><div class="author-name">María Rodríguez</div><div class="author-role">Directora de Eventos — Grupo Empresarial XYZ</div></div></div></div>
-      <div class="testimonial"><p class="testimonial-text">Organizamos nuestra boda a en Hacienda los Pinos y fue una experiencia impecable. La cotización en PDF fue perfecta para presentar a la familia y el equipo estuvo disponible en todo momento.</p><div class="testimonial-author"><div class="author-avatar">C</div><div><div class="author-name">Carlos & Ana Gómez</div><div class="author-role">Boda — Diciembre 2025</div></div></div></div>
-      <div class="testimonial"><p class="testimonial-text">Llevamos 3 congresos anuales en Hacienda los Pinos. La gestión de ponentes, el sistema de acreditaciones y los reportes de asistencia son exactamente lo que necesitábamos.</p><div class="testimonial-author"><div class="author-avatar">J</div><div><div class="author-name">Jorge Mendoza</div><div class="author-role">Coordinador Académico — Universidad Central</div></div></div></div>
+      <div class="testimonial"><p class="testimonial-text">Organizamos nuestra boda a en Quinta los Pinos y fue una experiencia impecable. La cotización en PDF fue perfecta para presentar a la familia y el equipo estuvo disponible en todo momento.</p><div class="testimonial-author"><div class="author-avatar">C</div><div><div class="author-name">Carlos & Ana Gómez</div><div class="author-role">Boda — Diciembre 2025</div></div></div></div>
+      <div class="testimonial"><p class="testimonial-text">Llevamos 3 congresos anuales en Quinta los Pinos. La gestión de ponentes, el sistema de acreditaciones y los reportes de asistencia son exactamente lo que necesitábamos.</p><div class="testimonial-author"><div class="author-avatar">J</div><div><div class="author-name">Jorge Mendoza</div><div class="author-role">Coordinador Académico — Universidad Central</div></div></div></div>
       <div class="testimonial"><p class="testimonial-text">El módulo de cotizaciones nos ahorró horas. Antes hacíamos todo en Excel; ahora en 5 minutos tenemos el documento listo para enviar al cliente con logo y todo.</p><div class="testimonial-author"><div class="author-avatar">L</div><div><div class="author-name">Laura Herrera</div><div class="author-role">Comercial — Eventos & Banquetes S.A.</div></div></div></div>
-      <!-- duplicate for infinite scroll -->
-      <div class="testimonial"><p class="testimonial-text">La plataforma nos permitió gestionar 300 participantes sin ningún inconveniente. El calendario de disponibilidad es intuitivo y las notificaciones automáticas ahorraron horas de trabajo.</p><div class="testimonial-author"><div class="author-avatar">M</div><div><div class="author-name">María Rodríguez</div><div class="author-role">Directora de Eventos — Grupo Empresarial XYZ</div></div></div></div>
-      <div class="testimonial"><p class="testimonial-text">Organizamos nuestra boda a en Hacienda los Pinos y fue una experiencia impecable. La cotización en PDF fue perfecta para presentar a la familia y el equipo estuvo disponible en todo momento.</p><div class="testimonial-author"><div class="author-avatar">C</div><div><div class="author-name">Carlos & Ana Gómez</div><div class="author-role">Boda — Diciembre 2025</div></div></div></div>
+      <!-- duplicates for infinite scroll -->
+      <div class="testimonial dup"><p class="testimonial-text">La plataforma nos permitió gestionar 300 participantes sin ningún inconveniente. El calendario de disponibilidad es intuitivo y las notificaciones automáticas ahorraron horas de trabajo.</p><div class="testimonial-author"><div class="author-avatar">M</div><div><div class="author-name">María Rodríguez</div><div class="author-role">Directora de Eventos — Grupo Empresarial XYZ</div></div></div></div>
+      <div class="testimonial dup"><p class="testimonial-text">Organizamos nuestra boda a en Quinta los Pinos y fue una experiencia impecable. La cotización en PDF fue perfecta para presentar a la familia y el equipo estuvo disponible en todo momento.</p><div class="testimonial-author"><div class="author-avatar">C</div><div><div class="author-name">Carlos & Ana Gómez</div><div class="author-role">Boda — Diciembre 2025</div></div></div></div>
+      <div class="testimonial dup"><p class="testimonial-text">Llevamos 3 congresos anuales en Quinta los Pinos. La gestión de ponentes, el sistema de acreditaciones y los reportes de asistencia son exactamente lo que necesitábamos.</p><div class="testimonial-author"><div class="author-avatar">J</div><div><div class="author-name">Jorge Mendoza</div><div class="author-role">Coordinador Académico — Universidad Central</div></div></div></div>
+      <div class="testimonial dup"><p class="testimonial-text">El módulo de cotizaciones nos ahorró horas. Antes hacíamos todo en Excel; ahora en 5 minutos tenemos el documento listo para enviar al cliente con logo y todo.</p><div class="testimonial-author"><div class="author-avatar">L</div><div><div class="author-name">Laura Herrera</div><div class="author-role">Comercial — Eventos & Banquetes S.A.</div></div></div></div>
     </div>
+  </div>
+  <div class="testimonial-cta reveal">
+    <button type="button" class="btn-primary" onclick="openTestimonialModal()">Cuéntanos tu experiencia</button>
   </div>
 </section>
 
@@ -691,17 +700,27 @@ footer{border-top:1px solid rgba(201,168,76,.1);padding:3rem 4rem;display:flex;a
       <a href="https://wa.me/573001234567?text=Hola%2C%20deseo%20obtener%20informaci%C3%B3n%20sobre%20los%20eventos%20y%20servicios%20disponibles." class="btn-secondary" target="_blank" rel="noopener noreferrer">Escribir por WhatsApp</a>
     </div>
     <div class="contact-info">
-      <div class="contact-item"><div class="contact-item-icon">📍</div><div class="contact-item-label">Ubicación</div><a class="contact-item-value contact-item-link" href="https://maps.google.com/maps?q=4.816139,-74.10597" target="_blank" rel="noopener">Calle 14 9 89, Puente de la Cruz<br>Cota, Cundinamarca, Colombia</a></div>
-      <div class="contact-item"><div class="contact-item-icon">📧</div><div class="contact-item-label">Correo</div><div class="contact-item-value">info@haciendaglospinos.co</div></div>
-      <div class="contact-item"><div class="contact-item-icon">📞</div><div class="contact-item-label">Teléfono</div><div class="contact-item-value">+57 300 123 4567</div></div>
+      <div class="contact-item"><div class="contact-item-icon">📍</div><div class="contact-item-label">Ubicación</div><div class="contact-item-value" id="infoUbicacion">Calle 14 9 89, Puente de la Cruz<br>Cota, Cundinamarca, Colombia</div></div>
+      <div class="contact-item"><div class="contact-item-icon">📧</div><div class="contact-item-label">Correo</div><div class="contact-item-value" id="infoCorreo">info@haciendaglospinos.co</div></div>
+      <div class="contact-item"><div class="contact-item-icon">📞</div><div class="contact-item-label">Teléfono</div><div class="contact-item-value" id="infoTelefono">+57 300 123 4567</div></div>
     </div>
   </div>
 </section>
 
+<!-- REDES SOCIALES -->
+<section id="redes">
+  <div class="section-header reveal">
+    <div class="section-tag">Comunidad</div>
+    <h2 class="section-title">Síguenos en nuestras <em>redes</em></h2>
+    <div class="section-line"></div>
+  </div>
+  <div class="redes-grid" id="redesGrid"></div>
+</section>
+
 <!-- FOOTER -->
 <footer>
-  <div class="footer-logo">Hacienda los <span>Pinos</span></div>
-  <p class="footer-copy">© 2026 Hacienda los Pinos. Todos los derechos reservados.</p>
+  <div class="footer-logo">Quinta los <span>Pinos</span></div>
+  <p class="footer-copy">© 2026 Quinta los Pinos. Todos los derechos reservados.</p>
   <div class="footer-links">
     <a href="#">Privacidad</a>
     <a href="#">Términos</a>
@@ -714,6 +733,70 @@ footer{border-top:1px solid rgba(201,168,76,.1);padding:3rem 4rem;display:flex;a
   <div class="wa-tooltip">Escríbenos</div>
   <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.136.562 4.14 1.535 5.876L.057 23.617a.75.75 0 00.918.899l5.9-1.547A11.952 11.952 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 22c-1.891 0-3.673-.497-5.217-1.369l-.374-.216-3.878 1.017 1.035-3.783-.234-.381A9.953 9.953 0 012 12C2 6.477 6.477 2 12 2s10 4.477 10 10-4.477 10-10 10z"/></svg>
 </a>
+
+<!-- REDES MODAL (admin) -->
+<div class="login-overlay hidden" id="redesOverlay">
+  <div class="login-box login-box-scroll">
+    <button type="button" class="login-close" onclick="closeRedesModal()" aria-label="Cerrar">✕</button>
+    <h3 class="login-title">Redes sociales</h3>
+    <p class="login-sub">Ingresa la URL completa. Deja vacío para ocultar una red.</p>
+    <div id="redesFields"></div>
+    <p class="login-err" id="redesErr"></p>
+    <button type="button" class="login-submit" onclick="saveRedes()">Guardar cambios</button>
+  </div>
+</div>
+
+<!-- CONTACT EDIT MODAL (admin) -->
+<div class="login-overlay hidden" id="contactEditOverlay">
+  <div class="login-box">
+    <button type="button" class="login-close" onclick="closeContactModal()" aria-label="Cerrar">✕</button>
+    <h3 class="login-title">Datos de contacto</h3>
+    <p class="login-sub">Esta información se muestra en la sección de contacto de la página.</p>
+    <div class="login-field">
+      <label for="editUbicacion">Ubicación</label>
+      <textarea class="login-input testi-textarea" id="editUbicacion" placeholder="Dirección completa"></textarea>
+    </div>
+    <div class="login-field">
+      <label for="editTelefono">Teléfono</label>
+      <input class="login-input" type="tel" id="editTelefono" placeholder="+57 300 123 4567">
+    </div>
+    <div class="login-field">
+      <label for="editCorreoContacto">Correo</label>
+      <input class="login-input" type="email" id="editCorreoContacto" placeholder="info@quintaLospinos.co">
+    </div>
+    <p class="login-err" id="contactEditErr"></p>
+    <button type="button" class="login-submit" onclick="saveContactData()">Guardar cambios</button>
+  </div>
+</div>
+
+<!-- TESTIMONIAL MODAL -->
+<div class="login-overlay hidden" id="testimonialOverlay">
+  <div class="login-box">
+    <button type="button" class="login-close" onclick="closeTestimonialModal()" aria-label="Cerrar">✕</button>
+    <h3 class="login-title">Tu experiencia</h3>
+    <p class="login-sub">Comparte cómo fue tu evento en Quinta los Pinos.</p>
+    <div class="login-field">
+      <label for="testiNombre">Nombre</label>
+      <input class="login-input" type="text" id="testiNombre" placeholder="Tu nombre" autocomplete="name">
+    </div>
+    <div class="login-field">
+      <label>Calificación</label>
+      <div class="star-rating" id="starRating">
+        <span data-v="1">★</span>
+        <span data-v="2">★</span>
+        <span data-v="3">★</span>
+        <span data-v="4">★</span>
+        <span data-v="5">★</span>
+      </div>
+    </div>
+    <div class="login-field">
+      <label for="testiComentario">Comentario</label>
+      <textarea class="login-input testi-textarea" id="testiComentario" placeholder="Cuéntanos tu experiencia..."></textarea>
+    </div>
+    <p class="login-err" id="testiErr"></p>
+    <button type="button" class="login-submit" onclick="postTestimonial()">Publicar</button>
+  </div>
+</div>
 
 <!-- EDIT MODAL (admin) -->
 <div class="edit-overlay hidden" id="editOverlay">
@@ -729,10 +812,8 @@ footer{border-top:1px solid rgba(201,168,76,.1);padding:3rem 4rem;display:flex;a
       <div class="edit-field full">
         <label class="edit-label" for="editEstado">Estado</label>
         <select class="edit-input" id="editEstado" aria-label="Estado de la reserva">
-          <option value="available">Disponible</option>
+          <option value="occupied">Reservado</option>
           <option value="pending">Pendiente confirmación</option>
-          <option value="event">Programado</option>
-          <option value="occupied">Ocupado</option>
         </select>
       </div>
       <div class="edit-field full">
@@ -780,7 +861,7 @@ footer{border-top:1px solid rgba(201,168,76,.1);padding:3rem 4rem;display:flex;a
 <script>
 // ── EMAILJS ──
 const EJS_PUBLIC_KEY  = 'nEGTMO_zDy5JurAjY';
-const EJS_SERVICE_ID  = 'service_wry39h7';
+const EJS_SERVICE_ID  = 'ccorreodepruebageneral';
 const EJS_TEMPLATE_ID = 'template_ktzt0sn';
 emailjs.init({ publicKey: EJS_PUBLIC_KEY });
 // ── CURSOR ──
@@ -814,55 +895,25 @@ const observer = new IntersectionObserver((entries) => {
 document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
 
 // ── CALENDARIO ──
-const SPACES = ['Salón Principal', 'Jardín', 'Salón Pequeño', 'Terraza'];
+const SPACES = ['Salón Principal', 'Jardín'];
 const USERS = [
   {user:'admin',   pass:'pinos2026',  spaces: SPACES},
   {user:'salon',   pass:'salon123',   spaces: ['Salón Principal']},
   {user:'jardin',  pass:'jardin123',  spaces: ['Jardín']},
-  {user:'salon2',  pass:'peq2026',    spaces: ['Salón Pequeño']},
-  {user:'terraza', pass:'terraza123', spaces: ['Terraza']},
 ];
 
 const EVENTS_BY_SPACE = {
-  'Salón Principal': {
-    '2026-06-07': {tipo:'occupied', nombre:'Conferencia Tech 2026',   resp:'Laura Torres',  inicio:'09:00', fin:'18:00', estado:'Ocupado'},
-    '2026-06-12': {tipo:'event',    nombre:'Gala Corporativa',        resp:'Mario Ruiz',    inicio:'19:00', fin:'23:00', estado:'Programado'},
-    '2026-06-14': {tipo:'pending',  nombre:'Boda García-López',       resp:'Ana García',    inicio:'16:00', fin:'22:00', estado:'Pendiente'},
-    '2026-06-20': {tipo:'event',    nombre:'Workshop Innovación',     resp:'Pedro Mora',    inicio:'08:00', fin:'17:00', estado:'Programado'},
-    '2026-06-21': {tipo:'occupied', nombre:'Congreso Salud',          resp:'Dr. Herrera',   inicio:'07:00', fin:'20:00', estado:'Ocupado'},
-    '2026-06-26': {tipo:'pending',  nombre:'Cumpleaños Empresarial',  resp:'Sofía León',    inicio:'18:00', fin:'23:00', estado:'Pendiente'},
-    '2026-07-04': {tipo:'event',    nombre:'Feria Comercial',         resp:'Roberto Silva', inicio:'09:00', fin:'19:00', estado:'Programado'},
-    '2026-07-10': {tipo:'occupied', nombre:'Seminario Marketing',     resp:'Diana Pérez',   inicio:'08:00', fin:'17:00', estado:'Ocupado'},
-  },
-  'Jardín': {
-    '2026-06-13': {tipo:'event',    nombre:'Boda Martínez-Suárez',   resp:'Carlos M.',      inicio:'16:00', fin:'23:00', estado:'Programado'},
-    '2026-06-27': {tipo:'occupied', nombre:'Fiesta de Grado',        resp:'Familia Torres', inicio:'14:00', fin:'22:00', estado:'Ocupado'},
-    '2026-07-11': {tipo:'pending',  nombre:'Quince años',            resp:'Luisa Gómez',    inicio:'15:00', fin:'23:00', estado:'Pendiente'},
-  },
-  'Salón Pequeño': {
-    '2026-06-08': {tipo:'event',    nombre:'Reunión Empresarial',    resp:'Grupo ABC',      inicio:'09:00', fin:'14:00', estado:'Programado'},
-    '2026-06-22': {tipo:'occupied', nombre:'Baby Shower',            resp:'Andrea López',   inicio:'15:00', fin:'20:00', estado:'Ocupado'},
-  },
-  'Terraza': {
-    '2026-06-06': {tipo:'event',    nombre:'Cóctel Corporativo',     resp:'Empresa XYZ',    inicio:'18:00', fin:'23:00', estado:'Programado'},
-    '2026-06-24': {tipo:'pending',  nombre:'Cena Romántica',         resp:'J. Ramírez',     inicio:'19:00', fin:'23:00', estado:'Pendiente'},
-  },
+  'Salón Principal': {},
+  'Jardín': {},
 };
 
-// Cargar ediciones admin persistidas en localStorage
-SPACES.forEach(sp => {
-  const s = localStorage.getItem('hp-ev-' + sp);
-  if(s){ try{ EVENTS_BY_SPACE[sp] = JSON.parse(s); } catch(e){} }
-});
-
 const monthNames = ['Enero','Febrero','Marzo','Abril','Mayo','Junio','Julio','Agosto','Septiembre','Octubre','Noviembre','Diciembre'];
-let currentYear  = 2026;
-let currentMonth = 5; // Junio
+let currentYear  = new Date().getFullYear();
+let currentMonth = new Date().getMonth();
 let selectedKey  = null;
 let isAdmin      = false;
 let activeSpace  = null;
 const events     = {};
-Object.assign(events, EVENTS_BY_SPACE['Salón Principal']); // vista pública por defecto
 
 // ── Helpers ──
 function fmtDate(k){
@@ -874,10 +925,16 @@ function isPastDate(k){
   return new Date(k + 'T00:00:00') < t;
 }
 function tipoLabel(tipo){
-  return {available:'Disponible', pending:'Pendiente', event:'Programado', occupied:'Ocupado'}[tipo] || tipo;
+  return {occupied:'Reservado', pending:'Pendiente confirmación', event:'Reservado', available:'Disponible'}[tipo] || tipo;
 }
 function saveSpaceEvents(sp){
-  if(sp) localStorage.setItem('hp-ev-' + sp, JSON.stringify(EVENTS_BY_SPACE[sp]));
+  if(!sp) return;
+  localStorage.setItem('hp-ev-' + sp, JSON.stringify(EVENTS_BY_SPACE[sp]));
+  fetch('api/reservas.php', {
+    method: 'POST',
+    headers: {'Content-Type': 'application/json'},
+    body: JSON.stringify(EVENTS_BY_SPACE)
+  }).catch(()=>{});
 }
 
 // ── Render ──
@@ -921,36 +978,47 @@ function handleDayClick(key){
 }
 
 function showDetail(key, ev){
-  document.getElementById('detailDate').textContent   = fmtDate(key);
-  document.getElementById('detailTitle').textContent  = ev.nombre;
+  document.getElementById('detailDate').textContent = fmtDate(key);
+  const titleEl = document.getElementById('detailTitle');
+  const grid    = document.querySelector('.event-detail-grid');
+  const reqBtn  = document.getElementById('detailRequestBtn');
+  const admBtns = document.getElementById('detailAdminBtns');
+
+  if(!isAdmin){
+    titleEl.textContent = 'Reservado';
+    titleEl.style.color = 'var(--gold)';
+    grid.style.display  = 'none';
+    reqBtn.style.display  = 'none';
+    admBtns.style.display = 'none';
+    pulseDetail();
+    return;
+  }
+
+  titleEl.textContent = ev.nombre;
+  titleEl.style.color = '';
+  grid.style.display  = '';
   document.getElementById('detailResp').textContent   = ev.resp    || '—';
   document.getElementById('detailEstado').textContent = ev.estado  || '—';
   document.getElementById('detailInicio').textContent = ev.inicio  || '—';
   document.getElementById('detailFin').textContent    = ev.fin     || '—';
 
-  const reqBtn  = document.getElementById('detailRequestBtn');
-  const admBtns = document.getElementById('detailAdminBtns');
   const editBtn = document.getElementById('detailEditBtn');
   const delBtn  = document.getElementById('detailDeleteBtn');
-
-  if(isAdmin){
-    reqBtn.style.display  = 'none';
-    admBtns.style.display = 'flex';
-    editBtn.textContent   = '✏ Editar';
-    editBtn.onclick       = () => openEditModal(key);
-    delBtn.style.display  = '';
-    delBtn.onclick        = () => deleteReservation(key);
-  } else {
-    const canReq = !isPastDate(key) && ev.tipo !== 'occupied';
-    reqBtn.style.display  = canReq ? '' : 'none';
-    admBtns.style.display = 'none';
-  }
+  reqBtn.style.display  = 'none';
+  admBtns.style.display = 'flex';
+  editBtn.textContent   = '✏ Editar';
+  editBtn.onclick       = () => openEditModal(key);
+  delBtn.style.display  = '';
+  delBtn.onclick        = () => deleteReservation(key);
   pulseDetail();
 }
 
 function showEmptyDetail(key){
   document.getElementById('detailDate').textContent   = fmtDate(key);
-  document.getElementById('detailTitle').textContent  = 'Fecha disponible';
+  const titleEl = document.getElementById('detailTitle');
+  titleEl.style.color = '';
+  titleEl.textContent  = 'Fecha disponible';
+  document.querySelector('.event-detail-grid').style.display = '';
   document.getElementById('detailResp').textContent   = '—';
   document.getElementById('detailEstado').textContent = 'Disponible';
   document.getElementById('detailInicio').textContent = '—';
@@ -981,10 +1049,9 @@ function pulseDetail(){
 
 function prefillDate(){
   if(!selectedKey) return;
-  const badge = document.getElementById('formDateBadge');
-  badge.textContent = '📅 Fecha solicitada: ' + fmtDate(selectedKey);
-  badge.classList.add('show');
   document.getElementById('fechaSel').value = selectedKey;
+  const fm = document.getElementById('fechaMostrar');
+  if(fm) fm.value = fmtDate(selectedKey);
 }
 
 function changeMonth(dir){
@@ -996,8 +1063,6 @@ function changeMonth(dir){
   document.getElementById('calDetail').classList.remove('show');
 }
 
-renderCalendar();
-
 // ── EDIT MODAL ──
 function openEditModal(key){
   const ev = events[key] || {};
@@ -1008,7 +1073,8 @@ function openEditModal(key){
   document.getElementById('editResp').value    = (!isNew && ev.resp   !== '—') ? ev.resp   : '';
   document.getElementById('editInicio').value  = (!isNew && ev.inicio !== '—') ? ev.inicio : '';
   document.getElementById('editFin').value     = (!isNew && ev.fin    !== '—') ? ev.fin    : '';
-  document.getElementById('editEstado').value  = ev.tipo || 'available';
+  const tipoNorm = (ev.tipo === 'pending') ? 'pending' : 'occupied';
+  document.getElementById('editEstado').value  = tipoNorm;
   document.getElementById('editNombre').classList.remove('error');
   document.getElementById('editOverlay').classList.remove('hidden');
   setTimeout(() => document.getElementById('editNombre').focus(), 50);
@@ -1079,8 +1145,10 @@ function applyCalLogin(found){
   const info = document.getElementById('calUserInfo');
   info.textContent = '👤 ' + found.user;
   info.style.display = 'inline';
-  document.getElementById('calLoginBtn').style.display = 'none';
-  document.getElementById('calLogoutBtn').style.display = 'inline-block';
+  document.getElementById('calLoginBtn').style.display  = 'none';
+  document.getElementById('calContactBtn').style.display = 'inline-block';
+  document.getElementById('calRedesBtn').style.display   = 'inline-block';
+  document.getElementById('calLogoutBtn').style.display  = 'inline-block';
   renderSpaceTabs(found.spaces);
   document.getElementById('spaceTabsWrap').style.display = 'flex';
   switchSpace(found.spaces[0]);
@@ -1091,8 +1159,10 @@ function calLogout(){
   selectedKey  = null;
   sessionStorage.removeItem('cal-session');
   document.getElementById('calUserInfo').style.display = '';
-  document.getElementById('calLoginBtn').style.display = '';
-  document.getElementById('calLogoutBtn').style.display = '';
+  document.getElementById('calLoginBtn').style.display   = '';
+  document.getElementById('calContactBtn').style.display = '';
+  document.getElementById('calRedesBtn').style.display   = '';
+  document.getElementById('calLogoutBtn').style.display  = '';
   document.getElementById('spaceTabsWrap').style.display = '';
   document.getElementById('spaceTabsWrap').innerHTML = '';
   activeSpace = null;
@@ -1125,21 +1195,275 @@ function switchSpace(sp){
   document.querySelectorAll('.cal-space-tab').forEach(b => b.classList.toggle('active', b.textContent === sp));
 }
 
-// Restaurar sesión admin
-(function(){
+// ── INIT: carga reservas desde archivo y restaura sesión ──
+async function initCalendar(){
+  try {
+    const res = await fetch('api/reservas.php');
+    if(res.ok){
+      const data = await res.json();
+      SPACES.forEach(sp => {
+        if(data[sp]) EVENTS_BY_SPACE[sp] = data[sp];
+      });
+    }
+  } catch(e){
+    // Fallback a localStorage si el servidor no responde
+    SPACES.forEach(sp => {
+      const s = localStorage.getItem('hp-ev-' + sp);
+      if(s){ try{ EVENTS_BY_SPACE[sp] = JSON.parse(s); } catch(_){} }
+    });
+  }
+  Object.assign(events, EVENTS_BY_SPACE['Salón Principal']);
+  renderCalendar();
   const saved = sessionStorage.getItem('cal-session');
   if(saved){ try{ applyCalLogin(JSON.parse(saved)); } catch(err){ sessionStorage.removeItem('cal-session'); } }
+}
+initCalendar();
+
+
+// ── REDES SOCIALES ──
+const REDES_DEF = [
+  { key:'facebook',  label:'Facebook',    ph:'https://facebook.com/tu-pagina',    svg:'<path d="M9 8h-3v4h3v12h5v-12h3.642l.358-4h-4v-1.667c0-.955.192-1.333 1.115-1.333h2.885v-5h-3.808c-3.596 0-5.192 1.583-5.192 4.615v3.385z"/>' },
+  { key:'instagram', label:'Instagram',   ph:'https://instagram.com/tu-usuario',  svg:'<path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>' },
+  { key:'tiktok',    label:'TikTok',      ph:'https://tiktok.com/@tu-usuario',    svg:'<path d="M12.525.02c1.31-.02 2.61-.01 3.91-.02.08 1.53.63 3.09 1.75 4.17 1.12 1.11 2.7 1.62 4.24 1.79v4.03c-1.44-.05-2.89-.35-4.2-.97-.57-.26-1.1-.59-1.62-.93-.01 2.92.01 5.84-.02 8.75-.08 1.4-.54 2.79-1.35 3.94-1.31 1.92-3.58 3.17-5.91 3.21-1.43.08-2.86-.31-4.08-1.03-2.02-1.19-3.44-3.37-3.65-5.71-.02-.5-.03-1-.01-1.49.18-1.9 1.12-3.72 2.58-4.96 1.66-1.44 3.98-2.13 6.15-1.72.02 1.48-.04 2.96-.04 4.44-.99-.32-2.15-.23-3.02.37-.63.41-1.11 1.04-1.36 1.75-.21.51-.15 1.07-.14 1.61.24 1.64 1.82 3.02 3.5 2.87 1.12-.01 2.19-.66 2.77-1.61.19-.33.4-.67.41-1.06.1-1.79.06-3.57.07-5.36.01-4.03-.01-8.05.02-12.07z"/>' },
+  { key:'youtube',   label:'YouTube',     ph:'https://youtube.com/@tu-canal',     svg:'<path d="M23.495 6.205a3.007 3.007 0 0 0-2.088-2.088c-1.87-.501-9.396-.501-9.396-.501s-7.507-.01-9.396.501A3.007 3.007 0 0 0 .527 6.205a31.247 31.247 0 0 0-.522 5.805 31.247 31.247 0 0 0 .522 5.783 3.007 3.007 0 0 0 2.088 2.088c1.868.502 9.396.502 9.396.502s7.506 0 9.396-.502a3.007 3.007 0 0 0 2.088-2.088 31.247 31.247 0 0 0 .5-5.783 31.247 31.247 0 0 0-.5-5.805zM9.609 15.601V8.408l6.264 3.602z"/>' },
+  { key:'whatsapp',  label:'WhatsApp',    ph:'https://wa.me/573001234567',         svg:'<path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>' },
+  { key:'twitter',   label:'Twitter / X', ph:'https://x.com/tu-usuario',           svg:'<path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-4.714-6.231-5.401 6.231H2.748l7.73-8.835L1.254 2.25H8.08l4.26 5.632zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>' },
+  { key:'linkedin',  label:'LinkedIn',    ph:'https://linkedin.com/company/...',   svg:'<path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/>' },
+];
+
+// Genera inputs del modal desde REDES_DEF
+(function(){
+  const container = document.getElementById('redesFields');
+  REDES_DEF.forEach(r => {
+    const div   = document.createElement('div');
+    div.className = 'login-field';
+    const lbl   = document.createElement('label');
+    lbl.htmlFor = 'red-' + r.key;
+    lbl.textContent = r.label;
+    const inp   = document.createElement('input');
+    inp.className   = 'login-input';
+    inp.type        = 'url';
+    inp.id          = 'red-' + r.key;
+    inp.placeholder = r.ph;
+    div.appendChild(lbl);
+    div.appendChild(inp);
+    container.appendChild(div);
+  });
 })();
 
-// ── TEMA ──
-function toggleTheme(){
-  const next = document.documentElement.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
-  document.documentElement.setAttribute('data-theme', next);
-  localStorage.setItem('eventara-theme', next);
+function applyRedesData(data){
+  const grid = document.getElementById('redesGrid');
+  const sec  = document.getElementById('redes');
+  grid.innerHTML = '';
+  let count = 0;
+  REDES_DEF.forEach(r => {
+    if(!data[r.key]) return;
+    const a = document.createElement('a');
+    a.className = 'red-social';
+    a.href = data[r.key];
+    a.target = '_blank';
+    a.rel = 'noopener noreferrer';
+    a.setAttribute('aria-label', r.label);
+    a.innerHTML = `<svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">${r.svg}</svg>`;
+    grid.appendChild(a);
+    count++;
+  });
+  sec.style.display = count > 0 ? 'block' : '';
 }
-(function(){
-  const saved = localStorage.getItem('eventara-theme') || 'light';
-  document.documentElement.setAttribute('data-theme', saved);
+
+function openRedesModal(){
+  fetch('api/redes.php').then(r => r.json()).then(data => {
+    REDES_DEF.forEach(r => {
+      const el = document.getElementById('red-' + r.key);
+      if(el) el.value = data[r.key] || '';
+    });
+  }).catch(()=>{});
+  document.getElementById('redesOverlay').classList.remove('hidden');
+}
+function closeRedesModal(){
+  document.getElementById('redesOverlay').classList.add('hidden');
+}
+async function saveRedes(){
+  const data = {};
+  REDES_DEF.forEach(r => {
+    const el = document.getElementById('red-' + r.key);
+    data[r.key] = el ? el.value.trim() : '';
+  });
+  try {
+    await fetch('api/redes.php', {
+      method:'POST', headers:{'Content-Type':'application/json'}, body: JSON.stringify(data)
+    });
+  } catch(e){}
+  applyRedesData(data);
+  closeRedesModal();
+}
+(async function loadRedes(){
+  try {
+    const res = await fetch('api/redes.php');
+    if(res.ok){ const data = await res.json(); applyRedesData(data); }
+  } catch(e){}
+})();
+
+// ── DATOS DE CONTACTO ──
+function applyContactData(data){
+  if(data.ubicacion){ const el = document.getElementById('infoUbicacion'); if(el) el.innerHTML = data.ubicacion.replace(/\n/g,'<br>'); }
+  if(data.telefono) { const el = document.getElementById('infoTelefono');  if(el) el.textContent = data.telefono; }
+  if(data.correo)   { const el = document.getElementById('infoCorreo');    if(el) el.textContent = data.correo; }
+}
+function openContactModal(){
+  const ub = document.getElementById('infoUbicacion');
+  const te = document.getElementById('infoTelefono');
+  const co = document.getElementById('infoCorreo');
+  document.getElementById('editUbicacion').value      = ub ? ub.innerText : '';
+  document.getElementById('editTelefono').value       = te ? te.textContent : '';
+  document.getElementById('editCorreoContacto').value = co ? co.textContent : '';
+  document.getElementById('contactEditErr').textContent = '';
+  document.getElementById('contactEditOverlay').classList.remove('hidden');
+  setTimeout(() => document.getElementById('editUbicacion').focus(), 50);
+}
+function closeContactModal(){
+  document.getElementById('contactEditOverlay').classList.add('hidden');
+}
+async function saveContactData(){
+  const ubicacion = document.getElementById('editUbicacion').value.trim();
+  const telefono  = document.getElementById('editTelefono').value.trim();
+  const correo    = document.getElementById('editCorreoContacto').value.trim();
+  const err       = document.getElementById('contactEditErr');
+  if(!ubicacion || !telefono || !correo){ err.textContent = 'Todos los campos son obligatorios'; return; }
+  const data = { ubicacion, telefono, correo };
+  try {
+    await fetch('api/contacto.php', {
+      method:'POST', headers:{'Content-Type':'application/json'}, body: JSON.stringify(data)
+    });
+  } catch(e){}
+  applyContactData(data);
+  closeContactModal();
+}
+(async function loadContactData(){
+  try {
+    const res = await fetch('api/contacto.php');
+    if(res.ok){ const data = await res.json(); applyContactData(data); }
+  } catch(e){}
+})();
+
+// ── CARRUSEL JS ──
+let _carouselPos    = 0;
+let _carouselPaused = false;
+let _carouselReset  = 4 * 412;
+
+function calcCarouselReset(){
+  const n = document.querySelectorAll('.testimonials-track .testimonial:not(.dup)').length;
+  _carouselReset = n * 412; // 380px card + 32px gap
+}
+
+(function startCarousel(){
+  const track = document.querySelector('.testimonials-track');
+  track.addEventListener('mouseenter', () => { _carouselPaused = true; });
+  track.addEventListener('mouseleave', () => { _carouselPaused = false; });
+  calcCarouselReset();
+  let last = null;
+  function tick(ts){
+    if(last !== null && !_carouselPaused){
+      const dt    = ts - last;
+      const total = (_carouselReset / 412) * 7500; // 7.5s por tarjeta
+      _carouselPos += (_carouselReset / total) * dt;
+      if(_carouselPos >= _carouselReset) _carouselPos -= _carouselReset;
+      track.style.transform = `translateX(-${_carouselPos.toFixed(2)}px)`;
+    }
+    last = ts;
+    requestAnimationFrame(tick);
+  }
+  requestAnimationFrame(tick);
+})();
+
+// ── TESTIMONIOS USUARIOS ──
+let testiStars = 0;
+
+function openTestimonialModal(){
+  testiStars = 0;
+  document.getElementById('testiNombre').value    = '';
+  document.getElementById('testiComentario').value = '';
+  document.getElementById('testiErr').textContent  = '';
+  updateStars(0);
+  document.getElementById('testimonialOverlay').classList.remove('hidden');
+  setTimeout(() => document.getElementById('testiNombre').focus(), 50);
+}
+function closeTestimonialModal(){
+  document.getElementById('testimonialOverlay').classList.add('hidden');
+}
+function updateStars(n){
+  document.querySelectorAll('#starRating span').forEach((s, i) => s.classList.toggle('active', i < n));
+}
+document.querySelectorAll('#starRating span').forEach(s => {
+  s.addEventListener('mouseenter', () => {
+    const v = +s.dataset.v;
+    document.querySelectorAll('#starRating span').forEach((el, i) => el.classList.toggle('hov', i < v));
+  });
+  s.addEventListener('mouseleave', () => {
+    document.querySelectorAll('#starRating span').forEach(el => el.classList.remove('hov'));
+  });
+  s.addEventListener('click', () => { testiStars = +s.dataset.v; updateStars(testiStars); });
+});
+
+function _buildTestiCard(entry, starsStr, isDup){
+  const card   = document.createElement('div');
+  card.className = isDup ? 'testimonial dup' : 'testimonial';
+  const pText  = document.createElement('p');   pText.className  = 'testimonial-text';        pText.textContent  = entry.comentario;
+  const aDiv   = document.createElement('div'); aDiv.className   = 'testimonial-author';
+  const avatar = document.createElement('div'); avatar.className = 'author-avatar';            avatar.textContent = entry.nombre.charAt(0).toUpperCase();
+  const info   = document.createElement('div');
+  const nameEl = document.createElement('div'); nameEl.className = 'author-name';              nameEl.textContent = entry.nombre;
+  const roleEl = document.createElement('div'); roleEl.className = 'author-role testi-stars';  roleEl.textContent = starsStr + ' · ' + entry.fecha;
+  info.appendChild(nameEl); info.appendChild(roleEl);
+  aDiv.appendChild(avatar); aDiv.appendChild(info);
+  card.appendChild(pText);  card.appendChild(aDiv);
+  return card;
+}
+
+function addTestimonialToDOM(entry){
+  const track    = document.querySelector('.testimonials-track');
+  const stars    = '★'.repeat(entry.estrellas) + '☆'.repeat(5 - entry.estrellas);
+  const card     = _buildTestiCard(entry, stars, false);
+  const clone    = _buildTestiCard(entry, stars, true);
+  const firstDup = track.querySelector('.dup');
+  if(firstDup) track.insertBefore(card, firstDup);
+  else         track.appendChild(card);
+  track.appendChild(clone);
+  calcCarouselReset();
+}
+
+async function postTestimonial(){
+  const nombre     = document.getElementById('testiNombre').value.trim();
+  const comentario = document.getElementById('testiComentario').value.trim();
+  const err        = document.getElementById('testiErr');
+  if(!nombre)               { err.textContent = 'Ingresa tu nombre'; return; }
+  if(!testiStars)           { err.textContent = 'Selecciona una calificación'; return; }
+  if(comentario.length < 10){ err.textContent = 'El comentario debe tener al menos 10 caracteres'; return; }
+  err.textContent = '';
+  const entry = {
+    nombre, comentario, estrellas: testiStars,
+    fecha: new Date().toLocaleDateString('es-CO', {year:'numeric', month:'long', day:'numeric'})
+  };
+  try {
+    await fetch('api/testimonios.php', {
+      method: 'POST',
+      headers: {'Content-Type': 'application/json'},
+      body: JSON.stringify(entry)
+    });
+  } catch(e){}
+  addTestimonialToDOM(entry);
+  closeTestimonialModal();
+}
+
+// Cargar testimonios guardados al iniciar
+(async function(){
+  try {
+    const res = await fetch('api/testimonios.php');
+    if(res.ok){
+      const data = await res.json();
+      if(Array.isArray(data)) data.forEach(addTestimonialToDOM);
+    }
+  } catch(e){}
 })();
 
 // ── FORMULARIO ──
@@ -1155,35 +1479,60 @@ function validate(id, test){
 function handleSubmit(e){
   e.preventDefault();
   const checks = [
-    validate('nombre',   v => v.trim().length > 2),
-    validate('tipodoc',  v => v !== ''),
-    validate('numdoc',   v => /^\d{6,15}$/.test(v.trim())),
-    validate('correo',   v => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v)),
-    validate('telefono', v => /^[\d\s+\-]{7,15}$/.test(v.trim())),
-    validate('ciudad',   v => v.trim().length > 1),
+    validate('nombre',     v => v.trim().length > 2),
+    validate('correo',     v => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v)),
+    validate('celular',    v => /^[\d\s+\-]{7,15}$/.test(v.trim())),
+    validate('tipoevento', v => v !== ''),
+    validate('personas',   v => v.trim() !== '' && +v >= 1),
   ];
-  const pol = document.getElementById('politica');
-  const polOk = pol.checked;
-  document.getElementById('err-politica').classList.toggle('show', !polOk);
-  if(checks.every(Boolean) && polOk){
+  console.log('[Form] validaciones:', checks);
+  if(checks.every(Boolean)){
     const params = {
+      fecha:       document.getElementById('fechaSel').value || '—',
       nombre:      document.getElementById('nombre').value,
-      tipodoc:     document.getElementById('tipodoc').value,
-      numdoc:      document.getElementById('numdoc').value,
       correo:      document.getElementById('correo').value,
-      telefono:    document.getElementById('telefono').value,
-      ciudad:      document.getElementById('ciudad').value,
-      empresa:     document.getElementById('empresa').value || '—',
-      cargo:       document.getElementById('cargo').value   || '—',
+      celular:     document.getElementById('celular').value,
+      tipoevento:  document.getElementById('tipoevento').value,
+      personas:    document.getElementById('personas').value,
       comentarios: document.getElementById('comentarios').value || '—',
     };
-    if(EJS_PUBLIC_KEY !== 'TU_PUBLIC_KEY'){
-      emailjs.send(EJS_SERVICE_ID, EJS_TEMPLATE_ID, params).catch(()=>{});
+    console.log('[Form] params a enviar:', params);
+    // Envío server-side (PHP mail)
+    fetch('api/enviar-solicitud.php', {
+      method: 'POST',
+      headers: {'Content-Type': 'application/json'},
+      body: JSON.stringify(params)
+    }).catch(()=>{});
+    // Envío client-side (EmailJS)
+    emailjs.send(EJS_SERVICE_ID, EJS_TEMPLATE_ID, {
+      ...params,
+      email:    params.correo,
+      reply_to: params.correo
+    }).then(
+      r  => console.log('[EmailJS] OK', r.status, r.text),
+      er => console.error('[EmailJS] ERROR', er)
+    );
+    // Marcar fecha seleccionada como Pendiente confirmación en el calendario
+    const fechaKey = document.getElementById('fechaSel').value;
+    if(fechaKey){
+      const entrada = {
+        tipo:   'pending',
+        nombre: document.getElementById('tipoevento').value,
+        resp:   document.getElementById('nombre').value,
+        inicio: '—',
+        fin:    '—',
+        estado: 'Pendiente confirmación'
+      };
+      EVENTS_BY_SPACE['Salón Principal'][fechaKey] = entrada;
+      events[fechaKey] = entrada;
+      saveSpaceEvents('Salón Principal');
+      renderCalendar();
     }
     document.getElementById('registerForm').style.display = 'none';
     const msg = document.getElementById('successMsg');
     msg.classList.add('show');
     msg.scrollIntoView({behavior:'smooth', block:'center'});
+    setTimeout(() => location.reload(), 3000);
   }
 }
 </script>

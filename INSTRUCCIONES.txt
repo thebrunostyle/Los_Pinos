@@ -1,0 +1,24 @@
+Imágenes necesarias para Hacienda los Pinos
+=============================================
+
+Descarga estas imágenes desde Instagram @casa.gourmet7
+y colócalas en esta carpeta con los nombres exactos:
+
+  hero.jpg      — Imagen principal del hero (banner grande)
+  galeria1.jpg  — Foto para galería (ej. salón principal)
+  galeria2.jpg  — Foto para galería (ej. jardín)
+  galeria3.jpg  — Foto para galería (ej. montaje de mesas)
+  galeria4.jpg  — Foto para galería (ej. detalle decoración)
+  galeria5.jpg  — Foto para galería (ej. flores/detalles)
+  galeria6.jpg  — Foto para galería (ej. vista panorámica)
+
+Formatos aceptados: .jpg, .jpeg, .png, .webp
+Tamaño recomendado: mínimo 800x600 px
+
+5 usuarios: admin/pinos2026 (todos los espacios),jardin/jardin123
+
+EmailJS thebrunostyle@gmail.com
+
+ccorreodepruebageneral@gmail.com
+clave:sL8NEZa3eTSx3Np*$#@
+

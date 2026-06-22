@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="es" data-theme="light">
+<html lang="es" data-theme="dark">
 <head>
 <meta charset="UTF-8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
@@ -8,7 +8,6 @@
 <style>
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
 :root{--ink:#0D1117;--ink2:#161C26;--gold:#C9A84C;--cream:#F5EDD6;--cream2:#EDE0C4;--muted:#8A7E6A;--nav-bg:rgba(13,17,23,.92);--input-bg:rgba(13,17,23,.8)}
-[data-theme="light"]{--ink:#FAFAF5;--ink2:#F0E8D2;--cream:#1A1209;--cream2:#2D2416;--muted:#6B5E4A;--nav-bg:rgba(250,250,245,.94);--input-bg:rgba(250,250,245,.9)}
 body{background:var(--ink);color:var(--cream);font-family:'DM Sans',sans-serif;font-weight:300}
 a{text-decoration:none;color:inherit}
 @keyframes fadeUp{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:translateY(0)}}
@@ -43,7 +42,7 @@ main{padding:7rem 4rem 5rem}
 .cal-cell.clickable:hover{background:rgba(201,168,76,.07)}
 .cal-cell.empty{opacity:.2;pointer-events:none}
 .cal-cell.today{background:rgba(201,168,76,.1);border-color:rgba(201,168,76,.3);color:var(--gold);font-weight:500}
-.cal-dot{width:6px;height:6px;border-radius:50%;position:absolute;bottom:4px}
+.cal-cell.reservado{background:rgba(201,168,76,.28);border-color:rgba(201,168,76,.55);color:var(--gold);font-weight:500}
 .legend{display:flex;gap:1.5rem;margin-top:1.5rem;flex-wrap:wrap}
 .legend-item{display:flex;align-items:center;gap:.5rem;font-size:.75rem;color:var(--muted)}
 .legend-dot{width:8px;height:8px;border-radius:50%;display:inline-block}
@@ -56,11 +55,6 @@ main{padding:7rem 4rem 5rem}
 .btn-gold:hover{background:#E2C97E}
 .loading{text-align:center;padding:2rem;color:var(--muted);font-style:italic}
 
-/* Theme Toggle */
-.theme-toggle{background:transparent;border:1px solid rgba(201,168,76,.25);color:var(--cream);width:34px;height:34px;cursor:pointer;font-size:.95rem;transition:all .3s;display:flex;align-items:center;justify-content:center;border-radius:50%;padding:0}
-.theme-toggle:hover{border-color:var(--gold)}
-.theme-toggle::after{content:'🌙'}
-[data-theme="dark"] .theme-toggle::after{content:'☀️'}
 
 /* WA Float */
 .wa-float{position:fixed;bottom:2rem;right:2rem;z-index:200;width:54px;height:54px;background:#25D366;border-radius:50%;display:flex;align-items:center;justify-content:center;box-shadow:0 4px 20px rgba(37,211,102,.3);transition:transform .3s}
@@ -79,7 +73,6 @@ main{padding:7rem 4rem 5rem}
     <li><a href="registro.html">Registro</a></li>
     <li><a href="index.html#contacto">Contacto</a></li>
   </ul>
-  <button type="button" class="theme-toggle" onclick="toggleTheme()" aria-label="Cambiar tema"></button>
 </nav>
 
 <main>
@@ -107,10 +100,8 @@ main{padding:7rem 4rem 5rem}
       <div id="loading" class="loading">Consultando disponibilidad...</div>
       <div class="cal-grid" id="calGrid" style="display:none"></div>
       <div class="legend">
-        <div class="legend-item"><div class="legend-dot" style="background:#4ade80"></div>Disponible</div>
-        <div class="legend-item"><div class="legend-dot" style="background:#f87171"></div>Ocupado</div>
-        <div class="legend-item"><div class="legend-dot" style="background:#fbbf24"></div>Pendiente</div>
-        <div class="legend-item"><div class="legend-dot" style="background:#60a5fa"></div>Programado</div>
+        <div class="legend-item"><div class="legend-dot" style="background:rgba(201,168,76,.55);border:1px solid rgba(201,168,76,.8)"></div>Reservado</div>
+        <div class="legend-item"><div class="legend-dot" style="background:transparent;border:1px solid rgba(138,126,106,.4)"></div>Disponible</div>
       </div>
       <div id="calDetail" style="display:none"></div>
     </div>
@@ -122,35 +113,11 @@ main{padding:7rem 4rem 5rem}
 </a>
 
 <script>
-// ── TEMA ──
-function toggleTheme(){
-  const next = document.documentElement.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
-  document.documentElement.setAttribute('data-theme', next);
-  localStorage.setItem('eventara-theme', next);
-}
-(function(){
-  const saved = localStorage.getItem('eventara-theme') || 'light';
-  document.documentElement.setAttribute('data-theme', saved);
-})();
 
-// ── DATOS DEMO (se usan cuando la API no está disponible) ──
-const DEMO = [
-  {fecha:'2026-06-07', nombre:'Conferencia Tech 2026',   estado:'ocupado',    hora_inicio:'09:00', hora_fin:'18:00', responsable:'Laura Torres'},
-  {fecha:'2026-06-12', nombre:'Gala Corporativa',        estado:'programado', hora_inicio:'19:00', hora_fin:'23:00', responsable:'Mario Ruiz'},
-  {fecha:'2026-06-14', nombre:'Boda García-López',       estado:'pendiente',  hora_inicio:'16:00', hora_fin:'22:00', responsable:'Ana García'},
-  {fecha:'2026-06-19', nombre:'Disponible para reserva', estado:'disponible', hora_inicio:'—',     hora_fin:'—',     responsable:'—'},
-  {fecha:'2026-06-20', nombre:'Workshop Innovación',     estado:'programado', hora_inicio:'08:00', hora_fin:'17:00', responsable:'Pedro Mora'},
-  {fecha:'2026-06-21', nombre:'Congreso Salud',          estado:'ocupado',    hora_inicio:'07:00', hora_fin:'20:00', responsable:'Dr. Herrera'},
-  {fecha:'2026-06-25', nombre:'Disponible para reserva', estado:'disponible', hora_inicio:'—',     hora_fin:'—',     responsable:'—'},
-  {fecha:'2026-06-26', nombre:'Cumpleaños Empresarial',  estado:'pendiente',  hora_inicio:'18:00', hora_fin:'23:00', responsable:'Sofía León'},
-  {fecha:'2026-07-04', nombre:'Feria Comercial',         estado:'programado', hora_inicio:'09:00', hora_fin:'19:00', responsable:'Roberto Silva'},
-  {fecha:'2026-07-10', nombre:'Seminario Marketing',     estado:'ocupado',    hora_inicio:'08:00', hora_fin:'17:00', responsable:'Diana Pérez'},
-  {fecha:'2026-07-18', nombre:'Disponible para reserva', estado:'disponible', hora_inicio:'—',     hora_fin:'—',     responsable:'—'},
-];
+const DEMO = [];
 
 const MESES = ['Enero','Febrero','Marzo','Abril','Mayo','Junio',
                'Julio','Agosto','Septiembre','Octubre','Noviembre','Diciembre'];
-const COLORES = { ocupado:'#f87171', pendiente:'#fbbf24', programado:'#60a5fa', disponible:'#4ade80' };
 
 let year  = new Date().getFullYear();
 let month = new Date().getMonth() + 1;
@@ -187,15 +154,10 @@ function renderGrid() {
     const ev     = itemsByDate[key];
     const isHoy  = hoy.getFullYear()===year && hoy.getMonth()===month-1 && hoy.getDate()===d;
     const el     = document.createElement('div');
-    el.className = 'cal-cell' + (ev ? ' clickable' : '') + (isHoy ? ' today' : '');
+    const reservado = ev && ev.estado !== 'disponible';
+    el.className = 'cal-cell' + (ev ? ' clickable' : '') + (isHoy ? ' today' : '') + (reservado ? ' reservado' : '');
     el.textContent = d;
-    if (ev) {
-      const dot = document.createElement('span');
-      dot.className = 'cal-dot';
-      dot.style.background = COLORES[ev.estado] || COLORES.disponible;
-      el.appendChild(dot);
-      el.onclick = () => showDetail(ev);
-    }
+    if (ev && reservado) el.onclick = () => showDetail(ev);
     grid.appendChild(el);
   }
 }
@@ -206,15 +168,7 @@ function showDetail(ev) {
   setTimeout(() => {
     box.innerHTML = `
       <div class="detail-box">
-        <div class="detail-title">${ev.nombre}</div>
-        <div class="detail-grid">
-          <div class="detail-item">Fecha: <span>${ev.fecha}</span></div>
-          <div class="detail-item">Estado: <span>${ev.estado}</span></div>
-          <div class="detail-item">Inicio: <span>${ev.hora_inicio}</span></div>
-          <div class="detail-item">Fin: <span>${ev.hora_fin}</span></div>
-          <div class="detail-item">Responsable: <span>${ev.responsable}</span></div>
-        </div>
-        ${ev.estado==='disponible' ? '<a href="registro.html" class="btn-gold">Solicitar esta fecha</a>' : ''}
+        <div class="detail-title" style="color:var(--gold)">Reservado</div>
       </div>`;
     box.style.display = 'block';
   }, 50);

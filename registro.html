@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="es" data-theme="light">
+<html lang="es" data-theme="dark">
 <head>
 <meta charset="UTF-8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
@@ -8,7 +8,6 @@
 <style>
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
 :root{--ink:#0D1117;--ink2:#161C26;--gold:#C9A84C;--cream:#F5EDD6;--cream2:#EDE0C4;--muted:#8A7E6A;--nav-bg:rgba(13,17,23,.92);--input-bg:rgba(13,17,23,.8)}
-[data-theme="light"]{--ink:#FAFAF5;--ink2:#F0E8D2;--cream:#1A1209;--cream2:#2D2416;--muted:#6B5E4A;--nav-bg:rgba(250,250,245,.94);--input-bg:rgba(250,250,245,.9)}
 body{background:var(--ink);color:var(--cream);font-family:'DM Sans',sans-serif;font-weight:300}
 a{text-decoration:none;color:inherit}
 @keyframes fadeUp{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:translateY(0)}}
@@ -61,11 +60,6 @@ main{padding:7rem 4rem 5rem}
 .success-box h3{font-family:'Cormorant Garamond',serif;font-size:2rem;font-weight:300;margin-bottom:.5rem}
 .success-box p{color:var(--muted);font-size:.9rem}
 
-/* Theme Toggle */
-.theme-toggle{background:transparent;border:1px solid rgba(201,168,76,.25);color:var(--cream);width:34px;height:34px;cursor:pointer;font-size:.95rem;transition:all .3s;display:flex;align-items:center;justify-content:center;border-radius:50%;padding:0}
-.theme-toggle:hover{border-color:var(--gold)}
-.theme-toggle::after{content:'🌙'}
-[data-theme="dark"] .theme-toggle::after{content:'☀️'}
 
 .wa-float{position:fixed;bottom:2rem;right:2rem;z-index:200;width:54px;height:54px;background:#25D366;border-radius:50%;display:flex;align-items:center;justify-content:center;box-shadow:0 4px 20px rgba(37,211,102,.3);transition:transform .3s}
 .wa-float:hover{transform:scale(1.1)}
@@ -84,7 +78,6 @@ main{padding:7rem 4rem 5rem}
     <li><a href="registro.html" class="active">Registro</a></li>
     <li><a href="index.html#contacto">Contacto</a></li>
   </ul>
-  <button type="button" class="theme-toggle" onclick="toggleTheme()" aria-label="Cambiar tema"></button>
 </nav>
 
 <main>
@@ -187,16 +180,6 @@ main{padding:7rem 4rem 5rem}
 
 <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
 <script>
-// ── TEMA ──
-function toggleTheme(){
-  const next = document.documentElement.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
-  document.documentElement.setAttribute('data-theme', next);
-  localStorage.setItem('eventara-theme', next);
-}
-(function(){
-  const saved = localStorage.getItem('eventara-theme') || 'light';
-  document.documentElement.setAttribute('data-theme', saved);
-})();
 
 // ── EMAILJS — completar con los datos de tu cuenta ──
 const EJS_PUBLIC_KEY  = 'nEGTMO_zDy5JurAjY';

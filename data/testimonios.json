@@ -1,0 +1,14 @@
+[
+    {
+        "nombre": "Alejandro",
+        "comentario": "Muy buen servicio",
+        "estrellas": 4,
+        "fecha": "22 de junio de 2026"
+    },
+    {
+        "nombre": "Alejandr2",
+        "comentario": "Prueba de comunicación",
+        "estrellas": 4,
+        "fecha": "22 de junio de 2026"
+    }
+]

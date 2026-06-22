@@ -1,0 +1,21 @@
+{
+    "Salón Principal": {
+        "2026-06-23": {
+            "tipo": "event",
+            "nombre": "prueba",
+            "resp": "prueba",
+            "inicio": "01:01",
+            "fin": "17:05",
+            "estado": "Programado"
+        },
+        "2026-06-24": {
+            "tipo": "pending",
+            "nombre": "Quinceañeras",
+            "resp": "prueba",
+            "inicio": "—",
+            "fin": "—",
+            "estado": "Pendiente confirmación"
+        }
+    },
+    "Jardín": []
+}
