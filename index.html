@@ -1546,12 +1546,13 @@ async function saveRedes(){
 })();
 
 // ── DATOS DE CONTACTO ──
-let _waPhone = localStorage.getItem('_qlp_wa_phone') || '';
+let _waPhone = '';
+localStorage.removeItem('_qlp_wa_phone'); // limpiar caché viejo
 
 function _waPhoneClean(){
-  const raw = _waPhone || '';
-  if(!raw) return '573001234567';
+  const raw    = _waPhone.trim();
   const digits = raw.replace(/\D/g, '');
+  if(!digits) return '';
   if(/^57\d{10}$/.test(digits)) return digits;
   if(/^57/.test(digits))        return digits;
   if(/^3\d{9}$/.test(digits))   return '57' + digits;
@@ -1559,6 +1560,8 @@ function _waPhoneClean(){
 }
 
 function _buildWaUrl(params){
+  const phone = _waPhoneClean();
+  if(!phone) return '#';
   const lines = [
     'Quinta los Pinos: Cuéntanos sobre tu evento',
     'Fecha:              ' + (params.fecha        || '—'),
@@ -1569,7 +1572,7 @@ function _buildWaUrl(params){
     'Número de personas: ' + (params.personas     || '—'),
     'Comentarios:        ' + (params.comentarios  || '—'),
   ];
-  return 'https://api.whatsapp.com/send/?phone=' + _waPhoneClean()
+  return 'https://api.whatsapp.com/send/?phone=' + phone
        + '&text=' + encodeURIComponent(lines.join('\n'))
        + '&type=phone_number&app_absent=0';
 }
@@ -1582,15 +1585,13 @@ function _updateWaBtns(formParams){
   if(ctaBtn)   ctaBtn.href   = url;
 }
 
-// Aplicar inmediatamente con el valor cacheado (antes del fetch)
-_updateWaBtns();
+// Los botones se actualizan cuando loadContactData() recibe el teléfono del JSON
 
 function applyContactData(data){
   if(data.ubicacion){ const el = document.getElementById('infoUbicacion'); if(el) el.innerHTML = data.ubicacion.replace(/\n/g,'<br>'); }
   if(data.telefono) {
     const el = document.getElementById('infoTelefono'); if(el) el.textContent = data.telefono;
     _waPhone = data.telefono;
-    localStorage.setItem('_qlp_wa_phone', data.telefono);
     _updateWaBtns();
   }
   if(data.correo)   { const el = document.getElementById('infoCorreo');    if(el) el.textContent = data.correo; }
