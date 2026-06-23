@@ -1452,7 +1452,9 @@ async function deleteTipo(tipo){
 
 (async function loadTipos(){
   try {
-    const res = await fetch('api/tipos-evento.php');
+    const ts  = Date.now();
+    let res   = await fetch('data/tipos-evento.json?_=' + ts);
+    if(!res.ok) res = await fetch('api/tipos-evento.php');
     if(res.ok){
       const data = await res.json();
       if(Array.isArray(data) && data.length > 0) TIPOS_EVENTO = data;
@@ -1540,9 +1542,11 @@ async function saveRedes(){
 }
 (async function loadRedes(){
   try {
-    const res = await fetch('api/redes.php');
+    const ts  = Date.now();
+    let res   = await fetch('data/redes.json?_=' + ts);
+    if(!res.ok) res = await fetch('api/redes.php');
     if(res.ok){ const data = await res.json(); applyRedesData(data); }
-  } catch(e){}
+  } catch(e){ console.error('[Redes]', e); }
 })();
 
 // ── DATOS DE CONTACTO ──
@@ -1753,12 +1757,14 @@ async function postTestimonial(){
 // Cargar testimonios guardados al iniciar
 (async function(){
   try {
-    const res = await fetch('api/testimonios.php');
+    const ts  = Date.now();
+    let res   = await fetch('data/testimonios.json?_=' + ts);
+    if(!res.ok) res = await fetch('api/testimonios.php');
     if(res.ok){
       const data = await res.json();
       if(Array.isArray(data)) data.forEach(addTestimonialToDOM);
     }
-  } catch(e){}
+  } catch(e){ console.error('[Testimonios]', e); }
 })();
 
 // ── GALERÍA FILTRO ──
