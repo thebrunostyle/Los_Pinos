@@ -607,7 +607,7 @@ footer{border-top:1px solid rgba(201,168,76,.1);padding:3rem 4rem;display:flex;a
       <div class="step-num">02</div>
       <div class="step-icon">✍️</div>
       <h3>Solicita información</h3>
-      <p>Completa el formulario en menos de 2 minutos. Nuestro equipo te responderá en menos de 24 horas.</p>
+      <p>Completa el formulario en menos de 2 minutos. Nuestro equipo te responderá lo más pronto posible.</p>
     </div>
     <div class="step reveal">
       <div class="step-num">03</div>
@@ -747,7 +747,7 @@ footer{border-top:1px solid rgba(201,168,76,.1);padding:3rem 4rem;display:flex;a
     <div class="success-msg" id="successMsg">
       <div class="success-icon">✨</div>
       <h3>¡Solicitud enviada!</h3>
-      <p>Hemos recibido tu solicitud. En breve nuestro equipo te contactará por correo o WhatsApp con una propuesta personalizada.</p>
+      <p>Gracias por comunicarte con Quinta los Pinos, nuestro equipo te responderá lo más pronto posible.</p>
     </div>
   </div>
 </section>
@@ -1546,9 +1546,35 @@ async function saveRedes(){
 })();
 
 // ── DATOS DE CONTACTO ──
+let _waPhone = '573001234567';
+
+function _buildWaUrl(params){
+  const phone = _waPhone.replace(/\D/g,'').replace(/^0+/,'').replace(/^(?!57)/,'57');
+  const lines = [
+    'Quinta los Pinos: Cuéntanos sobre tu evento',
+    'Fecha:              ' + (params.fecha        || '—'),
+    'Nombre:             ' + (params.nombre       || '—'),
+    'Correo:             ' + (params.correo       || '—'),
+    'Celular:            ' + (params.celular      || '—'),
+    'Tipo de evento:     ' + (params.tipoevento   || '—'),
+    'Número de personas: ' + (params.personas     || '—'),
+    'Comentarios:        ' + (params.comentarios  || '—'),
+  ];
+  return 'https://wa.me/' + phone + '?text=' + encodeURIComponent(lines.join('\n'));
+}
+
+function _updateWaBtn(params){
+  const btn = document.querySelector('.wa-float');
+  if(btn) btn.href = _buildWaUrl(params || {});
+}
+
 function applyContactData(data){
   if(data.ubicacion){ const el = document.getElementById('infoUbicacion'); if(el) el.innerHTML = data.ubicacion.replace(/\n/g,'<br>'); }
-  if(data.telefono) { const el = document.getElementById('infoTelefono');  if(el) el.textContent = data.telefono; }
+  if(data.telefono) {
+    const el = document.getElementById('infoTelefono'); if(el) el.textContent = data.telefono;
+    _waPhone = data.telefono;
+    _updateWaBtn();
+  }
   if(data.correo)   { const el = document.getElementById('infoCorreo');    if(el) el.textContent = data.correo; }
 }
 function openContactModal(){
@@ -1816,11 +1842,16 @@ function handleSubmit(e){
       saveSpaceEvents('Salón Principal');
       renderCalendar();
     }
+    // Abrir WhatsApp con los datos del formulario
+    const waUrl = _buildWaUrl(params);
+    _updateWaBtn(params);
+    window.open(waUrl, '_blank', 'noopener,noreferrer');
+
     document.getElementById('registerForm').style.display = 'none';
     const msg = document.getElementById('successMsg');
     msg.classList.add('show');
     msg.scrollIntoView({behavior:'smooth', block:'center'});
-    setTimeout(() => location.reload(), 3000);
+    setTimeout(() => location.reload(), 4000);
   }
 }
 </script>
