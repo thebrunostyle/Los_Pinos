@@ -785,7 +785,7 @@ footer{border-top:1px solid rgba(201,168,76,.1);padding:3rem 4rem;display:flex;a
     <p>Cuéntanos sobre tu evento y nuestro equipo te contactará con una propuesta a tu medida.</p>
     <div class="cta-actions">
       <a href="#registro" class="btn-primary">Solicitar información</a>
-      <a href="https://wa.me/573001234567?text=Hola%2C%20deseo%20obtener%20informaci%C3%B3n%20sobre%20los%20eventos%20y%20servicios%20disponibles." class="btn-secondary" target="_blank" rel="noopener noreferrer">Escribir por WhatsApp</a>
+      <a id="ctaWaBtn" href="https://wa.me/573001234567?text=Hola%2C%20deseo%20obtener%20informaci%C3%B3n%20sobre%20los%20eventos%20y%20servicios%20disponibles." class="btn-secondary" target="_blank" rel="noopener noreferrer">Escribir por WhatsApp</a>
     </div>
     <div class="contact-info">
       <div class="contact-item"><div class="contact-item-icon">📍</div><div class="contact-item-label">Ubicación</div><div class="contact-item-value" id="infoUbicacion">Calle 14 9 89, Puente de la Cruz<br>Cota, Cundinamarca, Colombia</div></div>
@@ -1564,8 +1564,11 @@ function _buildWaUrl(params){
 }
 
 function _updateWaBtn(params){
-  const btn = document.querySelector('.wa-float');
-  if(btn) btn.href = _buildWaUrl(params || {});
+  const url     = _buildWaUrl(params || {});
+  const floatBtn = document.querySelector('.wa-float');
+  const ctaBtn   = document.getElementById('ctaWaBtn');
+  if(floatBtn) floatBtn.href = url;
+  if(ctaBtn)   ctaBtn.href   = url;
 }
 
 function applyContactData(data){
