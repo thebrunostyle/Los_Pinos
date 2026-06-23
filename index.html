@@ -251,8 +251,18 @@ footer{border-top:1px solid rgba(201,168,76,.1);padding:3rem 4rem;display:flex;a
 
 /* ── GALERÍA ── */
 #galeria{padding:6rem 4rem}
-.gallery-grid{display:grid;grid-template-columns:repeat(12,1fr);grid-template-rows:auto;gap:.75rem;margin-top:3rem}
-.gallery-item{overflow:hidden;background:var(--ink2);position:relative}
+.gallery-stories{display:flex;gap:1.1rem;justify-content:center;flex-wrap:wrap;margin:2.5rem 0 2.5rem}
+.story-btn{display:flex;flex-direction:column;align-items:center;gap:.45rem;cursor:pointer;background:none;border:none;padding:.25rem;flex-shrink:0}
+.story-ring{width:68px;height:68px;border-radius:50%;padding:3px;background:rgba(255,255,255,.04);border:2px solid rgba(201,168,76,.22);transition:all .3s;display:flex;align-items:center;justify-content:center}
+.story-emoji{font-size:1.8rem;line-height:1}
+.story-btn.active .story-ring{background:linear-gradient(135deg,var(--gold) 0%,#7a5c10 100%);border-color:var(--gold);box-shadow:0 0 0 3px rgba(201,168,76,.18)}
+.story-label{font-size:.6rem;letter-spacing:.07em;text-transform:uppercase;color:var(--muted);text-align:center;max-width:76px;line-height:1.35;transition:color .3s}
+.story-btn.active .story-label{color:var(--gold);font-weight:500}
+.gallery-grid{display:none;grid-template-columns:repeat(12,1fr);grid-template-rows:auto;gap:.75rem;margin-top:0}
+.gallery-grid.visible{display:grid}
+.gallery-grid.filtered .gallery-item{grid-column:span 4 !important;grid-row:span 1 !important;min-height:220px !important}
+.gallery-item{overflow:hidden;background:var(--ink2);position:relative;transition:opacity .25s;grid-column:span 4;min-height:200px}
+.gallery-item.hidden{display:none}
 .gallery-item img{width:100%;height:100%;object-fit:cover;transition:transform .7s var(--transition),opacity .4s}
 .gallery-item:hover img{transform:scale(1.04);opacity:.9}
 .gallery-item:nth-child(1){grid-column:span 8;grid-row:span 2;min-height:420px}
@@ -315,9 +325,6 @@ footer{border-top:1px solid rgba(201,168,76,.1);padding:3rem 4rem;display:flex;a
 /* Form date badge */
 .form-input-readonly{cursor:default;border-color:rgba(201,168,76,.25);color:var(--gold);opacity:.85}
 .form-input-readonly::placeholder{color:rgba(201,168,76,.35)}
-.gallery-note{text-align:center;margin-top:2rem;font-size:.8rem;color:var(--muted)}
-.gallery-note a{color:var(--gold);text-decoration:none}
-.gallery-note a:hover{text-decoration:underline}
 .testimonials-wrap{overflow:hidden;margin-top:4rem}
 
 /* ── LOGIN MODAL ── */
@@ -424,35 +431,66 @@ footer{border-top:1px solid rgba(201,168,76,.1);padding:3rem 4rem;display:flex;a
     <h2 class="section-title">Un lugar para cada <em>momento especial</em></h2>
     <div class="section-line"></div>
   </div>
-  <div class="gallery-grid reveal">
-    <div class="gallery-item">
-      <img src="assets/img/galeria1.jpg" alt="Quinta los Pinos" onerror="this.style.display='none'"/>
-      <div class="gallery-placeholder"><span>🌿</span>Foto del espacio</div>
-    </div>
-    <div class="gallery-item">
-      <img src="assets/img/galeria2.jpg" alt="Salón principal" onerror="this.style.display='none'"/>
-      <div class="gallery-placeholder"><span>🏛</span>Salón principal</div>
-    </div>
-    <div class="gallery-item">
-      <img src="assets/img/galeria3.jpg" alt="Jardín exterior" onerror="this.style.display='none'"/>
-      <div class="gallery-placeholder"><span>🌸</span>Jardín exterior</div>
-    </div>
-    <div class="gallery-item">
-      <img src="assets/img/galeria4.jpg" alt="Montaje de mesas" onerror="this.style.display='none'"/>
-      <div class="gallery-placeholder"><span>🍽</span>Montaje de mesas</div>
-    </div>
-    <div class="gallery-item">
-      <img src="assets/img/galeria5.jpg" alt="Decoración" onerror="this.style.display='none'"/>
-      <div class="gallery-placeholder"><span>💐</span>Decoración</div>
-    </div>
-    <div class="gallery-item">
-      <img src="assets/img/galeria6.jpg" alt="Vista panorámica" onerror="this.style.display='none'"/>
-      <div class="gallery-placeholder"><span>🌄</span>Vista panorámica</div>
-    </div>
+  <div class="gallery-stories">
+    <button class="story-btn" data-cat="bodas" onclick="filterGallery('bodas',this)">
+      <div class="story-ring"><span class="story-emoji">💍</span></div>
+      <span class="story-label">Bodas</span>
+    </button>
+    <button class="story-btn" data-cat="quinceaneras" onclick="filterGallery('quinceaneras',this)">
+      <div class="story-ring"><span class="story-emoji">💍</span></div>
+      <span class="story-label">Quinceañeras</span>
+    </button>
+    <button class="story-btn" data-cat="corporativos" onclick="filterGallery('corporativos',this)">
+      <div class="story-ring"><span class="story-emoji">🏢</span></div>
+      <span class="story-label">Eventos Corporativos</span>
+    </button>
+    <button class="story-btn" data-cat="sociales" onclick="filterGallery('sociales',this)">
+      <div class="story-ring"><span class="story-emoji">🎂</span></div>
+      <span class="story-label">Celebraciones Sociales</span>
+    </button>
+    <button class="story-btn" data-cat="gastronomia" onclick="filterGallery('gastronomia',this)">
+      <div class="story-ring"><span class="story-emoji">🍽</span></div>
+      <span class="story-label">Gastronomía</span>
+    </button>
+    <button class="story-btn" data-cat="jardin" onclick="filterGallery('jardin',this)">
+      <div class="story-ring"><span class="story-emoji">🌿</span></div>
+      <span class="story-label">Jardín &amp; Naturaleza</span>
+    </button>
+    <button class="story-btn" data-cat="ambientes" onclick="filterGallery('ambientes',this)">
+      <div class="story-ring"><span class="story-emoji">🎭</span></div>
+      <span class="story-label">Ambientes que Inspiran</span>
+    </button>
   </div>
-  <p class="gallery-note">
-    Síguenos en Instagram <a href="https://www.instagram.com/casa.gourmet7" target="_blank" rel="noopener noreferrer">@casa.gourmet7</a> para ver más
-  </p>
+  <div class="gallery-grid reveal">
+    <div class="gallery-item" data-cat="bodas"><img src="assets/img/Boda1.jpg" alt="Bodas 1" onerror="this.style.display='none'"/><div class="gallery-placeholder"><span>💍</span>Bodas</div></div>
+    <div class="gallery-item" data-cat="bodas"><img src="assets/img/Boda2.jpg" alt="Bodas 2" onerror="this.style.display='none'"/><div class="gallery-placeholder"><span>💍</span>Bodas</div></div>
+    <div class="gallery-item" data-cat="bodas"><img src="assets/img/Boda3.jpg" alt="Bodas 3" onerror="this.style.display='none'"/><div class="gallery-placeholder"><span>💍</span>Bodas</div></div>
+    <div class="gallery-item" data-cat="bodas"><img src="assets/img/Boda4.jpg" alt="Bodas 4" onerror="this.style.display='none'"/><div class="gallery-placeholder"><span>💍</span>Bodas</div></div>
+    <div class="gallery-item" data-cat="quinceaneras"><img src="assets/img/Quince1.jpg" alt="Quinceañeras 1" onerror="this.style.display='none'"/><div class="gallery-placeholder"><span>💍</span>Quinceañeras</div></div>
+    <div class="gallery-item" data-cat="quinceaneras"><img src="assets/img/Quince2.jpg" alt="Quinceañeras 2" onerror="this.style.display='none'"/><div class="gallery-placeholder"><span>💍</span>Quinceañeras</div></div>
+    <div class="gallery-item" data-cat="quinceaneras"><img src="assets/img/Quince3.jpg" alt="Quinceañeras 3" onerror="this.style.display='none'"/><div class="gallery-placeholder"><span>💍</span>Quinceañeras</div></div>
+    <div class="gallery-item" data-cat="quinceaneras"><img src="assets/img/Quince4.jpg" alt="Quinceañeras 4" onerror="this.style.display='none'"/><div class="gallery-placeholder"><span>💍</span>Quinceañeras</div></div>
+    <div class="gallery-item" data-cat="corporativos"><img src="assets/img/Corp1.jpg" alt="Eventos Corporativos 1" onerror="this.style.display='none'"/><div class="gallery-placeholder"><span>🏢</span>Eventos Corporativos</div></div>
+    <div class="gallery-item" data-cat="corporativos"><img src="assets/img/Corp2.jpg" alt="Eventos Corporativos 2" onerror="this.style.display='none'"/><div class="gallery-placeholder"><span>🏢</span>Eventos Corporativos</div></div>
+    <div class="gallery-item" data-cat="corporativos"><img src="assets/img/Corp3.jpg" alt="Eventos Corporativos 3" onerror="this.style.display='none'"/><div class="gallery-placeholder"><span>🏢</span>Eventos Corporativos</div></div>
+    <div class="gallery-item" data-cat="corporativos"><img src="assets/img/Corp4.jpg" alt="Eventos Corporativos 4" onerror="this.style.display='none'"/><div class="gallery-placeholder"><span>🏢</span>Eventos Corporativos</div></div>
+    <div class="gallery-item" data-cat="sociales"><img src="assets/img/Social1.jpg" alt="Celebraciones Sociales 1" onerror="this.style.display='none'"/><div class="gallery-placeholder"><span>🎂</span>Celebraciones Sociales</div></div>
+    <div class="gallery-item" data-cat="sociales"><img src="assets/img/Social2.jpg" alt="Celebraciones Sociales 2" onerror="this.style.display='none'"/><div class="gallery-placeholder"><span>🎂</span>Celebraciones Sociales</div></div>
+    <div class="gallery-item" data-cat="sociales"><img src="assets/img/Social3.jpg" alt="Celebraciones Sociales 3" onerror="this.style.display='none'"/><div class="gallery-placeholder"><span>🎂</span>Celebraciones Sociales</div></div>
+    <div class="gallery-item" data-cat="sociales"><img src="assets/img/Social4.jpg" alt="Celebraciones Sociales 4" onerror="this.style.display='none'"/><div class="gallery-placeholder"><span>🎂</span>Celebraciones Sociales</div></div>
+    <div class="gallery-item" data-cat="gastronomia"><img src="assets/img/Gastro1.jpg" alt="Gastronomía 1" onerror="this.style.display='none'"/><div class="gallery-placeholder"><span>🍽</span>Gastronomía</div></div>
+    <div class="gallery-item" data-cat="gastronomia"><img src="assets/img/Gastro2.jpg" alt="Gastronomía 2" onerror="this.style.display='none'"/><div class="gallery-placeholder"><span>🍽</span>Gastronomía</div></div>
+    <div class="gallery-item" data-cat="gastronomia"><img src="assets/img/Gastro3.jpg" alt="Gastronomía 3" onerror="this.style.display='none'"/><div class="gallery-placeholder"><span>🍽</span>Gastronomía</div></div>
+    <div class="gallery-item" data-cat="gastronomia"><img src="assets/img/Gastro4.jpg" alt="Gastronomía 4" onerror="this.style.display='none'"/><div class="gallery-placeholder"><span>🍽</span>Gastronomía</div></div>
+    <div class="gallery-item" data-cat="jardin"><img src="assets/img/Natu1.jpg" alt="Jardín &amp; Naturaleza 1" onerror="this.style.display='none'"/><div class="gallery-placeholder"><span>🌿</span>Jardín &amp; Naturaleza</div></div>
+    <div class="gallery-item" data-cat="jardin"><img src="assets/img/Natu2.jpg" alt="Jardín &amp; Naturaleza 2" onerror="this.style.display='none'"/><div class="gallery-placeholder"><span>🌿</span>Jardín &amp; Naturaleza</div></div>
+    <div class="gallery-item" data-cat="jardin"><img src="assets/img/Natu3.jpg" alt="Jardín &amp; Naturaleza 3" onerror="this.style.display='none'"/><div class="gallery-placeholder"><span>🌿</span>Jardín &amp; Naturaleza</div></div>
+    <div class="gallery-item" data-cat="jardin"><img src="assets/img/Natu4.jpg" alt="Jardín &amp; Naturaleza 4" onerror="this.style.display='none'"/><div class="gallery-placeholder"><span>🌿</span>Jardín &amp; Naturaleza</div></div>
+    <div class="gallery-item" data-cat="ambientes"><img src="assets/img/Ambi1.jpg" alt="Ambientes que Inspiran 1" onerror="this.style.display='none'"/><div class="gallery-placeholder"><span>🎭</span>Ambientes que Inspiran</div></div>
+    <div class="gallery-item" data-cat="ambientes"><img src="assets/img/Ambi2.jpg" alt="Ambientes que Inspiran 2" onerror="this.style.display='none'"/><div class="gallery-placeholder"><span>🎭</span>Ambientes que Inspiran</div></div>
+    <div class="gallery-item" data-cat="ambientes"><img src="assets/img/Ambi3.jpg" alt="Ambientes que Inspiran 3" onerror="this.style.display='none'"/><div class="gallery-placeholder"><span>🎭</span>Ambientes que Inspiran</div></div>
+    <div class="gallery-item" data-cat="ambientes"><img src="assets/img/Ambi4.jpg" alt="Ambientes que Inspiran 4" onerror="this.style.display='none'"/><div class="gallery-placeholder"><span>🎭</span>Ambientes que Inspiran</div></div>
+  </div>
 </section>
 
 <!-- SERVICIOS -->
@@ -465,33 +503,38 @@ footer{border-top:1px solid rgba(201,168,76,.1);padding:3rem 4rem;display:flex;a
   <div class="services-grid">
     <div class="service-card reveal">
       <span class="service-icon">💍</span>
-      <h3>Bodas & Quinceañeras</h3>
-      <p>Celebra el día más especial rodeado de naturaleza y elegancia. Salón, jardín y todos los servicios coordinados al detalle.</p>
+      <h3>Bodas</h3>
+      <p>Celebra el día más importante de tu vida en un entorno que combina la belleza de la naturaleza, la elegancia de espacios exclusivos y la calidez de los momentos en familia. Salón, jardines, capilla, camerino privado y atención personalizada para hacer de tu boda una experiencia inolvidable.</p>
+    </div>
+    <div class="service-card reveal">
+      <span class="service-icon">💍</span>
+      <h3>Quinceañeras</h3>
+      <p>Celebra una etapa inolvidable en un entorno mágico donde la naturaleza, la elegancia y la alegría se unen para crear recuerdos que durarán toda la vida. Espacios exclusivos, atención personalizada y cada detalle pensado para hacer realidad la fiesta de tus sueños.</p>
     </div>
     <div class="service-card reveal">
       <span class="service-icon">🏢</span>
       <h3>Eventos Corporativos</h3>
-      <p>Conferencias, lanzamientos, cenas de gala y team buildings en un entorno único a minutos de Bogotá.</p>
+      <p>Transforme sus reuniones empresariales en experiencias memorables. Nuestro entorno campestre, elegante y funcional ofrece el escenario perfecto para eventos corporativos, integraciones, conferencias y celebraciones empresariales.</p>
     </div>
     <div class="service-card reveal">
       <span class="service-icon">🎂</span>
       <h3>Celebraciones Sociales</h3>
-      <p>Cumpleaños, baby showers, grados y aniversarios con ambientación personalizada y catering gourmet.</p>
+      <p>Cada ocasión merece un escenario especial. Celebra cumpleaños, aniversarios, reuniones familiares y momentos inolvidables en un entorno que combina naturaleza, elegancia y calidez para compartir con quienes más quieres.</p>
     </div>
     <div class="service-card reveal">
       <span class="service-icon">🍽</span>
       <h3>Gastronomía</h3>
-      <p>Menús personalizados, estaciones gourmet, coctelería y pastelería artesanal para completar tu evento.</p>
+      <p>Sorprende a tus invitados con una propuesta gastronómica diseñada para conquistar todos los sentidos. Desde nuestros menús seleccionados y estaciones gourmet hasta cócteles exclusivos y pastelería artesanal, cada detalle está pensado para brindar una experiencia única e inolvidable.</p>
     </div>
     <div class="service-card reveal">
       <span class="service-icon">🌿</span>
-      <h3>Jardín & Naturaleza</h3>
-      <p>Espacios al aire libre con vegetación exuberante. El entorno natural se convierte en la mejor decoración.</p>
+      <h3>Jardín &amp; Naturaleza</h3>
+      <p>Entre la serenidad de los jardines y el encanto de la naturaleza, cada celebración cobra vida de una manera especial. De día, paisajes verdes y florecidos; de noche, la iluminación resalta cada detalle en una atmósfera cálida y sofisticada. Dos experiencias distintas, un mismo propósito: crear momentos inolvidables.</p>
     </div>
     <div class="service-card reveal">
       <span class="service-icon">🎭</span>
-      <h3>Decoración & Flores</h3>
-      <p>Diseño floral, iluminación escénica, mobiliario y todos los detalles para crear la atmósfera perfecta.</p>
+      <h3>Ambientes que Inspiran</h3>
+      <p>Cada celebración tiene una esencia única, y nuestros espacios están diseñados para reflejarla. La elegancia de la decoración, la armonía de cada detalle y la versatilidad de nuestros servicios nos permiten crear ambientes personalizados que se adaptan a tus gustos, necesidades y sueños.</p>
     </div>
   </div>
 </section>
@@ -520,7 +563,7 @@ footer{border-top:1px solid rgba(201,168,76,.1);padding:3rem 4rem;display:flex;a
       <div class="step-num">03</div>
       <div class="step-icon">💬</div>
       <h3>Recibe tu cotización</h3>
-      <p>Nuestro equipo te envía una propuesta personalizada con todos los servicios seleccionados.</p>
+      <p>Te enviaremos una propuesta diseñada para ti, que podrás ajustar según tus necesidades y los servicios que quieras contratar.</p>
     </div>
     <div class="step reveal">
       <div class="step-num">04</div>
@@ -689,7 +732,7 @@ footer{border-top:1px solid rgba(201,168,76,.1);padding:3rem 4rem;display:flex;a
   <div class="cta-bg"></div>
   <div class="cta-inner reveal">
     <h2>¿Listo para crear algo <em>memorable</em>?</h2>
-    <p>Cuéntanos sobre tu evento y nuestro equipo te contactará en menos de 24 horas con una propuesta a tu medida.</p>
+    <p>Cuéntanos sobre tu evento y nuestro equipo te contactará con una propuesta a tu medida.</p>
     <div class="cta-actions">
       <a href="#registro" class="btn-primary">Solicitar información</a>
       <a href="https://wa.me/573001234567?text=Hola%2C%20deseo%20obtener%20informaci%C3%B3n%20sobre%20los%20eventos%20y%20servicios%20disponibles." class="btn-secondary" target="_blank" rel="noopener noreferrer">Escribir por WhatsApp</a>
@@ -1607,6 +1650,27 @@ async function postTestimonial(){
     }
   } catch(e){}
 })();
+
+// ── GALERÍA FILTRO ──
+function filterGallery(cat, btn){
+  const grid    = document.querySelector('.gallery-grid');
+  const isOpen  = btn.classList.contains('active');
+  document.querySelectorAll('.story-btn').forEach(b => b.classList.remove('active'));
+  if(isOpen){
+    grid.classList.remove('visible');
+    return;
+  }
+  btn.classList.add('active');
+  const items = grid.querySelectorAll('.gallery-item');
+  if(cat === 'todos'){
+    grid.classList.remove('filtered');
+    items.forEach(item => item.classList.remove('hidden'));
+  } else {
+    grid.classList.add('filtered');
+    items.forEach(item => item.classList.toggle('hidden', item.dataset.cat !== cat));
+  }
+  grid.classList.add('visible');
+}
 
 // ── CONTADOR DE VISITAS ──
 (async function contarVisita(){

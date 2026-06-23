@@ -12,6 +12,9 @@ y colócalas en esta carpeta con los nombres exactos:
   galeria5.jpg  — Foto para galería (ej. flores/detalles)
   galeria6.jpg  — Foto para galería (ej. vista panorámica)
 
+
+
+
 Formatos aceptados: .jpg, .jpeg, .png, .webp
 Tamaño recomendado: mínimo 800x600 px
 
@@ -20,5 +23,17 @@ Tamaño recomendado: mínimo 800x600 px
 EmailJS thebrunostyle@gmail.com
 
 ccorreodepruebageneral@gmail.com
+Public Key: nEGTMO_zDy5JurAjY
 clave:sL8NEZa3eTSx3Np*$#@
+
+
+Categoría	Archivos esperados en assets/img/
+Bodas	                Boda1.jpg … Boda4.jpg
+Quinceañeras	        Quince1.jpg … Quince4.jpg
+Eventos Corporativos	Corp1.jpg … Corp4.jpg
+Celebraciones Sociales	Social1.jpg … Social4.jpg
+Gastronomía	        Gastro1.jpg … Gastro4.jpg
+Jardín & Naturaleza	Natu1.jpg … Natu4.jpg
+Ambientes que Inspiran	Ambi1.jpg … Ambi4.jpg
+
 
