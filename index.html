@@ -1627,9 +1627,18 @@ async function saveContactData(){
 }
 (async function loadContactData(){
   try {
-    const res = await fetch('api/contacto.php');
-    if(res.ok){ const data = await res.json(); applyContactData(data); }
-  } catch(e){}
+    // Leer directamente el JSON (no requiere PHP)
+    const res = await fetch('data/contacto.json?_=' + Date.now());
+    if(res.ok){
+      const data = await res.json();
+      applyContactData(data);
+    } else {
+      // Fallback al API PHP
+      const res2 = await fetch('api/contacto.php');
+      if(res2.ok){ const data = await res2.json(); applyContactData(data); }
+      else console.error('[ContactData] Error:', res2.status);
+    }
+  } catch(e){ console.error('[ContactData] Fetch failed:', e); }
 })();
 
 // ── CARRUSEL JS ──
