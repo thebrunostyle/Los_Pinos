@@ -785,7 +785,7 @@ footer{border-top:1px solid rgba(201,168,76,.1);padding:3rem 4rem;display:flex;a
     <p>Cuéntanos sobre tu evento y nuestro equipo te contactará con una propuesta a tu medida.</p>
     <div class="cta-actions">
       <a href="#registro" class="btn-primary">Solicitar información</a>
-      <a id="ctaWaBtn" href="https://wa.me/573001234567?text=Hola%2C%20deseo%20obtener%20informaci%C3%B3n%20sobre%20los%20eventos%20y%20servicios%20disponibles." class="btn-secondary" target="_blank" rel="noopener noreferrer">Escribir por WhatsApp</a>
+      <a id="ctaWaBtn" href="#" class="btn-secondary" target="_blank" rel="noopener noreferrer">Escribir por WhatsApp</a>
     </div>
     <div class="contact-info">
       <div class="contact-item"><div class="contact-item-icon">📍</div><div class="contact-item-label">Ubicación</div><div class="contact-item-value" id="infoUbicacion">Calle 14 9 89, Puente de la Cruz<br>Cota, Cundinamarca, Colombia</div></div>
@@ -824,7 +824,7 @@ footer{border-top:1px solid rgba(201,168,76,.1);padding:3rem 4rem;display:flex;a
 </button>
 
 <!-- WHATSAPP FLOAT -->
-<a class="wa-float" href="https://wa.me/573001234567?text=Hola%2C%20deseo%20obtener%20informaci%C3%B3n%20sobre%20los%20eventos%20y%20servicios%20disponibles." target="_blank" rel="noopener noreferrer">
+<a class="wa-float" href="#" target="_blank" rel="noopener noreferrer">
   <div class="wa-tooltip">Escríbenos</div>
   <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.136.562 4.14 1.535 5.876L.057 23.617a.75.75 0 00.918.899l5.9-1.547A11.952 11.952 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 22c-1.891 0-3.673-.497-5.217-1.369l-.374-.216-3.878 1.017 1.035-3.783-.234-.381A9.953 9.953 0 012 12C2 6.477 6.477 2 12 2s10 4.477 10 10-4.477 10-10 10z"/></svg>
 </a>
@@ -1546,10 +1546,19 @@ async function saveRedes(){
 })();
 
 // ── DATOS DE CONTACTO ──
-let _waPhone = '573001234567';
+let _waPhone = localStorage.getItem('_qlp_wa_phone') || '';
+
+function _waPhoneClean(){
+  const raw = _waPhone || '';
+  if(!raw) return '573001234567';
+  const digits = raw.replace(/\D/g, '');
+  if(/^57\d{10}$/.test(digits)) return digits;
+  if(/^57/.test(digits))        return digits;
+  if(/^3\d{9}$/.test(digits))   return '57' + digits;
+  return '57' + digits.replace(/^0+/, '');
+}
 
 function _buildWaUrl(params){
-  const phone = _waPhone.replace(/\D/g,'').replace(/^0+/,'').replace(/^(?!57)/,'57');
   const lines = [
     'Quinta los Pinos: Cuéntanos sobre tu evento',
     'Fecha:              ' + (params.fecha        || '—'),
@@ -1560,23 +1569,29 @@ function _buildWaUrl(params){
     'Número de personas: ' + (params.personas     || '—'),
     'Comentarios:        ' + (params.comentarios  || '—'),
   ];
-  return 'https://wa.me/' + phone + '?text=' + encodeURIComponent(lines.join('\n'));
+  return 'https://api.whatsapp.com/send/?phone=' + _waPhoneClean()
+       + '&text=' + encodeURIComponent(lines.join('\n'))
+       + '&type=phone_number&app_absent=0';
 }
 
-function _updateWaBtn(params){
-  const url     = _buildWaUrl(params || {});
+function _updateWaBtns(formParams){
+  const url      = _buildWaUrl(formParams || {});
   const floatBtn = document.querySelector('.wa-float');
   const ctaBtn   = document.getElementById('ctaWaBtn');
   if(floatBtn) floatBtn.href = url;
   if(ctaBtn)   ctaBtn.href   = url;
 }
 
+// Aplicar inmediatamente con el valor cacheado (antes del fetch)
+_updateWaBtns();
+
 function applyContactData(data){
   if(data.ubicacion){ const el = document.getElementById('infoUbicacion'); if(el) el.innerHTML = data.ubicacion.replace(/\n/g,'<br>'); }
   if(data.telefono) {
     const el = document.getElementById('infoTelefono'); if(el) el.textContent = data.telefono;
     _waPhone = data.telefono;
-    _updateWaBtn();
+    localStorage.setItem('_qlp_wa_phone', data.telefono);
+    _updateWaBtns();
   }
   if(data.correo)   { const el = document.getElementById('infoCorreo');    if(el) el.textContent = data.correo; }
 }
@@ -1847,7 +1862,7 @@ function handleSubmit(e){
     }
     // Abrir WhatsApp con los datos del formulario
     const waUrl = _buildWaUrl(params);
-    _updateWaBtn(params);
+    _updateWaBtns(params);
     window.open(waUrl, '_blank', 'noopener,noreferrer');
 
     document.getElementById('registerForm').style.display = 'none';
