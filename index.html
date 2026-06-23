@@ -230,6 +230,12 @@ footer{border-top:1px solid rgba(201,168,76,.1);padding:3rem 4rem;display:flex;a
 .wa-float svg{width:28px;height:28px;fill:white}
 .wa-tooltip{position:absolute;right:66px;background:var(--ink2);color:var(--cream);padding:.4rem .8rem;font-size:.75rem;white-space:nowrap;border:1px solid rgba(201,168,76,.2);opacity:0;transform:translateX(6px);transition:all .3s;pointer-events:none}
 .wa-float:hover .wa-tooltip{opacity:1;transform:translateX(0)}
+.top-float{position:fixed;bottom:6.5rem;right:2rem;z-index:200;width:54px;height:54px;background:var(--ink2);border:1px solid rgba(201,168,76,.35);border-radius:50%;display:flex;align-items:center;justify-content:center;box-shadow:0 4px 16px rgba(0,0,0,.4);cursor:none;transition:transform .3s,box-shadow .3s,border-color .3s;text-decoration:none;opacity:0;pointer-events:none}
+.top-float.visible{opacity:1;pointer-events:auto}
+.top-float:hover{transform:scale(1.1);border-color:var(--gold);box-shadow:0 6px 24px rgba(201,168,76,.2)}
+.top-float svg{width:22px;height:22px;fill:var(--gold)}
+.top-tooltip{position:absolute;right:66px;background:var(--ink2);color:var(--cream);padding:.4rem .8rem;font-size:.75rem;white-space:nowrap;border:1px solid rgba(201,168,76,.2);opacity:0;transform:translateX(6px);transition:all .3s;pointer-events:none}
+.top-float:hover .top-tooltip{opacity:1;transform:translateX(0)}
 
 /* ── ANIMACIONES ── */
 @keyframes fadeUp{from{opacity:0;transform:translateY(24px)}to{opacity:1;transform:translateY(0)}}
@@ -273,6 +279,12 @@ footer{border-top:1px solid rgba(201,168,76,.1);padding:3rem 4rem;display:flex;a
 .gallery-item:nth-child(6){grid-column:span 4;min-height:200px}
 .gallery-placeholder{width:100%;height:100%;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:.6rem;color:var(--muted);font-size:.78rem;letter-spacing:.1em;text-transform:uppercase;border:1px dashed rgba(201,168,76,.2);min-height:inherit}
 .gallery-placeholder span{font-size:2rem;opacity:.3}
+.gallery-redes-cta{display:none;text-align:center;margin-top:2.5rem;padding:1.5rem;border-top:1px solid rgba(201,168,76,.15)}
+.gallery-grid.visible~.gallery-redes-cta{display:block}
+.gallery-redes-cta p{font-size:.88rem;color:var(--muted);line-height:1.6}
+.gallery-redes-cta strong{color:var(--gold);font-weight:500}
+.gallery-redes-link{text-decoration:none;border-bottom:1px solid rgba(201,168,76,.4);transition:border-color .3s}
+.gallery-redes-link:hover{border-color:var(--gold)}
 
 /* ── CALENDAR LOGIN ── */
 .cal-login-bar{display:flex;align-items:center;justify-content:space-between;margin-bottom:1.5rem;flex-wrap:wrap;gap:.8rem}
@@ -437,7 +449,7 @@ footer{border-top:1px solid rgba(201,168,76,.1);padding:3rem 4rem;display:flex;a
       <span class="story-label">Bodas</span>
     </button>
     <button class="story-btn" data-cat="quinceaneras" onclick="filterGallery('quinceaneras',this)">
-      <div class="story-ring"><span class="story-emoji">💍</span></div>
+      <div class="story-ring"><span class="story-emoji">👸</span></div>
       <span class="story-label">Quinceañeras</span>
     </button>
     <button class="story-btn" data-cat="corporativos" onclick="filterGallery('corporativos',this)">
@@ -466,30 +478,68 @@ footer{border-top:1px solid rgba(201,168,76,.1);padding:3rem 4rem;display:flex;a
     <div class="gallery-item" data-cat="bodas"><img src="assets/img/Boda2.jpg" alt="Bodas 2" onerror="this.style.display='none'"/><div class="gallery-placeholder"><span>💍</span>Bodas</div></div>
     <div class="gallery-item" data-cat="bodas"><img src="assets/img/Boda3.jpg" alt="Bodas 3" onerror="this.style.display='none'"/><div class="gallery-placeholder"><span>💍</span>Bodas</div></div>
     <div class="gallery-item" data-cat="bodas"><img src="assets/img/Boda4.jpg" alt="Bodas 4" onerror="this.style.display='none'"/><div class="gallery-placeholder"><span>💍</span>Bodas</div></div>
+    <div class="gallery-item" data-cat="bodas"><img src="assets/img/Boda5.jpg" alt="Bodas 5" onerror="this.style.display='none'"/><div class="gallery-placeholder"><span>💍</span>Bodas</div></div>
+    <div class="gallery-item" data-cat="bodas"><img src="assets/img/Boda6.jpg" alt="Bodas 6" onerror="this.style.display='none'"/><div class="gallery-placeholder"><span>💍</span>Bodas</div></div>
+    <div class="gallery-item" data-cat="bodas"><img src="assets/img/Boda7.jpg" alt="Bodas 7" onerror="this.style.display='none'"/><div class="gallery-placeholder"><span>💍</span>Bodas</div></div>
+    <div class="gallery-item" data-cat="bodas"><img src="assets/img/Boda8.jpg" alt="Bodas 8" onerror="this.style.display='none'"/><div class="gallery-placeholder"><span>💍</span>Bodas</div></div>
+    <div class="gallery-item" data-cat="bodas"><img src="assets/img/Boda9.jpg" alt="Bodas 9" onerror="this.style.display='none'"/><div class="gallery-placeholder"><span>💍</span>Bodas</div></div>
     <div class="gallery-item" data-cat="quinceaneras"><img src="assets/img/Quince1.jpg" alt="Quinceañeras 1" onerror="this.style.display='none'"/><div class="gallery-placeholder"><span>💍</span>Quinceañeras</div></div>
     <div class="gallery-item" data-cat="quinceaneras"><img src="assets/img/Quince2.jpg" alt="Quinceañeras 2" onerror="this.style.display='none'"/><div class="gallery-placeholder"><span>💍</span>Quinceañeras</div></div>
     <div class="gallery-item" data-cat="quinceaneras"><img src="assets/img/Quince3.jpg" alt="Quinceañeras 3" onerror="this.style.display='none'"/><div class="gallery-placeholder"><span>💍</span>Quinceañeras</div></div>
     <div class="gallery-item" data-cat="quinceaneras"><img src="assets/img/Quince4.jpg" alt="Quinceañeras 4" onerror="this.style.display='none'"/><div class="gallery-placeholder"><span>💍</span>Quinceañeras</div></div>
+    <div class="gallery-item" data-cat="quinceaneras"><img src="assets/img/Quince5.jpg" alt="Quinceañeras 5" onerror="this.style.display='none'"/><div class="gallery-placeholder"><span>💍</span>Quinceañeras</div></div>
+    <div class="gallery-item" data-cat="quinceaneras"><img src="assets/img/Quince6.jpg" alt="Quinceañeras 6" onerror="this.style.display='none'"/><div class="gallery-placeholder"><span>💍</span>Quinceañeras</div></div>
+    <div class="gallery-item" data-cat="quinceaneras"><img src="assets/img/Quince7.jpg" alt="Quinceañeras 7" onerror="this.style.display='none'"/><div class="gallery-placeholder"><span>💍</span>Quinceañeras</div></div>
+    <div class="gallery-item" data-cat="quinceaneras"><img src="assets/img/Quince8.jpg" alt="Quinceañeras 8" onerror="this.style.display='none'"/><div class="gallery-placeholder"><span>💍</span>Quinceañeras</div></div>
+    <div class="gallery-item" data-cat="quinceaneras"><img src="assets/img/Quince9.jpg" alt="Quinceañeras 9" onerror="this.style.display='none'"/><div class="gallery-placeholder"><span>💍</span>Quinceañeras</div></div>
     <div class="gallery-item" data-cat="corporativos"><img src="assets/img/Corp1.jpg" alt="Eventos Corporativos 1" onerror="this.style.display='none'"/><div class="gallery-placeholder"><span>🏢</span>Eventos Corporativos</div></div>
     <div class="gallery-item" data-cat="corporativos"><img src="assets/img/Corp2.jpg" alt="Eventos Corporativos 2" onerror="this.style.display='none'"/><div class="gallery-placeholder"><span>🏢</span>Eventos Corporativos</div></div>
     <div class="gallery-item" data-cat="corporativos"><img src="assets/img/Corp3.jpg" alt="Eventos Corporativos 3" onerror="this.style.display='none'"/><div class="gallery-placeholder"><span>🏢</span>Eventos Corporativos</div></div>
     <div class="gallery-item" data-cat="corporativos"><img src="assets/img/Corp4.jpg" alt="Eventos Corporativos 4" onerror="this.style.display='none'"/><div class="gallery-placeholder"><span>🏢</span>Eventos Corporativos</div></div>
+    <div class="gallery-item" data-cat="corporativos"><img src="assets/img/Corp5.jpg" alt="Eventos Corporativos 5" onerror="this.style.display='none'"/><div class="gallery-placeholder"><span>🏢</span>Eventos Corporativos</div></div>
+    <div class="gallery-item" data-cat="corporativos"><img src="assets/img/Corp6.jpg" alt="Eventos Corporativos 6" onerror="this.style.display='none'"/><div class="gallery-placeholder"><span>🏢</span>Eventos Corporativos</div></div>
+    <div class="gallery-item" data-cat="corporativos"><img src="assets/img/Corp7.jpg" alt="Eventos Corporativos 7" onerror="this.style.display='none'"/><div class="gallery-placeholder"><span>🏢</span>Eventos Corporativos</div></div>
+    <div class="gallery-item" data-cat="corporativos"><img src="assets/img/Corp8.jpg" alt="Eventos Corporativos 8" onerror="this.style.display='none'"/><div class="gallery-placeholder"><span>🏢</span>Eventos Corporativos</div></div>
+    <div class="gallery-item" data-cat="corporativos"><img src="assets/img/Corp9.jpg" alt="Eventos Corporativos 9" onerror="this.style.display='none'"/><div class="gallery-placeholder"><span>🏢</span>Eventos Corporativos</div></div>
     <div class="gallery-item" data-cat="sociales"><img src="assets/img/Social1.jpg" alt="Celebraciones Sociales 1" onerror="this.style.display='none'"/><div class="gallery-placeholder"><span>🎂</span>Celebraciones Sociales</div></div>
     <div class="gallery-item" data-cat="sociales"><img src="assets/img/Social2.jpg" alt="Celebraciones Sociales 2" onerror="this.style.display='none'"/><div class="gallery-placeholder"><span>🎂</span>Celebraciones Sociales</div></div>
     <div class="gallery-item" data-cat="sociales"><img src="assets/img/Social3.jpg" alt="Celebraciones Sociales 3" onerror="this.style.display='none'"/><div class="gallery-placeholder"><span>🎂</span>Celebraciones Sociales</div></div>
     <div class="gallery-item" data-cat="sociales"><img src="assets/img/Social4.jpg" alt="Celebraciones Sociales 4" onerror="this.style.display='none'"/><div class="gallery-placeholder"><span>🎂</span>Celebraciones Sociales</div></div>
+    <div class="gallery-item" data-cat="sociales"><img src="assets/img/Social5.jpg" alt="Celebraciones Sociales 5" onerror="this.style.display='none'"/><div class="gallery-placeholder"><span>🎂</span>Celebraciones Sociales</div></div>
+    <div class="gallery-item" data-cat="sociales"><img src="assets/img/Social6.jpg" alt="Celebraciones Sociales 6" onerror="this.style.display='none'"/><div class="gallery-placeholder"><span>🎂</span>Celebraciones Sociales</div></div>
+    <div class="gallery-item" data-cat="sociales"><img src="assets/img/Social7.jpg" alt="Celebraciones Sociales 7" onerror="this.style.display='none'"/><div class="gallery-placeholder"><span>🎂</span>Celebraciones Sociales</div></div>
+    <div class="gallery-item" data-cat="sociales"><img src="assets/img/Social8.jpg" alt="Celebraciones Sociales 8" onerror="this.style.display='none'"/><div class="gallery-placeholder"><span>🎂</span>Celebraciones Sociales</div></div>
+    <div class="gallery-item" data-cat="sociales"><img src="assets/img/Social9.jpg" alt="Celebraciones Sociales 9" onerror="this.style.display='none'"/><div class="gallery-placeholder"><span>🎂</span>Celebraciones Sociales</div></div>
     <div class="gallery-item" data-cat="gastronomia"><img src="assets/img/Gastro1.jpg" alt="Gastronomía 1" onerror="this.style.display='none'"/><div class="gallery-placeholder"><span>🍽</span>Gastronomía</div></div>
     <div class="gallery-item" data-cat="gastronomia"><img src="assets/img/Gastro2.jpg" alt="Gastronomía 2" onerror="this.style.display='none'"/><div class="gallery-placeholder"><span>🍽</span>Gastronomía</div></div>
     <div class="gallery-item" data-cat="gastronomia"><img src="assets/img/Gastro3.jpg" alt="Gastronomía 3" onerror="this.style.display='none'"/><div class="gallery-placeholder"><span>🍽</span>Gastronomía</div></div>
     <div class="gallery-item" data-cat="gastronomia"><img src="assets/img/Gastro4.jpg" alt="Gastronomía 4" onerror="this.style.display='none'"/><div class="gallery-placeholder"><span>🍽</span>Gastronomía</div></div>
-    <div class="gallery-item" data-cat="jardin"><img src="assets/img/Natu1.jpg" alt="Jardín &amp; Naturaleza 1" onerror="this.style.display='none'"/><div class="gallery-placeholder"><span>🌿</span>Jardín &amp; Naturaleza</div></div>
-    <div class="gallery-item" data-cat="jardin"><img src="assets/img/Natu2.jpg" alt="Jardín &amp; Naturaleza 2" onerror="this.style.display='none'"/><div class="gallery-placeholder"><span>🌿</span>Jardín &amp; Naturaleza</div></div>
-    <div class="gallery-item" data-cat="jardin"><img src="assets/img/Natu3.jpg" alt="Jardín &amp; Naturaleza 3" onerror="this.style.display='none'"/><div class="gallery-placeholder"><span>🌿</span>Jardín &amp; Naturaleza</div></div>
-    <div class="gallery-item" data-cat="jardin"><img src="assets/img/Natu4.jpg" alt="Jardín &amp; Naturaleza 4" onerror="this.style.display='none'"/><div class="gallery-placeholder"><span>🌿</span>Jardín &amp; Naturaleza</div></div>
-    <div class="gallery-item" data-cat="ambientes"><img src="assets/img/Ambi1.jpg" alt="Ambientes que Inspiran 1" onerror="this.style.display='none'"/><div class="gallery-placeholder"><span>🎭</span>Ambientes que Inspiran</div></div>
-    <div class="gallery-item" data-cat="ambientes"><img src="assets/img/Ambi2.jpg" alt="Ambientes que Inspiran 2" onerror="this.style.display='none'"/><div class="gallery-placeholder"><span>🎭</span>Ambientes que Inspiran</div></div>
-    <div class="gallery-item" data-cat="ambientes"><img src="assets/img/Ambi3.jpg" alt="Ambientes que Inspiran 3" onerror="this.style.display='none'"/><div class="gallery-placeholder"><span>🎭</span>Ambientes que Inspiran</div></div>
-    <div class="gallery-item" data-cat="ambientes"><img src="assets/img/Ambi4.jpg" alt="Ambientes que Inspiran 4" onerror="this.style.display='none'"/><div class="gallery-placeholder"><span>🎭</span>Ambientes que Inspiran</div></div>
+    <div class="gallery-item" data-cat="gastronomia"><img src="assets/img/Gastro5.jpg" alt="Gastronomía 5" onerror="this.style.display='none'"/><div class="gallery-placeholder"><span>🍽</span>Gastronomía</div></div>
+    <div class="gallery-item" data-cat="gastronomia"><img src="assets/img/Gastro6.jpg" alt="Gastronomía 6" onerror="this.style.display='none'"/><div class="gallery-placeholder"><span>🍽</span>Gastronomía</div></div>
+    <div class="gallery-item" data-cat="gastronomia"><img src="assets/img/Gastro7.jpg" alt="Gastronomía 7" onerror="this.style.display='none'"/><div class="gallery-placeholder"><span>🍽</span>Gastronomía</div></div>
+    <div class="gallery-item" data-cat="gastronomia"><img src="assets/img/Gastro8.jpg" alt="Gastronomía 8" onerror="this.style.display='none'"/><div class="gallery-placeholder"><span>🍽</span>Gastronomía</div></div>
+    <div class="gallery-item" data-cat="gastronomia"><img src="assets/img/Gastro9.jpg" alt="Gastronomía 9" onerror="this.style.display='none'"/><div class="gallery-placeholder"><span>🍽</span>Gastronomía</div></div>
+    <div class="gallery-item" data-cat="jardin"><img src="assets/img/Natu1.jpg" alt="Jardín 1" onerror="this.style.display='none'"/><div class="gallery-placeholder"><span>🌿</span>Jardín &amp; Naturaleza</div></div>
+    <div class="gallery-item" data-cat="jardin"><img src="assets/img/Natu2.jpg" alt="Jardín 2" onerror="this.style.display='none'"/><div class="gallery-placeholder"><span>🌿</span>Jardín &amp; Naturaleza</div></div>
+    <div class="gallery-item" data-cat="jardin"><img src="assets/img/Natu3.jpg" alt="Jardín 3" onerror="this.style.display='none'"/><div class="gallery-placeholder"><span>🌿</span>Jardín &amp; Naturaleza</div></div>
+    <div class="gallery-item" data-cat="jardin"><img src="assets/img/Natu4.jpg" alt="Jardín 4" onerror="this.style.display='none'"/><div class="gallery-placeholder"><span>🌿</span>Jardín &amp; Naturaleza</div></div>
+    <div class="gallery-item" data-cat="jardin"><img src="assets/img/Natu5.jpg" alt="Jardín 5" onerror="this.style.display='none'"/><div class="gallery-placeholder"><span>🌿</span>Jardín &amp; Naturaleza</div></div>
+    <div class="gallery-item" data-cat="jardin"><img src="assets/img/Natu6.jpg" alt="Jardín 6" onerror="this.style.display='none'"/><div class="gallery-placeholder"><span>🌿</span>Jardín &amp; Naturaleza</div></div>
+    <div class="gallery-item" data-cat="jardin"><img src="assets/img/Natu7.jpg" alt="Jardín 7" onerror="this.style.display='none'"/><div class="gallery-placeholder"><span>🌿</span>Jardín &amp; Naturaleza</div></div>
+    <div class="gallery-item" data-cat="jardin"><img src="assets/img/Natu8.jpg" alt="Jardín 8" onerror="this.style.display='none'"/><div class="gallery-placeholder"><span>🌿</span>Jardín &amp; Naturaleza</div></div>
+    <div class="gallery-item" data-cat="jardin"><img src="assets/img/Natu9.jpg" alt="Jardín 9" onerror="this.style.display='none'"/><div class="gallery-placeholder"><span>🌿</span>Jardín &amp; Naturaleza</div></div>
+    <div class="gallery-item" data-cat="ambientes"><img src="assets/img/Ambi1.jpg" alt="Ambientes 1" onerror="this.style.display='none'"/><div class="gallery-placeholder"><span>🎭</span>Ambientes que Inspiran</div></div>
+    <div class="gallery-item" data-cat="ambientes"><img src="assets/img/Ambi2.jpg" alt="Ambientes 2" onerror="this.style.display='none'"/><div class="gallery-placeholder"><span>🎭</span>Ambientes que Inspiran</div></div>
+    <div class="gallery-item" data-cat="ambientes"><img src="assets/img/Ambi3.jpg" alt="Ambientes 3" onerror="this.style.display='none'"/><div class="gallery-placeholder"><span>🎭</span>Ambientes que Inspiran</div></div>
+    <div class="gallery-item" data-cat="ambientes"><img src="assets/img/Ambi4.jpg" alt="Ambientes 4" onerror="this.style.display='none'"/><div class="gallery-placeholder"><span>🎭</span>Ambientes que Inspiran</div></div>
+    <div class="gallery-item" data-cat="ambientes"><img src="assets/img/Ambi5.jpg" alt="Ambientes 5" onerror="this.style.display='none'"/><div class="gallery-placeholder"><span>🎭</span>Ambientes que Inspiran</div></div>
+    <div class="gallery-item" data-cat="ambientes"><img src="assets/img/Ambi6.jpg" alt="Ambientes 6" onerror="this.style.display='none'"/><div class="gallery-placeholder"><span>🎭</span>Ambientes que Inspiran</div></div>
+    <div class="gallery-item" data-cat="ambientes"><img src="assets/img/Ambi7.jpg" alt="Ambientes 7" onerror="this.style.display='none'"/><div class="gallery-placeholder"><span>🎭</span>Ambientes que Inspiran</div></div>
+    <div class="gallery-item" data-cat="ambientes"><img src="assets/img/Ambi8.jpg" alt="Ambientes 8" onerror="this.style.display='none'"/><div class="gallery-placeholder"><span>🎭</span>Ambientes que Inspiran</div></div>
+    <div class="gallery-item" data-cat="ambientes"><img src="assets/img/Ambi9.jpg" alt="Ambientes 9" onerror="this.style.display='none'"/><div class="gallery-placeholder"><span>🎭</span>Ambientes que Inspiran</div></div>
+  </div>
+  <div class="gallery-redes-cta">
+    <p>Si quieres ver más de nuestros eventos, <a href="#redes" class="gallery-redes-link"><strong>síguenos en nuestras redes.</strong></a></p>
   </div>
 </section>
 
@@ -766,6 +816,12 @@ footer{border-top:1px solid rgba(201,168,76,.1);padding:3rem 4rem;display:flex;a
     <a href="#">Admin</a>
   </div>
 </footer>
+
+<!-- IR ARRIBA -->
+<button class="top-float" id="topFloat" onclick="window.scrollTo({top:0,behavior:'smooth'})" aria-label="Ir arriba">
+  <div class="top-tooltip">Ir arriba</div>
+  <svg viewBox="0 0 24 24"><path d="M12 4l-8 8h5v8h6v-8h5z"/></svg>
+</button>
 
 <!-- WHATSAPP FLOAT -->
 <a class="wa-float" href="https://wa.me/573001234567?text=Hola%2C%20deseo%20obtener%20informaci%C3%B3n%20sobre%20los%20eventos%20y%20servicios%20disponibles." target="_blank" rel="noopener noreferrer">
@@ -1671,6 +1727,14 @@ function filterGallery(cat, btn){
   }
   grid.classList.add('visible');
 }
+
+// ── IR ARRIBA ──
+(function(){
+  const btn = document.getElementById('topFloat');
+  window.addEventListener('scroll', () => {
+    btn.classList.toggle('visible', window.scrollY > 300);
+  }, { passive: true });
+})();
 
 // ── CONTADOR DE VISITAS ──
 (async function contarVisita(){
